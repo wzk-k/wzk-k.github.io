@@ -152,13 +152,13 @@
     
     
     
-    
-    
-    
-    
-    
-    <div id="SOHUCS" sid="search/index.html"></div>
+    <div id="minivaline_container" class="minivaline_thread"></div>
 
+    
+    
+    
+    
+    
     
 
 
@@ -396,28 +396,19 @@
     
 
     
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
     <script>
         function loadComment() {
-            (function(){
-                var appid = 'cyvdVm0xF';
-                var conf = '9df245333fb16b48414b8146d6a1c631';
-                var width = window.innerWidth || document.documentElement.clientWidth;
-                if (width < 960) {
-                    window.document.write('<script id="changyan_mobile_js" charset="utf-8" defer crossorigin="anonymous" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
-                } else {
-                    var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if (typeof a==="function"){if (window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if (e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});
+            let e, i;
+            (e = document.createElement("script")).src = 'https://cdn.jsdelivr.net/npm/minivaline@2.7.5/dist/MiniValine.min.js',
+            document.body.appendChild(e);
+            e.onload = () => {
+                var minivalineConfig = {&#34;appId&#34;:&#34;X52dip9GABJ0Y8WCHzQDrIsp-gzGzoHsz&#34;,&#34;appKey&#34;:&#34;qGC7kvVbECNXy3sLaDDkSzt9&#34;,&#34;mode&#34;:null,&#34;placeholder&#34;:null,&#34;pathname&#34;:null,&#34;adminEmailMd5&#34;:null,&#34;master&#34;:null,&#34;friends&#34;:null,&#34;tagMeta&#34;:null,&#34;math&#34;:null,&#34;md&#34;:null,&#34;lang&#34;:null,&#34;emoticonUrl&#34;:null,&#34;NoRecordIP&#34;:null,&#34;maxNest&#34;:null,&#34;pageSize&#34;:null,&#34;enableQQ&#34;:null,&#34;visitor&#34;:null,&#34;serverURLs&#34;:null};
+                minivalineConfig.el = '#minivaline_container';
+                for (var i in minivalineConfig) {
+                    if (minivalineConfig[i] === null) delete minivalineConfig[i];
                 }
-            })();
+                new MiniValine(minivalineConfig);
+            };
         }
     
         var runningOnBrowser = typeof window !== "undefined";
@@ -439,6 +430,16 @@
         }, 1);
     </script>
 
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
 
     
 
