@@ -151,14 +151,14 @@
     
     
     
-    <div id="valine_container" class="valine_thread"></div>
+    
+    
+    
+    
+    
+    
+    <div id="SOHUCS" sid="tags/index.html"></div>
 
-    
-    
-    
-    
-    
-    
     
 
 
@@ -173,6 +173,25 @@
 
 
     
+    
+        <span id="leancloud_container_site_uv" hidden>
+            <span>你是独一无二第</span>
+            <span id="leancloud_value_site_uv"></span>
+            <span>人</span>
+            
+                <span>❤</span>
+            
+        </span>
+    
+    
+        <span id="leancloud_container_site_pv" hidden>
+            <span>点击超过</span>
+            <span id="leancloud_value_site_pv"></span>
+            <span>次！</span>
+            
+        </span>
+    
+
      
  
 
@@ -204,6 +223,161 @@
 
 
     
+    <script>
+        (function () {
+            function getRecord(Counter, target) {
+                return new Promise(function (resolve, reject) {
+                    Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+                        .then(response => response.json())
+                        .then(({results}) => {
+                            if (results && results.length > 0) {
+                                var record = results[0];
+                                resolve(record);
+                            } else {
+                                Counter('post', '/classes/Counter', {
+                                        target, time: 0
+                                    })
+                                    .then(response => response.json())
+                                    .then(record => {
+                                        resolve(record);
+                                    }).catch(error => {
+                                        console.error('Failed to create', error);
+                                        reject(error);
+                                    });
+                            }
+                        }).catch(error => {
+                            console.error('LeanCloud Counter Error', error);
+                            reject(error);
+                        });
+                })
+            }
+        
+            function buildIncrement(objectId) {
+                return {
+                    "method": "PUT",
+                    "path": `/1.1/classes/Counter/${ objectId }`,
+                    "body": {
+                        "time": {
+                            '__op': 'Increment',
+                            'amount': 1
+                        }
+                    }
+                }
+            }
+        
+            function increment(Counter, incrArr) {
+                return new Promise(function (resolve, reject) {
+                    Counter('post', '/batch', {
+                        "requests": incrArr
+                    }).then((res) => {
+                        resolve(res);
+                    }).catch(error => {
+                        console.error('Failed to save visitor count', error);
+                        reject(error);
+                    });
+                });
+            }
+        
+            function validUV() {
+                var key = 'LeanCloud_UV_Flag';
+                var flag = localStorage.getItem(key);
+                if (flag) {
+                    if (new Date().getTime() - parseInt(flag) <= 86400000) {
+                        return false;
+                    }
+                }
+                localStorage.setItem(key, new Date().getTime().toString());
+                return true;
+            }
+        
+            function addCount(Counter) {
+                var enableIncr = 'leancloud' === 'leancloud';
+                var getterArr = [];
+                var incrArr = [];
+                var pvCtn = document.querySelector('#leancloud_container_site_pv');
+                if (pvCtn || enableIncr) {
+                    var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+                        incrArr.push(buildIncrement(record.objectId))
+                        var ele = document.querySelector('#leancloud_value_site_pv');
+                        if (ele) {
+                            ele.innerText = record.time + 1;
+                            if (pvCtn) {
+                                pvCtn.style.display = 'inline';
+                            }
+                        }
+                    });
+                    getterArr.push(pvGetter);
+                }
+                var uvCtn = document.querySelector('#leancloud_container_site_uv');
+                if (uvCtn || enableIncr) {
+                    var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+                        var vuv = validUV();
+                        vuv && incrArr.push(buildIncrement(record.objectId))
+                        var ele = document.querySelector('#leancloud_value_site_uv');
+                        if (ele) {
+                            ele.innerText = record.time + (vuv ? 1 : 0);
+                            if (uvCtn) {
+                                uvCtn.style.display = 'inline';
+                            }
+                        }
+                    });
+                    getterArr.push(uvGetter);
+                }
+                if ('false' === 'true') {
+                    var viewCtn = document.querySelector('#leancloud_container_page_pv');
+                    if (viewCtn || enableIncr) {
+                        var target = decodeURI('/tags/index.html');
+                        var viewGetter = getRecord(Counter, target).then((record) => {
+                            incrArr.push(buildIncrement(record.objectId))
+                            if (viewCtn) {
+                                var ele = document.querySelector('#leancloud_value_page_pv');
+                                if (ele) {
+                                    ele.innerText = (record.time || 0) + 1;
+                                    viewCtn.style.display = 'inline';
+                                }
+                            }
+                        });
+                        getterArr.push(viewGetter);
+                    }
+                }
+                if (enableIncr) {
+                    Promise.all(getterArr).then(() => {
+                        incrArr.length > 0 && increment(Counter, incrArr);
+                    })
+                }
+            }
+        
+            var app_id = 'X52dip9GABJ0Y8WCHzQDrIsp-gzGzoHsz';
+            var app_key = 'qGC7kvVbECNXy3sLaDDkSzt9';
+            var server_url = 'https://x52dip9g.lc-cn-n1-shared.com';
+        
+            function fetchData(api_server) {
+                var Counter = (method, url, data) => {
+                    return fetch(`${ api_server }/1.1${ url }`, {
+                        method,
+                        headers: {
+                                'X-LC-Id': app_id,
+                                'X-LC-Key': app_key,
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                    });
+                };
+                addCount(Counter);
+            }
+            var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+            if (api_server) {
+                fetchData(api_server);
+            } else {
+                fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+                    .then(response => response.json())
+                    .then(({api_server}) => {
+                        fetchData('https://' + api_server);
+                    });
+            }
+        })();
+    </script>
+
  
 
  
@@ -217,22 +391,33 @@
 
     
 
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
     
     
     
     <script>
         function loadComment() {
-            let e;
-            (e = document.createElement("script")).src = 'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
-            document.body.appendChild(e);
-            e.onload = () => {
-                var valineConfig = {&#34;enable&#34;:true,&#34;appId&#34;:&#34;X52dip9GABJ0Y8WCHzQDrIsp-gzGzoHsz&#34;,&#34;appKey&#34;:&#34;qGC7kvVbECNXy3sLaDDkSzt9&#34;,&#34;placeholder&#34;:null,&#34;path&#34;:null,&#34;avatar&#34;:null,&#34;meta&#34;:[&#34;nick&#34;,&#34;mail&#34;],&#34;pageSize&#34;:null,&#34;lang&#34;:null,&#34;visitor&#34;:null,&#34;highlight&#34;:null,&#34;avatarForce&#34;:null,&#34;recordIP&#34;:null,&#34;serverURLs&#34;:null,&#34;enableQQ&#34;:null,&#34;requiredFields&#34;:[&#34;nick&#34;,&#34;mail&#34;],&#34;emojiCDN&#34;:null,&#34;emojiMaps&#34;:null};
-                valineConfig.el = '#valine_container';
-                for (var i in valineConfig) {
-                    if (valineConfig[i] === null) delete valineConfig[i];
+            (function(){
+                var appid = 'cyvdVm0xF';
+                var conf = '9df245333fb16b48414b8146d6a1c631';
+                var width = window.innerWidth || document.documentElement.clientWidth;
+                if (width < 960) {
+                    window.document.write('<script id="changyan_mobile_js" charset="utf-8" defer crossorigin="anonymous" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+                } else {
+                    var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if (typeof a==="function"){if (window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if (e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});
                 }
-                new Valine(valineConfig);
-            };
+            })();
         }
     
         var runningOnBrowser = typeof window !== "undefined";
@@ -254,18 +439,6 @@
         }, 1);
     </script>
 
-
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
 
     
 
