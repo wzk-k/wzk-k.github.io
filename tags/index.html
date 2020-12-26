@@ -81,7 +81,7 @@
             <header class="header">
     <div class="header__left">
         <a href="/" class="button">
-            <span class="logo__text">wzkang🦁</span>
+            <span class="logo__text">你好！</span>
         </a>
     </div>
     <div class="header__right">
@@ -92,7 +92,7 @@
                 
                     <a href="/archives/" class="navbar-menu button">归档</a>
                 
-                    <a href="/about/" class="navbar-menu button">关于</a>
+                    <a href="/%E5%85%B3%E4%BA%8E/" class="navbar-menu button">关于</a>
                 
             </div>
         
@@ -122,7 +122,7 @@
                 
                     <a href="/archives/" class="dropdown-menu button">归档</a>
                 
-                    <a href="/about/" class="dropdown-menu button">关于</a>
+                    <a href="/%E5%85%B3%E4%BA%8E/" class="dropdown-menu button">关于</a>
                 
             </div>
         
@@ -167,25 +167,6 @@
 
 
 
-
-    <div class="post__comments content-card" id="comment">
-        
-    <h4>评论</h4>
-    
-    
-    
-    <div id="valine_container" class="valine_thread"></div>
-
-    
-    
-    
-    
-    
-    
-    
-
-
-    </div>
 
 
 
@@ -413,60 +394,6 @@
 
  
 
-
-    
-
-    
-    
-    
-    <script>
-        function loadComment() {
-            let e;
-            (e = document.createElement("script")).src = '/true',
-            document.body.appendChild(e);
-            e.onload = () => {
-                var valineConfig = {&#34;appId&#34;:&#34;59SwPXP8BGnD9KITklo6uCcE-gzGzoHsz&#34;,&#34;appKey&#34;:&#34;foEgF7E9oWUlXFfsSy2l8lrD&#34;,&#34;placeholder&#34;:null,&#34;path&#34;:null,&#34;avatar&#34;:null,&#34;meta&#34;:[&#34;nick&#34;,&#34;mail&#34;,&#34;link&#34;],&#34;pageSize&#34;:null,&#34;lang&#34;:null,&#34;visitor&#34;:null,&#34;highlight&#34;:null,&#34;avatarForce&#34;:null,&#34;recordIP&#34;:null,&#34;serverURLs&#34;:null,&#34;enableQQ&#34;:null,&#34;requiredFields&#34;:[&#34;nick&#34;,&#34;mail&#34;],&#34;emojiCDN&#34;:null,&#34;emojiMaps&#34;:null};
-                valineConfig.el = '#valine_container';
-                for (var i in valineConfig) {
-                    if (valineConfig[i] === null) delete valineConfig[i];
-                }
-                new Valine(valineConfig);
-            };
-        }
-    
-        var runningOnBrowser = typeof window !== "undefined";
-        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
-        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
-    
-        setTimeout(function () {
-            if (!isBot && supportsIntersectionObserver) {
-                var comment_observer = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) {
-                        loadComment();
-                        comment_observer.disconnect();
-                    }
-                }, { threshold: [0] });
-                comment_observer.observe(document.getElementById('comment'));
-            } else {
-                loadComment();
-            }
-        }, 1);
-    </script>
-
-
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-
-    
 
 
 
