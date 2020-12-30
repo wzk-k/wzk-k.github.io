@@ -78,18 +78,6 @@
       </tags>
   </entry>
   <entry>
-    <title>video</title>
-    <url>/2020/12/29/video/</url>
-    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=928276957&bvid=BV1YT4y1K7Zp&cid=272433799&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-
-
-<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><p>no url specified, no dplayer _(:3」∠)_</p>
-<p>例：</p>
-<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"autoplay":true,"hotkey":true,"preload":"metadata","video":{"url":"https://www.bilibili.com/video/BV1YT4y1K7Zp"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script> 
-]]></content>
-  </entry>
-  <entry>
     <title>图片不能加载的问题</title>
     <url>/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h2 id="图片不能加载的问题"><a href="#图片不能加载的问题" class="headerlink" title="图片不能加载的问题"></a>图片不能加载的问题</h2><ol>
