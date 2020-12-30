@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>28军事</title>
+    <url>/2020/12/30/28%E5%86%9B%E4%BA%8B/</url>
+    <content><![CDATA[<ol>
+<li><p><strong>ally  [ˈælaɪ]</strong><br>n. (尤指战时的)同盟国；盟友，支持者</p>
+<p> [əˈlaɪ] v. 与······结盟</p>
+</li>
+<li><p><strong>military  [ˈmɪlətri]</strong><br>① adj. 军事的，军用的，军队的 </p>
+<p>② n. [the ~] (一国的)武装力量，军队；军方</p>
+</li>
+<li><p><strong>command  [kəˈmɑːnd]</strong><br>① v. 命令，指示；统率，指挥；俯瞰；掌握，拥有；赢得，博得 </p>
+<p>②n. 命令，指示；统帅，指挥；掌握，运用能力</p>
+</li>
+<li><p><strong>discipline   [ˈdɪsəplɪn]</strong><br>① n. 训练；纪律；自制力；专业，科目</p>
+<p>②v. 训练，管教；惩罚，处罚</p>
+</li>
+<li><p><strong>target  [ˈtɑːɡɪt]</strong><br>① v. 瞄准；以······为目标(或对象)；把······作为攻击目标(或批评对象) </p>
+<p>②n. 靶子；目标，对象；目标，指标</p>
+</li>
+<li><p><strong>hijack  [ˈhaɪdʒæk]</strong><br>①  v. 劫持；控制，操纵 </p>
+<p>②n. 劫持事件</p>
+</li>
+<li><p><strong>hostage  [ˈhɒstɪdʒ]</strong><br>n. 人质</p>
+</li>
+<li><p><strong>intelligence   [ɪnˈtelɪdʒəns]</strong><br>n. 情报，情报人员；智力，智慧；理解力；聪颖，聪明；智能</p>
+</li>
+<li><p><strong>leak  [liːk]</strong><br>①  v. 泄露，透露；(使)渗漏 </p>
+<p>② n. 透露，泄露；渗漏；裂缝</p>
+</li>
+<li><p><strong>triumph  [ˈtraɪʌmf]</strong><br>① n. (尤指苦战后获得的)胜利，成功，成就；成功的喜悦；榜样 </p>
+<p>②v. 获胜，成功</p>
+</li>
+<li><p><strong>sacrifice   [ˈsækrɪfaɪs]</strong><br>① v. 牺牲，献出；献祭 </p>
+<p>② n. 牺牲，献出；献祭，祭品</p>
+</li>
+<li><p><strong>honor  [ˈɒnə(r)]</strong><br>① n. 荣誉，荣誉称号；崇敬，敬重；荣幸，光荣；高尚品德，气节</p>
+<p>② v. 表彰；尊重；使感到荣幸  </p>
+</li>
+<li><p><strong>alert  [əˈlɜːt]</strong><br>①  v. 使警觉，发出警报；提醒 </p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>考研基础单词</category>
+      </categories>
+      <tags>
+        <tag>基础词汇</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DHCP服务器</title>
     <url>/2020/12/26/DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<h1 id="DHCP服务器"><a href="#DHCP服务器" class="headerlink" title="DHCP服务器"></a>DHCP服务器</h1><h2 id="一-什么是DHCP服务器？"><a href="#一-什么是DHCP服务器？" class="headerlink" title="一. 什么是DHCP服务器？"></a>一. 什么是DHCP服务器？</h2><p>DHCP 是 Dynamic Host Configuration Protocol （动态主机配置协议）的缩写。 </p>
@@ -27,6 +76,18 @@
       <tags>
         <tag>服务器</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>video</title>
+    <url>/2020/12/29/video/</url>
+    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=928276957&bvid=BV1YT4y1K7Zp&cid=272433799&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+
+
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><p>no url specified, no dplayer _(:3」∠)_</p>
+<p>例：</p>
+<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"autoplay":true,"hotkey":true,"preload":"metadata","video":{"url":"https://www.bilibili.com/video/BV1YT4y1K7Zp"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script> 
+]]></content>
   </entry>
   <entry>
     <title>图片不能加载的问题</title>
