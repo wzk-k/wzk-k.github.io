@@ -152,6 +152,37 @@
       </tags>
   </entry>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/2020/12/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="遇到的问题："><a href="#遇到的问题：" class="headerlink" title="遇到的问题："></a>遇到的问题：</h2><h3 id="Q1：为什么每次hexo-d后我的域名都不起作用了？"><a href="#Q1：为什么每次hexo-d后我的域名都不起作用了？" class="headerlink" title="Q1：为什么每次hexo d后我的域名都不起作用了？"></a>Q1：为什么每次hexo d后我的域名都不起作用了？</h3><h3 id="A1：在source目录里创建CNAME-内容为你的域名。"><a href="#A1：在source目录里创建CNAME-内容为你的域名。" class="headerlink" title="A1：在source目录里创建CNAME,内容为你的域名。"></a>A1：在source目录里创建CNAME,内容为你的域名。</h3><h3 id="Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found"><a href="#Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found" class="headerlink" title="Q2：为什么每次hexo d后出现ERROR Deployer not found:"></a>Q2：为什么每次hexo d后出现ERROR Deployer not found:</h3><h3 id="A2：执行下列语句。"><a href="#A2：执行下列语句。" class="headerlink" title="A2：执行下列语句。"></a>A2：执行下列语句。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图片不能加载的问题</title>
+    <url>/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="图片不能加载的问题"><a href="#图片不能加载的问题" class="headerlink" title="图片不能加载的问题"></a>图片不能加载的问题</h2><ol>
+<li><p>修改配置文件</p>
+<p>post_asset_folder: true</p>
+</li>
+<li><p>设置Typora的偏好设置</p>
+<p><img src="/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/1608996379297.png" alt="1608996379297"></p>
+</li>
+<li><p>git bash安装插件</p>
+<p>npm install <a href="https://github.com/7ym0n/hexo-asset-image">https://github.com/7ym0n/hexo-asset-image</a> –save</p>
+</li>
+<li><p>完成</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DHCP服务器</title>
     <url>/2020/12/26/DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<h1 id="DHCP服务器"><a href="#DHCP服务器" class="headerlink" title="DHCP服务器"></a>DHCP服务器</h1><h2 id="一-什么是DHCP服务器？"><a href="#一-什么是DHCP服务器？" class="headerlink" title="一. 什么是DHCP服务器？"></a>一. 什么是DHCP服务器？</h2><p>DHCP 是 Dynamic Host Configuration Protocol （动态主机配置协议）的缩写。 </p>
@@ -177,37 +208,6 @@
       </categories>
       <tags>
         <tag>服务器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图片不能加载的问题</title>
-    <url>/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="图片不能加载的问题"><a href="#图片不能加载的问题" class="headerlink" title="图片不能加载的问题"></a>图片不能加载的问题</h2><ol>
-<li><p>修改配置文件</p>
-<p>post_asset_folder: true</p>
-</li>
-<li><p>设置Typora的偏好设置</p>
-<p><img src="/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/1608996379297.png" alt="1608996379297"></p>
-</li>
-<li><p>git bash安装插件</p>
-<p>npm install <a href="https://github.com/7ym0n/hexo-asset-image">https://github.com/7ym0n/hexo-asset-image</a> –save</p>
-</li>
-<li><p>完成</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/2020/12/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="遇到的问题："><a href="#遇到的问题：" class="headerlink" title="遇到的问题："></a>遇到的问题：</h2><h3 id="Q1：为什么每次hexo-d后我的域名都不起作用了？"><a href="#Q1：为什么每次hexo-d后我的域名都不起作用了？" class="headerlink" title="Q1：为什么每次hexo d后我的域名都不起作用了？"></a>Q1：为什么每次hexo d后我的域名都不起作用了？</h3><h3 id="A1：在source目录里创建CNAME-内容为你的域名。"><a href="#A1：在source目录里创建CNAME-内容为你的域名。" class="headerlink" title="A1：在source目录里创建CNAME,内容为你的域名。"></a>A1：在source目录里创建CNAME,内容为你的域名。</h3><h3 id="Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found"><a href="#Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found" class="headerlink" title="Q2：为什么每次hexo d后出现ERROR Deployer not found:"></a>Q2：为什么每次hexo d后出现ERROR Deployer not found:</h3><h3 id="A2：执行下列语句。"><a href="#A2：执行下列语句。" class="headerlink" title="A2：执行下列语句。"></a>A2：执行下列语句。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>问题</tag>
       </tags>
   </entry>
 </search>
