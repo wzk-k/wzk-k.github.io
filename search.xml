@@ -85,24 +85,6 @@
       </tags>
   </entry>
   <entry>
-    <title>27运动</title>
-    <url>/2020/12/12/27%E8%BF%90%E5%8A%A8/</url>
-    <content><![CDATA[<ol>
-<li><strong>train  [treɪn]</strong><br> v. 训练，培训</li>
-<li><strong>athlete  [ˈæθliːt]</strong><br>n. 运动员；擅长运动的人</li>
-<li><strong>gymnasium   [dʒɪmˈneɪziəm]</strong><br> n. [简写gym]健身房，体育馆</li>
-<li><strong>calorie  [ˈkæləri]</strong><br> n. 卡，卡路里</li>
-<li><strong>inhale  [ɪnˈheɪl]</strong><br>v. 吸气；吸入(空气、烟雾等)</li>
-</ol>
-]]></content>
-      <categories>
-        <category>考研基础单词</category>
-      </categories>
-      <tags>
-        <tag>基础词汇</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>28军事</title>
     <url>/2020/12/13/28%E5%86%9B%E4%BA%8B/</url>
     <content><![CDATA[<ol>
@@ -152,34 +134,65 @@
       </tags>
   </entry>
   <entry>
-    <title>我的第一篇博客</title>
-    <url>/2020/12/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="遇到的问题："><a href="#遇到的问题：" class="headerlink" title="遇到的问题："></a>遇到的问题：</h2><h3 id="Q1：为什么每次hexo-d后我的域名都不起作用了？"><a href="#Q1：为什么每次hexo-d后我的域名都不起作用了？" class="headerlink" title="Q1：为什么每次hexo d后我的域名都不起作用了？"></a>Q1：为什么每次hexo d后我的域名都不起作用了？</h3><h3 id="A1：在source目录里创建CNAME-内容为你的域名。"><a href="#A1：在source目录里创建CNAME-内容为你的域名。" class="headerlink" title="A1：在source目录里创建CNAME,内容为你的域名。"></a>A1：在source目录里创建CNAME,内容为你的域名。</h3><h3 id="Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found"><a href="#Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found" class="headerlink" title="Q2：为什么每次hexo d后出现ERROR Deployer not found:"></a>Q2：为什么每次hexo d后出现ERROR Deployer not found:</h3><h3 id="A2：执行下列语句。"><a href="#A2：执行下列语句。" class="headerlink" title="A2：执行下列语句。"></a>A2：执行下列语句。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
+    <title>27运动</title>
+    <url>/2020/12/12/27%E8%BF%90%E5%8A%A8/</url>
+    <content><![CDATA[<ol>
+<li><strong>train  [treɪn]</strong><br> v. 训练，培训</li>
+<li><strong>athlete  [ˈæθliːt]</strong><br>n. 运动员；擅长运动的人</li>
+<li><strong>gymnasium   [dʒɪmˈneɪziəm]</strong><br> n. [简写gym]健身房，体育馆</li>
+<li><strong>calorie  [ˈkæləri]</strong><br> n. 卡，卡路里</li>
+<li><strong>inhale  [ɪnˈheɪl]</strong><br>v. 吸气；吸入(空气、烟雾等)</li>
+</ol>
 ]]></content>
+      <categories>
+        <category>考研基础单词</category>
+      </categories>
       <tags>
-        <tag>问题</tag>
+        <tag>基础词汇</tag>
       </tags>
   </entry>
   <entry>
-    <title>图片不能加载的问题</title>
-    <url>/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="图片不能加载的问题"><a href="#图片不能加载的问题" class="headerlink" title="图片不能加载的问题"></a>图片不能加载的问题</h2><ol>
-<li><p>修改配置文件</p>
-<p>post_asset_folder: true</p>
-</li>
-<li><p>设置Typora的偏好设置</p>
-<p><img src="/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/1608996379297.png" alt="1608996379297"></p>
-</li>
-<li><p>git bash安装插件</p>
-<p>npm install <a href="https://github.com/7ym0n/hexo-asset-image">https://github.com/7ym0n/hexo-asset-image</a> –save</p>
-</li>
-<li><p>完成</p>
-</li>
+    <title>29战争</title>
+    <url>/2020/12/31/29%E6%88%98%E4%BA%89/</url>
+    <content><![CDATA[<ol>
+<li><strong>invade   [ɪnˈveɪd]</strong><br>v. 侵略，入侵；侵犯，侵扰；涌入</li>
+</ol>
+<ol start="2">
+<li><strong>combat  [ˈkɒmbæt]</strong><br>①n. 战斗，搏斗；斗争，格斗<br>② v. 与······战斗；打击，抑制</li>
+</ol>
+<ol start="3">
+<li><strong>defeat  [dɪˈfiːt]</strong><br>①v. 击败，战胜；难住；使失败<br>② n. 击败，战胜；失败</li>
+</ol>
+<ol start="4">
+<li><strong>conquer    [ˈkɒŋkə(r)]</strong><br>v. 击败，征服，攻占；克服；成功</li>
+</ol>
+<ol start="5">
+<li><strong>capture   [ˈkæptʃə(r)]</strong><br>① v. 俘获，逮捕；夺得，抢占；(用文字或图片等)捕捉，刻画，描述，表达；拍摄，录制<br>②n. 俘获，捕获；占领，攻占；夺得，赢得</li>
+</ol>
+<ol start="6">
+<li><strong>turbulent  [ˈtɜːbjələnt]</strong><br>adj. 骚动的，混乱的，动荡的；狂暴的，汹涌的</li>
+</ol>
+<ol start="7">
+<li><strong>resist  [rɪˈzɪst]</strong><br>v. 反抗，抵御；抵制，抗拒；忍住；使不受······的伤害</li>
+</ol>
+<ol start="8">
+<li><strong>aftermath  [ˈɑːftəmæθ]</strong><br>n. (战争、事故等的)后果；创伤</li>
+</ol>
+<ol start="9">
+<li><strong>massacre  [ˈmæsəkə(r)]</strong><br>①v. 大规模屠杀<br>② n. 大屠杀，大残杀</li>
+</ol>
+<ol start="10">
+<li><strong>casualty  [ˈkæʒuəlti]</strong><br>n. 伤亡(人数)，遇难者；受害者，牺牲品</li>
+</ol>
+<ol start="11">
+<li><strong>colony  [ˈkɒləni]</strong><br>n. 殖民地；聚居地(区)；聚居人群</li>
 </ol>
 ]]></content>
+      <categories>
+        <category>考研基础单词</category>
+      </categories>
       <tags>
-        <tag>问题</tag>
+        <tag>基础词汇</tag>
       </tags>
   </entry>
   <entry>
@@ -208,6 +221,37 @@
       </categories>
       <tags>
         <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/2020/12/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="遇到的问题："><a href="#遇到的问题：" class="headerlink" title="遇到的问题："></a>遇到的问题：</h2><h3 id="Q1：为什么每次hexo-d后我的域名都不起作用了？"><a href="#Q1：为什么每次hexo-d后我的域名都不起作用了？" class="headerlink" title="Q1：为什么每次hexo d后我的域名都不起作用了？"></a>Q1：为什么每次hexo d后我的域名都不起作用了？</h3><h3 id="A1：在source目录里创建CNAME-内容为你的域名。"><a href="#A1：在source目录里创建CNAME-内容为你的域名。" class="headerlink" title="A1：在source目录里创建CNAME,内容为你的域名。"></a>A1：在source目录里创建CNAME,内容为你的域名。</h3><h3 id="Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found"><a href="#Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found" class="headerlink" title="Q2：为什么每次hexo d后出现ERROR Deployer not found:"></a>Q2：为什么每次hexo d后出现ERROR Deployer not found:</h3><h3 id="A2：执行下列语句。"><a href="#A2：执行下列语句。" class="headerlink" title="A2：执行下列语句。"></a>A2：执行下列语句。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图片不能加载的问题</title>
+    <url>/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="图片不能加载的问题"><a href="#图片不能加载的问题" class="headerlink" title="图片不能加载的问题"></a>图片不能加载的问题</h2><ol>
+<li><p>修改配置文件</p>
+<p>post_asset_folder: true</p>
+</li>
+<li><p>设置Typora的偏好设置</p>
+<p><img src="/2020/12/26/%E5%9B%BE%E7%89%87%E4%B8%8D%E8%83%BD%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98/1608996379297.png" alt="1608996379297"></p>
+</li>
+<li><p>git bash安装插件</p>
+<p>npm install <a href="https://github.com/7ym0n/hexo-asset-image">https://github.com/7ym0n/hexo-asset-image</a> –save</p>
+</li>
+<li><p>完成</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>问题</tag>
       </tags>
   </entry>
 </search>
