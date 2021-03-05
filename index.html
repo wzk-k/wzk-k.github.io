@@ -141,6 +141,74 @@
     
     
     <article
+  id="post-网络结构"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/"
+    >计算机网络体系总结构</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" class="article-date">
+  <time datetime="2021-03-05T14:14:59.000Z" itemprop="datePublished">2021-03-05</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>计算机网络总体结构</strong></p>
+<h3 id="一-网络分层"><a href="#一-网络分层" class="headerlink" title="一.  网络分层"></a>一.  网络分层</h3><h4 id="1-物理层（physical-layer）"><a href="#1-物理层（physical-layer）" class="headerlink" title="1.物理层（physical layer）"></a>1.物理层（physical layer）</h4><p>物理层的任务就是传输<u>位流</u>。</p>
+<h4 id="2-数据链路层（data-link-layer）"><a href="#2-数据链路层（data-link-layer）" class="headerlink" title="2.数据链路层（data link layer）"></a>2.数据链路层（data link layer）</h4><p>数据链路层的任务是负责<u>相邻结点间</u>的通信。</p>
+<h4 id="3-网络层（network-layer）"><a href="#3-网络层（network-layer）" class="headerlink" title="3.网络层（network layer）"></a>3.网络层（network layer）</h4><p>网络层的任务是为数据在<u>网络中</u>选择一条合适的路径。</p>
+<h4 id="4-运输层（transport-layer）"><a href="#4-运输层（transport-layer）" class="headerlink" title="4.运输层（transport layer）"></a>4.运输层（transport layer）</h4><p>运输层的任务是负责不同计算机中两个<u>进程间</u>的通信。</p>
+<h4 id="5-应用层（application-layer）"><a href="#5-应用层（application-layer）" class="headerlink" title="5.应用层（application layer）"></a>5.应用层（application layer）</h4><p>应用层就是为了让用户能够使用网络，如浏览网页、QQ聊天、收发电子邮件。</p>
+<h3 id="二-计算机网络中的重要概念"><a href="#二-计算机网络中的重要概念" class="headerlink" title="二.  计算机网络中的重要概念"></a>二.  计算机网络中的重要概念</h3><p>用寄信的例子类比</p>
+<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614954918622.png" alt="1614954918622"></p>
+<h4 id="1．实体（entity）"><a href="#1．实体（entity）" class="headerlink" title="1．实体（entity）"></a>1．实体（entity）</h4><p>实体指计算机网络中参与发送或接收数据的<strong>硬件</strong>或<strong>软件进程</strong>。不同的层有不同的实体，位于不同计算机中同一层内的实体称为<strong>对等实体</strong>。</p>
+<h4 id="2．服务（service）"><a href="#2．服务（service）" class="headerlink" title="2．服务（service）"></a>2．服务（service）</h4><p>下层实体提供给上层实体使用的功能称为服务。服务通常通过函数调用来实现。</p>
+<h4 id="3．协议（protocol）"><a href="#3．协议（protocol）" class="headerlink" title="3．协议（protocol）"></a>3．协议（protocol）</h4><p><strong>协议规定了两个对等实体进行通信时的数据格式，以及在收发数据时及其他事件发生时应进行的操作。</strong>既然协议是控制对等实体的，那么<strong>一个协议必然位于某一层内</strong>，不同的层内有不同的协议。因特网有两个最重要的协议TCP与IP，因此因特网的体系结构才称为TCP/IP体系结构。<br>有的协议非常简单，有的则非常复杂。很多复杂协议之所以复杂，是因为要对很多非正常情况进行处理，此时工作量远远超过了处理正常情况的工作量。</p>
+<h4 id="4．协议数据单元（protocol-data-unit，PDU）"><a href="#4．协议数据单元（protocol-data-unit，PDU）" class="headerlink" title="4．协议数据单元（protocol data unit，PDU）"></a>4．协议数据单元（protocol data unit，PDU）</h4><p>每层实体都有自己处理数据的单位。这种某层实体处理数据的单位称为该层的协议数据单元。PDU通常分为首部与数据两部分。</p>
+<h4 id="5．封装与拆封（encapsulation-and-decapsulation）"><a href="#5．封装与拆封（encapsulation-and-decapsulation）" class="headerlink" title="5．封装与拆封（encapsulation and decapsulation）"></a>5．封装与拆封（encapsulation and decapsulation）</h4><p>在上层实体交付的PDU外面加上首部形成本层PDU的过程称为封装。去掉本层PDU首部从而得到上层PDU的过程称为拆封或解封装。某层的接收实体只查看本层PDU的首部，这个首部则是发送方的同层对等实体加上的。</p>
+<h4 id="6．复用与分用"><a href="#6．复用与分用" class="headerlink" title="6．复用与分用"></a>6．复用与分用</h4><p>运输层中的复用与分用：</p>
+<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955208586.png" alt="1614955208586"></p>
+<p>其他层也有这个问题：某层可能有多个实体，下层向其提交数据时，应该给哪个实体？需要PDU首部中的一个字段加以区分。</p>
+<h3 id="三-网络的运作过程"><a href="#三-网络的运作过程" class="headerlink" title="三.  网络的运作过程"></a>三.  网络的运作过程</h3><p>计算机具有全部5层实体，工作过程容易理解。网络设备如何工作呢？<br>“集线器工作在物理层；交换机工作在数据链路层；路由器工作在网络层”的确切意思是指该设备会查看该层及其下面其他层的PDU的首部。路由器的工作原理：</p>
+<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955342673.png" alt="1614955342673"></p>
+<p>网络分层动画。</p>
+<h3 id="四-网络各层协议"><a href="#四-网络各层协议" class="headerlink" title="四. 网络各层协议"></a>四. 网络各层协议</h3><p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955410501.png" alt="1614955410501"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-31动作"
   class="article article-type-post"
   itemscope
@@ -1392,118 +1460,6 @@
 </ol>
 <ol start="26">
 <li><strong>addict  [ˈædɪkt]</strong><br>n. 吸毒成瘾者；对······入迷的人v. 使上瘾；使沉迷  </li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-05民生"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/01/05%E6%B0%91%E7%94%9F/"
-    >05民生</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/01/05%E6%B0%91%E7%94%9F/" class="article-date">
-  <time datetime="2021-01-01T01:27:22.000Z" itemprop="datePublished">2021-01-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><strong>agriculture [ˈæɡrɪkʌltʃə(r)]</strong><br>n. 农业；农学</li>
-</ol>
-<ol start="2">
-<li><strong>cultivate [ˈkʌltɪveɪt]</strong><br>v. 耕作，种植；陶冶，培养(素质、技能等)；结交，争取(支持)</li>
-</ol>
-<ol start="3">
-<li><strong>mill  [mɪl]</strong><br>① v. 将(谷物等)碾碎(或磨细) ② n. 磨坊；作坊，制造厂</li>
-</ol>
-<ol start="4">
-<li><strong>harvest  [ˈhɑːvɪst]</strong><br>① v. 收割，收获 ②n. 收获时节；收成；收获物</li>
-</ol>
-<ol start="5">
-<li><strong>fertile  [ˈfɜːtaɪl]</strong><br> adj. 肥沃的，富饶的；能生育的，可繁殖的</li>
-</ol>
-<ol start="6">
-<li><strong>starve [stɑːv]</strong><br>v. (使)挨饿，饿死；使极缺，使迫切需要</li>
-</ol>
-<ol start="7">
-<li><strong>immigrate [ˈɪmɪɡreɪt]</strong><br> v. (从外国)移入，移居，移民 </li>
-</ol>
-<ol start="8">
-<li><strong>community  [kəˈmjuːnəti]</strong><br>n. 社区；群体；团体，界</li>
-</ol>
-<ol start="9">
-<li><strong>assimilate  [əˈsɪməleɪt]</strong><br>v. 融入，(使)同化；吸纳(信息等)，学习(知识等)；吸收(营养等)</li>
-</ol>
-<ol start="10">
-<li><strong>dwell [dwel]</strong><br>v. 居住，生活</li>
-</ol>
-<ol start="11">
-<li><strong>inhabit [ɪnˈhæbɪt]</strong><br> v. 居住于，栖居于；存在于，占据</li>
-</ol>
-<ol start="12">
-<li><strong>accommodate [əˈkɒmədeɪt]</strong><br>v. (建筑物等)容纳，为······提供住处(或场所)；迎合，顺应，适应</li>
-</ol>
-<ol start="13">
-<li><strong>scheme [skiːm]</strong><br>① n. (造福他人的)计划，方案；体系，体制；阴谋，诡计②v. 密谋，秘密策划</li>
-</ol>
-<ol start="14">
-<li><strong>charity [ˈtʃærəti]</strong><br>n. 慈善机构，慈善事业；救济，施舍物；仁慈，宽厚</li>
-</ol>
-<ol start="15">
-<li><strong>facility [fəˈsɪləti]</strong><br>n. (有特定用途的)场所；[facilities]设备，设施；才能，天赋；(产品的)功能，特色</li>
-</ol>
-<ol start="16">
-<li><strong>infrastructure [ˈɪnfrəstrʌktʃə(r)]</strong><br> n. 基础设施</li>
-</ol>
-<ol start="17">
-<li><strong>well-being [ˈwel biːɪŋ]</strong><br>n. 健康；安乐；康乐</li>
-</ol>
-<ol start="18">
-<li><strong>narrow [ˈnærəʊ]</strong><br>① v. 缩减，缩小(范围、差距等)；(使)变窄② adj. 狭窄的；狭隘的；狭义的；(种类或数目)有限的</li>
-</ol>
-<ol start="19">
-<li><strong>material [məˈtɪəriəl]</strong><br>① n. 物质；材料；衣料，布料；素材，资料 ② adj. 物质的；实体的；重要的，实质性的</li>
-</ol>
-<ol start="20">
-<li><strong>impoverished [ɪmˈpɒvərɪʃ]</strong><br> v. 使贫穷；使贫瘠，使枯竭  </li>
 </ol>
  
       <!-- reward -->
