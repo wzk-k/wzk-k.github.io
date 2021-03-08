@@ -141,6 +141,73 @@
     
     
     <article
+  id="post-数据链路层"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"
+    >数据链路层</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="article-date">
+  <time datetime="2021-03-08T01:44:04.000Z" itemprop="datePublished">2021-03-08</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><h3 id="1-以太网帧格式"><a href="#1-以太网帧格式" class="headerlink" title="1 以太网帧格式"></a>1 以太网帧格式</h3><p>前同步码长度8字节，内容是固定的，前7个字节都是10101010，最后一个字节是10101011。前同步码的作用是使接收方网卡的接收频率与发送方网卡的发送频率精确一致，这称为同步。<br>地址是物理地址，或称为MAC地址，或称为硬件地址，48位。全为1则是广播地址。<br>类型字段：用以实现复用与分用，说明数据字段是网络层什么协议的协议数据单元。例如：IP数据报0x0800，ARP数据0x0806。<br>数据少于46字节，则需要填充。</p>
+<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217511176.png" alt="1615217511176"></p>
+<h3 id="2-交换机"><a href="#2-交换机" class="headerlink" title="2 交换机"></a>2 交换机</h3><p>以太网早期使用网桥，实际就是2接口的交换机，现在则使用交换机。它工作在数据链路层，关键是它接收数据后，并不向所有其他接口转发，只向特定接口转发。这如何实现？需要<strong>转发表</strong>，如下图所示。交换机与集线器合作，缩小了碰撞域，减少了碰撞，提高了效率。</p>
+<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217794624.png" alt="1615217794624"></p>
+<p>这里的关键是转发表如何产生，管理员手工输入不现实，有必要让交换机自动生成这个表。交换机刚开机时转发表是空的，当交换机收到一个帧时，它查看帧中的源物理地址，把它与相应的接口填到转发表中。如上图所示。这一过程叫做交换机的<strong>自学习</strong>。<br>转发表中查不到目的物理地址时如何转发？对策是向接收接口外的其他所有接口转发，这种情况的持续时间不会长，因为转发表很快就会填满。最后一个问题是如果计算机更换了网卡，物理地址变了，这会在转发表中产生一个新行，旧的那一行却会长期留在转发表中。转发表中增加了第3列，记录这一行产生的时间，一段时间后，如果一直没有收到以该行地址为源物理地址的帧，就删除这一行。<br>现在通常只使用交换机，不再使用网桥与集线器，这时不会再有碰撞，可以无碰撞地传输数据。交换机通常是<strong>存储转发</strong>的，但也有直通的，好处是效率高，缺点是无法进行CRC校验，可能会转发出有错的帧。现在有些交换机已经具有路由器的部分功能，叫做<strong>三层交换机</strong>，只能工作在数据链路层的则叫做<strong>二层交换机</strong>，或是链路层交换机。<br>无论是集线器，还是网桥与交换机，网络一定是树型结构，不能有环路。否则帧可能沿环路无休止地绕圈子，某些交换机甚至不能正常工作。很多交换机可以使用<strong>生成树协议</strong>来消除环路。</p>
+<h3 id="3-PPP协议"><a href="#3-PPP协议" class="headerlink" title="3 PPP协议"></a>3 PPP协议</h3><h4 id="3-1-PPP帧格式"><a href="#3-1-PPP帧格式" class="headerlink" title="3.1 PPP帧格式"></a>3.1 PPP帧格式</h4><p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217852870.png" alt="1615217852870"></p>
+<p>首尾的标志长度1字节，是一个帧的开始标志，值是01111110。地址长度1字节，固定为11111111，点对点链路并不需要地址，至今仍未使用。控制长度1字节，固定为00000011，至今仍未使用。<br>协议长度2字节，用以实现复用与分用，说明数据字段是网络层什么协议的协议数据单元。例如0x0021说明数据字段是IP协议的协议数据单元，PPP协议实体就把数据交给IP协议实体。数据是不定长的，但不能超过1500字节。CRC长度2字节，发现差错时，PPP丢弃这一帧，不交给网络层实体，但是PPP并不改正这个差错。<br>为实现透明传输，PPP可以使用字节填充，转义字符为0x7D，若在数据部分中发现开始与结束标志，则在其前面插入0x7D，若在数据部分中发现0x7D，则在其前面也插入0x7D。接收时删除0x7D，以还原数据。PPP还可以使用零比特填充：发送方在数据部分中只要发现5个连续1，就插入一个0，保证不会出现6个连续1；接收方则在数据部分中只要发现5个连续1，就删除后面跟着的一个0，以还原数据。</p>
+<h4 id="3-2-PPP协议的工作状态"><a href="#3-2-PPP协议的工作状态" class="headerlink" title="3.2 PPP协议的工作状态"></a>3.2 PPP协议的工作状态</h4><p>PPP的开始与结束都是<strong>静止状态</strong>。在<strong>建立</strong>状态，通信双方会协商一些选项，这需要链路控制协议LCP。在<strong>鉴别状态</strong>将对通信双方的身份进行鉴别，这是可选的。<strong>网络层配置状态</strong>可以对网络层的协议进行配置，如动态分配IP地址，这需要网络控制协议（NCP）。在<strong>打开状态</strong>，PPP开始传输网络层的协议数据单元。所有数据传输完毕，PPP就进入<strong>终止状态</strong>，利用子协议LCP，通信双方交换一些控制信息，结束本次通信过程，然后转入<strong>静止状态</strong>。LCP与NCP的PDU封装在PPP帧中传输。PPP是面向连接的协议。</p>
+<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217886645.png" alt="1615217886645"></p>
+<h4 id="3-3-PPPoE"><a href="#3-3-PPPoE" class="headerlink" title="3.3 PPPoE"></a>3.3 PPPoE</h4><p>以太网缺乏管理功能，但PPP协议具有强大的管理功能，PPP可以使用用户名与口令鉴别用户的身份，还可以对网络层的协议进行配置，如动态分配IP地址，利用PPP还可以实现记录上网时间与流量等更复杂的功能。<br>利用PPP管理以太网接入是一个好办法，但PPP是数据链路层的协议，以太网包括物理层与数据链路层的内容，二者如何协同工作呢？PPPoE可以做到这一点。PPPoE由RFC 2516定义，是PPP与以太网的结合体，IP数据报先封装在PPP帧中，PPP帧再封装在以太网帧中，如下图所示，PPP运行在以太网上层，所以叫做PPPoE。</p>
+<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217993633.png" alt="1615217993633"></p>
+<h3 id="4-虚拟局域网VLAN"><a href="#4-虚拟局域网VLAN" class="headerlink" title="4 虚拟局域网VLAN"></a>4 虚拟局域网VLAN</h3><h4 id="4-1-大规模局域网的问题"><a href="#4-1-大规模局域网的问题" class="headerlink" title="4.1 大规模局域网的问题"></a>4.1 大规模局域网的问题</h4><p>当一个以太网规模过大时，会产生很多问题。最严重的是广播问题，可能导致严重的<strong>广播风暴。</strong>网络效率会明显下降。很多病毒也利用了广播帧，如流行的ARP欺骗病毒。虽然广播帧有很多用处，但对于一个具体的广播帧，并不一定每台计算机都需要，可能仅一部分计算机需要。发生这一问题的根源是<strong>广播域</strong>（若干计算机的集合，其中一台计算机发送广播帧，其他所有计算机都能收到）过大，<strong>一个广播域通常被认为是一个网络，不同的广播域则是不同的网络</strong>。应该把一个大的广播域划分为若干个小的广播域，也就是把一个大网络划分为若干个小网络。<br>使用路由器可以划分广播域，把一个大型网络分为几部分，路由器不转发广播帧，从而减小了广播域。一般认为路由器连接的是不同的网络，而交换机连接的是同一网络，所以这相当于把一个大的局域网物理上划分为几个小的局域网。与交换机相比，路由器价格较高、管理与维护复杂，而且同等价格下速率比交换机慢，用路由器划分广播域显然不是一个好办法。<br>除广播问题外，以太网的管理也很困难。例子如下图所示，如果想阻止计算机A与计算机D通信，一个办法是断开交换机1与交换机5的连线，这实际上是把一个局域网分割为互不连通的几个局域网。另一个办法是在交换机1上做一些设置，也可以阻止计算机A与计算机D通信。但是如果计算机A移动了位置，距离交换机3更近，需要就近连接到交换机3上，就必须在交换机3上再做同样的设置，或者是拉一根长线，仍把计算机连接到交换机1上。</p>
+<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615218032729.png" alt="1615218032729"></p>
+<h4 id="4-2-虚拟局域网VLAN"><a href="#4-2-虚拟局域网VLAN" class="headerlink" title="4.2 虚拟局域网VLAN"></a>4.2 虚拟局域网VLAN</h4><p>先搞清楚“虚拟”在计算机世界中的含义，逻辑与物理这两个词也经常使用。逻辑与虚拟类似，物理与真实类似。1996年3月，IEEE发布了<strong>虚拟局域网</strong>（Virtual LAN，VLAN）标准IEEE 802.1Q。在有VLAN功能的交换机上经过设置，可以把一个局域网划分为若干个VLAN。VLAN间能否相互通信可通过设置决定，不过广播帧是不能在VLAN间转发的。整个网络没有使用路由器，物理上还是一个局域网，但每个VLAN看起来都是一个独立的局域网，所以叫做虚拟局域网。<br>利用二层交换机划分VLAN时，VLAN间无法相互通信，必须增加一台路由器。更简单同时效率也更高的办法是利用三层交换机划分VLAN，利用三层交换机的路由器功能就能使VLAN间相互通信。<br>利用VLAN可以方便地划分广播域。根据上面的管理例子，利用VLAN还可以很方便地管理以太网，VLAN的划分可以做到与计算机所在的物理位置无关，将计算机A与计算机D划分到不同VLAN，即使计算机A与交换机1断开，连结到交换机4上，这时不需做任何修改，计算机A仍属于原来VLAN，还是不能与计算机D通信。<br>怎样把一台计算机划入某个VLAN呢？一是利用交换机接口划分VLAN，简单容易实现，但灵活性不好，一台计算机移动到另一个新接口时，如果新接口与旧接口属于不同的VLAN，这个计算机就不能再属于旧VLAN了。二是利用计算机物理地址划分VLAN，不论计算机在网络中怎样移动，只要其物理地址保持不变，该计算机就始终属于某个VLAN，不需要重新配置，但在一个大型网络中，管理员把每个物理地址一一划分到VLAN中，是十分繁琐的。三是利用计算机IP地址划分VLAN，这种方法的优点与利用物理地址划分VLAN类似，它的缺点是效率低，因为查看IP地址比查看物理地址更费时间。<br>划分VLAN时为每个VLAN分配一个整数，这个整数就是VLAN的标识符，不同的整数代表了不同的VLAN。为了实现VLAN功能，VLAN帧与标准的以太网帧有所不同，VLAN帧在以太网帧的首部中增加了一个字段，该字段包含了VLAN的标识符，如下图所示。</p>
+<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615218055228.png" alt="1615218055228"></p>
+<h3 id="5-小型校园网的物理层与数据链路层的解决方案"><a href="#5-小型校园网的物理层与数据链路层的解决方案" class="headerlink" title="5 小型校园网的物理层与数据链路层的解决方案"></a>5 小型校园网的物理层与数据链路层的解决方案</h3><p>局域网自然选用以太网，设备全部使用交换机，不使用集线器。由于计算机很多，星型拓扑结构是不行的，必须采用树型拓扑结构，位于办公楼的学院网络中心是校园网的管理机构，树型拓扑结构的根置于此处，同时也从此处接入互联网。<br>数据传输速率方面，一般计算机上使用100Mbps网卡就可以了，服务器则采用1 000Mbps网卡。由于10Gbps的设备价格比1000Mbps的设备贵很多，所以楼间光纤使用1 000Mbps速率，没有必要使用10Gbps速率，以后有必要时可以升级到10Gbps，升级很容易，光纤不需要动，只需更换交换机即可。校园网的总体结构如下图所示。</p>
+<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615218079056.png" alt="1615218079056"></p>
+<p>校园网内计算机数量众多，若只设一个网络，则广播域太大，同时管理也不方便。利用路由器可以把校园网划分为不同的网络，但与交换机相比，路由器价格较高、管理与维护复杂，而且速率比交换机慢。所以不应使用路由器划分网络，可以利用三层交换机与VLAN技术，把校园网划分为多个VLAN。<br>每个房间设一个网线插座，称为信息点，若要连入更多计算机，用户可以自行安装简易的交换机。每层楼设一台二层交换机，每座楼设一台三层交换机，交换机的接口数根据信息点数量确定。连接方法是信息点连至本层的二层交换机，二层交换机连至本楼的三层交换机，三层交换机再连至网络中心。图书馆的阅览室与办公楼的会议室各设两台无线AP，AP连入本层的二层交换机。<br>三层交换机启用VLAN功能，把每一层楼划分为不同的VLAN，并设置为允许不同VLAN间相互通信。某座楼内网络的结构如下图所示，其中二层交换机有100Mbps接口，也要有1 000Mbps接口，三层交换机则全部是1 000Mbps接口。</p>
+<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615218102527.png" alt="1615218102527"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-网络结构"
   class="article article-type-post"
   itemscope
@@ -197,7 +264,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
 
     </footer>
   </div>
@@ -1324,142 +1391,6 @@
 <li><p><strong>uniform  [ˈjuːnɪfɔːm]</strong><br>① n. 制服 </p>
 <p>② adj. 一律的；统一的  </p>
 </li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-06群体"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/01/06%E7%BE%A4%E4%BD%93/"
-    >06群体</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/01/06%E7%BE%A4%E4%BD%93/" class="article-date">
-  <time datetime="2021-01-01T01:40:33.000Z" itemprop="datePublished">2021-01-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><strong>mortal  [ˈmɔːtl]</strong><br>① n. 普通人；凡人 ② adj. 不能永生的；凡人的，世俗的；致命的</li>
-</ol>
-<ol start="2">
-<li><strong>folk [fəʊk]</strong><br>①n. 人们；[<del>s]各位；[</del>s]家人(尤指父母)；民间音乐②adj. 民间的，民俗的</li>
-</ol>
-<ol start="3">
-<li><strong>tribe  [traɪb]</strong><br>n. 部落，部族；一帮(人)</li>
-</ol>
-<ol start="4">
-<li><strong>herd  [hɜːd]</strong><br>① n. 芸芸众生，民众；兽群，畜群 ② v. (常指强迫性地)聚集；放牧</li>
-</ol>
-<ol start="5">
-<li><strong>gender  [ˈdʒendə(r)]</strong><br>n. 性别；性 </li>
-</ol>
-<ol start="6">
-<li><strong>spouse  [spaʊs]</strong><br>n. 配偶</li>
-</ol>
-<ol start="7">
-<li><strong>femininity  [ˈfemənɪn]</strong><br>adj. 女性的；阴性的</li>
-</ol>
-<ol start="8">
-<li><strong>infant [ˈɪnfənt]</strong><br>① n. 婴儿；幼儿 ②adj. 供婴幼儿用的；(组织等)初期的，初创的</li>
-</ol>
-<ol start="9">
-<li><strong>juvenile [ˈdʒuːvənaɪl]</strong><br>① n. 少年 ②adj. 少年的；幼稚的，孩子气的；(动物)幼小的</li>
-</ol>
-<ol start="10">
-<li><strong>adolescent  [ˌædəˈlesnt]</strong><br>①n. 青少年 ②adj. 青少年的，青春期的</li>
-</ol>
-<ol start="11">
-<li><strong>peer  [pɪə(r)]</strong><br>① n. (身份或地位)相同的人，同龄人，同辈；同事，同行 ②v. 盯着看，凝视</li>
-</ol>
-<ol start="12">
-<li><strong>forefather  [ˈfɔːfɑːðə(r)]</strong><br>n. 祖先，祖宗(尤指男性)；前辈，先驱</li>
-</ol>
-<ol start="13">
-<li><strong>ancestor [ˈænsestə(r)]</strong><br>n. 祖宗，祖先；(动植物的)原种；(机器的)原型</li>
-</ol>
-<ol start="14">
-<li><strong>offspring  [ˈɒfsprɪŋ]</strong><br>n. 子女，后代；幼崽；幼苗</li>
-</ol>
-<ol start="15">
-<li><strong>heir  [eə(r)]</strong><br>n. 继承人；接班人</li>
-</ol>
-<ol start="16">
-<li><strong>inherit [ɪnˈherɪt]</strong><br>v. 继承(遗产)；经遗传得到(品质、特征等)；接手，承担(他人造成的问题)；接收(别人不再需要的东西) </li>
-</ol>
-<ol start="17">
-<li><strong>landlord  [ˈlændlɔːd]</strong><br>n. 房东；店主</li>
-</ol>
-<ol start="18">
-<li><strong>audience  [ˈɔːdiəns]</strong><br>n. 观众，听众，受众，读者；拜会</li>
-</ol>
-<ol start="19">
-<li><strong>spectator [spekˈteɪtə(r)]</strong><br>n. (活动或体育比赛的)观众，旁观者</li>
-</ol>
-<ol start="20">
-<li><p><strong>sponsor [ˈspɒnsə(r)]</strong><br>① n. 赞助人；倡导者；发起人，主办方 </p>
-<p>②v. 赞助，资助；倡议，支持(法案)</p>
-</li>
-</ol>
-<ol start="21">
-<li><p><strong>class  [klɑːs]</strong><br>①n. 社会阶级；班级，课堂；课程；种类；等级</p>
-<p>② v. 把······归类</p>
-</li>
-</ol>
-<ol start="22">
-<li><strong>counterpart [ˈkaʊntəpɑːt]</strong><br>n. 职能(或地位)相当的人；对应的事物</li>
-</ol>
-<ol start="23">
-<li><strong>aristocrat  [ˈærɪstəkræt]</strong><br>n. 贵族(成员)</li>
-</ol>
-<ol start="24">
-<li><strong>nuisance  [ˈnjuːsns]</strong><br>n. 讨厌(或麻烦)的人(或事物、情况)</li>
-</ol>
-<ol start="25">
-<li><p><strong>bully  [ˈbʊli]</strong><br>① n. 恃强凌弱者</p>
-<p> ②v. 欺负，恐吓；威逼，胁迫</p>
-</li>
-</ol>
-<ol start="26">
-<li><strong>addict  [ˈædɪkt]</strong><br>n. 吸毒成瘾者；对······入迷的人v. 使上瘾；使沉迷  </li>
 </ol>
  
       <!-- reward -->
