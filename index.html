@@ -141,6 +141,240 @@
     
     
     <article
+  id="post-MAC地址欺骗"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/"
+    >MAC地址欺骗</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/" class="article-date">
+  <time datetime="2021-03-17T15:13:43.000Z" itemprop="datePublished">2021-03-17</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>MAC地址欺骗</p>
+<h3 id="1-macchanger工具介绍"><a href="#1-macchanger工具介绍" class="headerlink" title="1.macchanger工具介绍"></a>1.macchanger工具介绍</h3><p><code>root@kali:~# macchanger --help</code><br><code>GNU MAC Changer</code><br><code>Usage: macchanger [options] device</code></p>
+<p>  <code>-h,  --help                   Print this help</code><br>  <code>-V,  --version                Print version and exit</code><br>  <code>-s,  --show                   Print the MAC address and exit</code><br>  <code>-e,  --ending                 Don&#39;t change the vendor bytes</code><br>  <code>-a,  --another                Set random vendor MAC of the same kind</code><br>  <code>-A                            Set random vendor MAC of any kind</code><br>  <code>-p,  --permanent              Reset to original, permanent hardware MAC</code><br>  <code>-r,  --random                 Set fully random MAC</code><br>  <code>-l,  --list[=keyword]         Print known vendors</code><br>  <code>-b,  --bia                    Pretend to be a burned-in-address</code><br>  <code>-m,  --mac=XX:XX:XX:XX:XX:XX</code><br>       <code>--mac XX:XX:XX:XX:XX:XX  Set the MAC XX:XX:XX:XX:XX:XX</code></p>
+<h3 id="2-实际操作"><a href="#2-实际操作" class="headerlink" title="2.实际操作"></a>2.实际操作</h3><h5 id="（1）查看本机网卡MAC地址"><a href="#（1）查看本机网卡MAC地址" class="headerlink" title="（1）查看本机网卡MAC地址"></a>（1）查看本机网卡MAC地址</h5><p><code>root@kali:~# macchanger --show eth0</code><br><code>Current MAC:   00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>Permanent MAC: 00:0c:29:37:28:a5 (VMware, Inc.)</code></p>
+<h5 id="（2）关闭网卡eth0"><a href="#（2）关闭网卡eth0" class="headerlink" title="（2）关闭网卡eth0"></a>（2）关闭网卡eth0</h5><p><code>root@kali:~# ifconfig eth0 down</code></p>
+<h5 id="（3）修改网卡eth0的MAC地址"><a href="#（3）修改网卡eth0的MAC地址" class="headerlink" title="（3）修改网卡eth0的MAC地址"></a>（3）修改网卡eth0的MAC地址</h5><p>这里使用了随机生成的MAC地址，还可以自己设置mac地址，具体可以看帮助</p>
+<p><code>root@kali:~# macchanger --r eth0</code></p>
+<p><code>Current MAC:   00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>Permanent MAC: 00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>New MAC:      00:d0:c7:77:1c:65 (unknown)</code></p>
+<h5 id="（4）重启网卡eth0"><a href="#（4）重启网卡eth0" class="headerlink" title="（4）重启网卡eth0"></a>（4）重启网卡eth0</h5><p><code>root@kali:~# ifconfig eth0 up</code></p>
+<h5 id="（5）查看此时MAC地址"><a href="#（5）查看此时MAC地址" class="headerlink" title="（5）查看此时MAC地址"></a>（5）查看此时MAC地址</h5><p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/1615994921329.png" alt="1615994921329"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8/" rel="tag">网络安全应用</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-环境搭建"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+    >环境搭建</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time datetime="2021-03-15T15:58:31.000Z" itemprop="datePublished">2021-03-15</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="使用eNSP搭建网络协议分析实验环境"><a href="#使用eNSP搭建网络协议分析实验环境" class="headerlink" title="使用eNSP搭建网络协议分析实验环境"></a>使用eNSP搭建网络协议分析实验环境</h3><p>实验工具：eNSP、VMware Workstation Pro 、kali linux 、wireshark</p>
+<p>实验步骤：</p>
+<ol>
+<li><p>虚拟机中安装kail linux 网络模式设置位NAT模式（VM8网卡）</p>
+<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615824924724.png" alt="1615824924724"></p>
+</li>
+<li><p>安装eNSP</p>
+<p>在eNSP中新建网络拓扑结构，如图所示</p>
+<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615824988022.png" alt="1615824988022"></p>
+</li>
+<li><p>配置PC1和PC2的IP地址、子网掩码、默认网关等</p>
+<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825072691.png" alt="1615825072691"></p>
+<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825085258.png" alt="1615825085258"></p>
+</li>
+<li><p>配置cloud</p>
+<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825117644.png" alt="1615825117644"></p>
+</li>
+<li><p>启动设备</p>
+</li>
+<li><p>检测实验</p>
+<p>使用PC1 ping kali可以ping通，并且可以抓包</p>
+<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825200238.png" alt="1615825200238"></p>
+<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825219452.png" alt="1615825219452"></p>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-IP协议"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/"
+    >IP协议</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2021-03-11T14:43:23.000Z" itemprop="datePublished">2021-03-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>IP协议</strong></p>
+<h3 id="1-IP协议基本特点"><a href="#1-IP协议基本特点" class="headerlink" title="1 IP协议基本特点"></a>1 IP协议基本特点</h3><p>不可靠、无连接。</p>
+<h3 id="2-IP数据报的格式"><a href="#2-IP数据报的格式" class="headerlink" title="2 IP数据报的格式"></a>2 IP数据报的格式</h3><p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1615473977853.png" alt="1615473977853"></p>
+<ol>
+<li><p>版本（4位）</p>
+</li>
+<li><p>首部长度（4位）</p>
+</li>
+</ol>
+<p>单位4字节</p>
+<ol start="3">
+<li>区分服务（8位）</li>
+</ol>
+<p>以前叫做服务类型，说明此IP数据报对路由器的要求，但很少使用。最后两位为ECN，由RFC 3168规定，是路由器对接收计算机的显式拥塞通告。</p>
+<ol start="4">
+<li>总长度（16位）。</li>
+</ol>
+<p>单位为字节，<strong>死亡之**</strong>ping**，ping –l命令。</p>
+<ol start="5">
+<li>标识（16位）、6.标志（3位）、7.片偏移（13位）</li>
+</ol>
+<p>这3个字段用于分片与还原。<strong>MTU</strong>（最大传输单元）：帧的数据部分长度上限。如果IP数据报超过此值，则需要分片，分片可以发生在发送计算机，也可以发生在路由器，在最终的接收机还原。</p>
+<p>分片只分数据部分。</p>
+<p>标识：每发送一个IP数据报就加1，若干分片的此字段相同，可以知道属于同一IP数据报。</p>
+<p>标志：左边一位未用，中间一位DF（1：不能分片，0：能分片），右边一位MF（1：后面还有分片，0：后面没有分片了，这是最后一片）。</p>
+<p>片偏移：指明分片在原IP数据报中的位置。单位是8字节，为什么？</p>
+<p>例子：原数据报20+3980字节。</p>
+<table>
+<thead>
+<tr>
+<th>分片</th>
+<th>数据字节数</th>
+<th>标识</th>
+<th>MF</th>
+<th>片偏移</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1480</td>
+<td>777</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1480</td>
+<td>777</td>
+<td>1</td>
+<td>185X8=1480</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1020</td>
+<td>777</td>
+<td>0</td>
+<td>370X8=2960</td>
+</tr>
+</tbody></table>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-数据链路层"
   class="article article-type-post"
   itemscope
@@ -977,420 +1211,6 @@
 </ol>
 <ol start="33">
 <li><strong>jealous  [ˈdʒeləs]</strong><br>adj. 妒忌的，吃醋的；嫉妒的(of)  </li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-08人际"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/02/08%E4%BA%BA%E9%99%85/"
-    >08人际</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/02/08%E4%BA%BA%E9%99%85/" class="article-date">
-  <time datetime="2021-01-02T01:34:25.000Z" itemprop="datePublished">2021-01-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><p><strong>conflict   [ˈkɒnflɪkt]</strong><br>n. 冲突，矛盾，争论；斗争</p>
-<p>v. 冲突，抵触，相左；斗争 </p>
-</li>
-</ol>
-<ol start="2">
-<li><p><strong>clash [klæʃ]</strong><br>① n. 冲突；争论，交锋 </p>
-<p>② v. 发生冲突；争论，争执；撞期</p>
-</li>
-</ol>
-<ol start="3">
-<li><p><strong>dispute  [dɪˈspjuːt]</strong><br>① n. 争论，辩论；争端，纠纷</p>
-<p> ② v. 争论，辩论；反对；质疑；争夺</p>
-</li>
-</ol>
-<ol start="4">
-<li><p><strong>insult  [ɪnˈsʌlt]</strong><br>v. 辱骂；侮辱；冒犯</p>
-<p>n. 辱骂；侮辱；冒犯</p>
-</li>
-</ol>
-<ol start="5">
-<li><p><strong>curse  [kɜːs]</strong><br>① v. 诅咒，咒骂</p>
-<p> ② n. 诅咒，咒语；祸因</p>
-</li>
-</ol>
-<ol start="6">
-<li><strong>criticize  [ˈkrɪtɪsaɪz]</strong><br>v. 批评；指责 </li>
-</ol>
-<ol start="7">
-<li><p><strong>isolate  [ˈaɪsəleɪt]</strong> </p>
-<p>v. 孤立，隔离；分隔，区别看</p>
-</li>
-</ol>
-<ol start="8">
-<li><p><strong>trick  [trɪk]</strong><br>① v. 欺骗，哄骗，诱骗</p>
-<p> ② n. 诡计，骗局，把戏；诀窍，技巧</p>
-</li>
-</ol>
-<ol start="9">
-<li><strong>deceive  [dɪˈsiːv]</strong><br>v. 欺骗，蒙骗，隐瞒；误导</li>
-</ol>
-<ol start="10">
-<li><p><strong>seduce [sɪˈdjuːs]</strong> </p>
-<p>v. 勾引；引诱，诱使，吸</p>
-</li>
-</ol>
-<ol start="11">
-<li><p><strong>lure  [lʊə(r)]</strong><br>① v. 引诱，诱惑；吸引</p>
-<p> ② n. 诱饵；诱惑力</p>
-</li>
-</ol>
-<ol start="12">
-<li><p><strong>rat  [ræt]</strong><br>① v. 告密，出卖；违约，食言</p>
-<p> ② n. 老鼠；小人</p>
-</li>
-</ol>
-<ol start="13">
-<li><strong>interfere  [ˌɪntəˈfɪə(r)]</strong><br> v. 扰乱，干扰(with)；阻碍，妨碍(with)；参与，干涉</li>
-</ol>
-<ol start="14">
-<li><strong>interrupt  [ˌɪntəˈrʌpt]</strong><br>v. 打断，打扰；中止，阻碍</li>
-</ol>
-<ol start="15">
-<li><strong>intervene  [ˌɪntəˈviːn]</strong><br>  v. 干预，介入；阻碍；打岔；(时间)介于······之间</li>
-</ol>
-<ol start="16">
-<li><strong>disrupt  [dɪsˈrʌpt]</strong><br>v. 使中断；扰乱，使混乱</li>
-</ol>
-<ol start="17">
-<li><p><strong>individual  [ˌɪndɪˈvɪdʒuəl]</strong><br>① adj. 个人的；单独的，个别的；独特的 </p>
-<p>② n. 个体；个人</p>
-</li>
-</ol>
-<ol start="18">
-<li><strong>interpersonal  [ˌɪntəˈpɜːsənl]</strong><br>adj. 人与人之间的，人际的</li>
-</ol>
-<ol start="19">
-<li><p><strong>intimate [ˈɪntɪmət]</strong><br>① adj. 个人的，隐私的；亲密的；幽静舒适的，温馨的</p>
-<p> ② n. 密友，至交，知己</p>
-</li>
-</ol>
-<ol start="20">
-<li><strong>collaborate  [kəˈlæbəreɪt]</strong><br>v. 合作，协作；勾结，通敌</li>
-</ol>
-<ol start="21">
-<li><strong>harmony  [ˈhɑːməni]</strong><br>n. 融洽，和谐；一致；(音乐的)和声，和弦</li>
-</ol>
-<ol start="22">
-<li><p><strong>interact  [ˌɪntərˈækt]</strong></p>
-<p>v. 交流，交往；相互影响</p>
-</li>
-</ol>
-<ol start="23">
-<li><p><strong>cement  [sɪˈment]</strong> </p>
-<p>① v. 加强，巩固(关系)；(用水泥)粘合</p>
-<p> ② n. 水泥；黏固剂</p>
-</li>
-</ol>
-<ol start="24">
-<li><strong>reputation [ˌrepjuˈteɪʃn]</strong><br> n. 名声，声誉，名望 </li>
-</ol>
-<ol start="25">
-<li><p><strong>prestige  [preˈstiːʒ]</strong><br>①n. 声望，威信</p>
-<p> ② adj. 令人敬仰的，受尊重的；名贵的</p>
-</li>
-</ol>
-<ol start="26">
-<li><strong>fame  [feɪm]</strong><br>  n. 名声，名气；声誉，名望 </li>
-</ol>
-<ol start="27">
-<li><strong>notorious  [nəʊˈtɔːriəs]</strong><br>adj. 声名狼藉的，臭名昭著的</li>
-</ol>
-<ol start="28">
-<li><strong>rumor  [ˈruːmə(r)]</strong><br>n. [= rumour]流言，谣传，传闻  </li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-歌曲"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/01/%E6%AD%8C%E6%9B%B2/"
-    >2021年</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/01/%E6%AD%8C%E6%9B%B2/" class="article-date">
-  <time datetime="2021-01-01T10:13:37.000Z" itemprop="datePublished">2021-01-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%9A%8F%E6%83%B3/">随想</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><strong>不知道从什么时候开始迷上了纯音乐……</strong></p>
-<p><strong>2020发生了太多的事情，累的时候就喜欢带上耳机，沉浸于音乐当中，伴随着音符，感受着脉搏的跳动……</strong></p>
-<p><em>“很喜欢泰戈尔写的一段话：有一个夜晚我烧毁了所有的记忆，从此我的梦就透明了；有一个早晨我扔掉了所有的昨天，从此我的脚步就轻盈了。”@Stars1029</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=555110156&auto=0&height=66"></iframe>
-
-<p><em>“曲子超脱了单纯对亡灵的思念，而走入了人心所共有的侧面。不限于清明日，它属于每个人的清明情节，怀念刻。不同片段，时悠扬见笛声，时琳琅如碎玉，构听曲人思索之片段。我思，不会随火车撞轨声渐远，我想，淡淡与琴声渐显又渐远。”@冰蓝色的筝线</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=469545781&auto=0&height=66"></iframe>
-
-<p><em>“我知道，有的人，已经没有2020年的春天啦，他们（她们）已经停在了2019年的冬天。千里无言，再无相逢。写在这个疫情时期。”@书虫文蝶</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1365031961&auto=0&height=66"></iframe>
-
-<p><em>“别时和见时不同，就像两条相交直线，虽然距离相同，一个是越走越近，一个是，渐行渐远。”@温野与诗</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=863464857&auto=0&height=66"></iframe>
-
-<p><em>“小学的时候偷偷地看仙剑，正看到结局灵儿恶战后从水里上来，飘到逍遥身边，俩人相视一笑，心里暖暖的。这时听到楼道的脚步声，就把电视关了，一直以为结局是这般美好，直到很久以后，才知道真正的结局。十一年，大四了。”@-oppa-</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=29999506&auto=0&height=66"></iframe>
-
-<p><em>“这首曲子是要把我的心掏空，往里装满眼泪的节奏” @帐号已注销</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=5276791&auto=0&height=66"></iframe>
-
-<p><em>“听到后半段总有种战鼓响起的感觉。。再悲伤也要振奋，再艰难也要前进。。”@嗷-哦</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=4899152&auto=0&height=66"></iframe>
-
-<p><em>“普通人、面壁人、执剑人、守墓人罗辑站在冥王星地球文明的墓碑上，太阳系正跌入巨大的画卷之中：看着光速飞船的航迹，那是人类最后的荣耀，正载着人类的爱与良知飞向璀璨的星河，抚摸着留下的《蒙娜丽莎》：“庄颜，我们终于又可以在一起了。大笑着，燃烧着人类的无畏：”要进画里了，孩子们，保重！’”@蔷薇园中的枫</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1321290496&auto=0&height=66"></iframe>
-
-<p><em>“幽怨深处一个人在吃着辣条要两包一起吃才最好”@kidplay</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=26233203&auto=0&height=66"></iframe>
-
-<p><em>“因为太平静。就沉淀到最下面了。注定只能被少数人听到……”@风早观仁</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28881785&auto=0&height=66"></iframe>
-
-<p><strong>我觉得我有一瞬间长大了，但却又很矛盾。我不在为得不到而郁郁寡欢，也不为失去而辗转难眠，我开始珍惜每一</strong></p>
-<p><strong>分钟，每一秒，我尽量让自己每一天有收获，有“意义”，我为活在一个有温度的世界而流泪，我并不喜欢纯音乐，</strong></p>
-<p><strong>但是某一个时刻，我想听一首音乐，一首平静而忧伤的音乐。2021来了。</strong></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%AF%E9%9F%B3%E4%B9%90/" rel="tag">纯音乐</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-07职业"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/01/07%E8%81%8C%E4%B8%9A/"
-    >07职业</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/01/07%E8%81%8C%E4%B8%9A/" class="article-date">
-  <time datetime="2021-01-01T01:46:23.000Z" itemprop="datePublished">2021-01-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><strong>manual  [ˈmænjuəl]</strong><br>① adj. 人力的；手工的；手动的 ② n. 说明书</li>
-</ol>
-<ol start="2">
-<li><strong>dedicate   [ˈdedɪkeɪt]</strong><br>v. [~ oneself to]致力于，献身于；把······专用于</li>
-</ol>
-<ol start="3">
-<li><strong>workaholic  [ˌwɜːkəˈhɒlɪk]</strong><br>n. 醉心于工作的人，工作狂</li>
-</ol>
-<ol start="4">
-<li><strong>undertake  [ˌʌndəˈteɪk]</strong><br>v. (开始)做，承担，从事；承诺，答应</li>
-</ol>
-<ol start="5">
-<li><p><strong>bear  [beə(r)]</strong><br>① v. 承担，承受，支撑；忍受；携带，拿；怀有(尤指负面情绪)；[~ on]用于(应付某事)，影响</p>
-<p>② n. 熊</p>
-</li>
-</ol>
-<ol start="6">
-<li><p><strong>burden  [ˈbɜːdn]</strong><br>①n. 重负，负担</p>
-<p> ②v. 负载，背负；使焦虑</p>
-</li>
-</ol>
-<ol start="7">
-<li><strong>monotonous  [məˈnɒtənəs]</strong><br>adj. 单调乏味的，毫无变化的</li>
-</ol>
-<ol start="8">
-<li><strong>physician  [fɪˈzɪʃn]</strong><br>n. 内科医生</li>
-</ol>
-<ol start="9">
-<li><p><strong>anchor [ˈæŋkə(r)]</strong><br>① n. (新闻节目)主持人；锚 </p>
-<p>② v. 主持(新闻节目)；抛锚；使固定</p>
-</li>
-</ol>
-<ol start="10">
-<li><p><strong>spy  [spaɪ]</strong><br>① n. 间谍，密探</p>
-<p> ② v. 从事间谍活动；秘密监视(on)；认出，发现</p>
-</li>
-</ol>
-<ol start="11">
-<li><strong>supervise  [ˈsuːpəvaɪz]</strong><br>v. 监督，管理，指导 </li>
-</ol>
-<ol start="12">
-<li><p><strong>subordinate  [səˈbɔːdɪnət]</strong><br>① n. 下级，部属</p>
-<p>② adj. 隶属的，下级的；次要的</p>
-</li>
-</ol>
-<ol start="13">
-<li><p><strong>pension  [ˈpenʃn]</strong><br>① n. 养老金，退休金；抚恤金</p>
-<p>②v. 使(某人)退休并发放养老金</p>
-</li>
-</ol>
-<ol start="14">
-<li><p><strong>wage  [weɪdʒ]</strong><br>① n. (按小时、日或周计算的)工资，薪金</p>
-<p> ② v. 开展，发动(运动或战争)</p>
-</li>
-</ol>
-<ol start="15">
-<li><strong>subsidy  [ˈsʌbsədi]</strong><br>n. 财政补贴，津贴，补助金 </li>
-</ol>
-<ol start="16">
-<li><strong>credentials  [krəˈdenʃlz]</strong><br> n. [复]资历，资格；资格证书，资质证明</li>
-</ol>
-<ol start="17">
-<li><strong>headhunter  [ˈhedhʌntə(r)]</strong><br>n. 猎头，物色人才者</li>
-</ol>
-<ol start="18">
-<li><p><strong>recruit [rɪˈkruːt]</strong><br>① v. 招收，招聘，招募(新成员、新兵等) </p>
-<p>② n. 新成员；新兵 </p>
-</li>
-</ol>
-<ol start="19">
-<li><p><strong>register  [ˈredʒɪstə(r)]</strong><br>① v. 记录，登记，注册；注意到，意识到；流露，表露</p>
-<p>②n. 名册，登记簿，注册簿</p>
-</li>
-</ol>
-<ol start="20">
-<li><strong>vacant  [ˈveɪkənt]</strong><br>adj. (职位)空缺的；空的，未被占用的；(表情、目光等)茫然的</li>
-</ol>
-<ol start="21">
-<li><p><strong>shed  [ʃed]</strong><br>① v. 解雇；摆脱，去除；流(泪、血等)；使脱落</p>
-<p> ②n. 小棚屋；厂房</p>
-</li>
-</ol>
-<ol start="22">
-<li><strong>redundant [rɪˈdʌndənt]</strong><br>adj. 被裁员的，被解雇的；多余的，累赘的</li>
-</ol>
-<ol start="23">
-<li><strong>resign  [rɪˈzaɪn]</strong><br>v. 辞职，放弃(工作或职位)；(使)听任，顺从</li>
-</ol>
-<ol start="24">
-<li><strong>career  [kəˈrɪə(r)]</strong><br>n. 生涯；职业，事业 </li>
-</ol>
-<ol start="25">
-<li><strong>vocation  [vəʊˈkeɪʃn]</strong><br>n. 工作，职业；使命感，天职</li>
-</ol>
-<ol start="26">
-<li><strong>empirical  [ɪmˈpɪrɪkl]</strong><br>adj. 经验主义的；以经验为依据的</li>
-</ol>
-<ol start="27">
-<li><p><strong>field  [fiːld]</strong><br>① n. (研究或工作的)领域；行业；实地；运动场；田地 </p>
-<p>② v. 处理，应对(问题)</p>
-</li>
-</ol>
-<ol start="28">
-<li><p><strong>uniform  [ˈjuːnɪfɔːm]</strong><br>① n. 制服 </p>
-<p>② adj. 一律的；统一的  </p>
-</li>
 </ol>
  
       <!-- reward -->
