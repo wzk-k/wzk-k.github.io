@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    计算机网络体系总结构 |  wzkang
+    MAC地址泛洪 |  wzkang
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-网络结构"
+  id="post-MAC地址泛洪"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,15 +57,15 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  计算机网络体系总结构
+  MAC地址泛洪
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" class="article-date">
-  <time datetime="2021-03-05T14:14:59.000Z" itemprop="datePublished">2021-03-05</time>
+      <a href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/" class="article-date">
+  <time datetime="2021-03-17T15:34:39.000Z" itemprop="datePublished">2021-03-17</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">786</span>
+            <span class="post-count">268</span>
         </span>
     </span>
 
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
+            <span class="post-count">1 分钟</span>
         </span>
     </span>
 </div>
@@ -100,26 +100,23 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><strong>计算机网络总体结构</strong></p>
-<h3 id="一-网络分层"><a href="#一-网络分层" class="headerlink" title="一.  网络分层"></a>一.  网络分层</h3><h4 id="1-物理层（physical-layer）"><a href="#1-物理层（physical-layer）" class="headerlink" title="1.物理层（physical layer）"></a>1.物理层（physical layer）</h4><p>物理层的任务就是传输<u>位流</u>。</p>
-<h4 id="2-数据链路层（data-link-layer）"><a href="#2-数据链路层（data-link-layer）" class="headerlink" title="2.数据链路层（data link layer）"></a>2.数据链路层（data link layer）</h4><p>数据链路层的任务是负责<u>相邻结点间</u>的通信。</p>
-<h4 id="3-网络层（network-layer）"><a href="#3-网络层（network-layer）" class="headerlink" title="3.网络层（network layer）"></a>3.网络层（network layer）</h4><p>网络层的任务是为数据在<u>网络中</u>选择一条合适的路径。</p>
-<h4 id="4-运输层（transport-layer）"><a href="#4-运输层（transport-layer）" class="headerlink" title="4.运输层（transport layer）"></a>4.运输层（transport layer）</h4><p>运输层的任务是负责不同计算机中两个<u>进程间</u>的通信。</p>
-<h4 id="5-应用层（application-layer）"><a href="#5-应用层（application-layer）" class="headerlink" title="5.应用层（application layer）"></a>5.应用层（application layer）</h4><p>应用层就是为了让用户能够使用网络，如浏览网页、QQ聊天、收发电子邮件。</p>
-<h3 id="二-计算机网络中的重要概念"><a href="#二-计算机网络中的重要概念" class="headerlink" title="二.  计算机网络中的重要概念"></a>二.  计算机网络中的重要概念</h3><p>用寄信的例子类比</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614954918622.png" alt="1614954918622"></p>
-<h4 id="1．实体（entity）"><a href="#1．实体（entity）" class="headerlink" title="1．实体（entity）"></a>1．实体（entity）</h4><p>实体指计算机网络中参与发送或接收数据的<strong>硬件</strong>或<strong>软件进程</strong>。不同的层有不同的实体，位于不同计算机中同一层内的实体称为<strong>对等实体</strong>。</p>
-<h4 id="2．服务（service）"><a href="#2．服务（service）" class="headerlink" title="2．服务（service）"></a>2．服务（service）</h4><p>下层实体提供给上层实体使用的功能称为服务。服务通常通过函数调用来实现。</p>
-<h4 id="3．协议（protocol）"><a href="#3．协议（protocol）" class="headerlink" title="3．协议（protocol）"></a>3．协议（protocol）</h4><p><strong>协议规定了两个对等实体进行通信时的数据格式，以及在收发数据时及其他事件发生时应进行的操作。</strong>既然协议是控制对等实体的，那么<strong>一个协议必然位于某一层内</strong>，不同的层内有不同的协议。因特网有两个最重要的协议TCP与IP，因此因特网的体系结构才称为TCP/IP体系结构。<br>有的协议非常简单，有的则非常复杂。很多复杂协议之所以复杂，是因为要对很多非正常情况进行处理，此时工作量远远超过了处理正常情况的工作量。</p>
-<h4 id="4．协议数据单元（protocol-data-unit，PDU）"><a href="#4．协议数据单元（protocol-data-unit，PDU）" class="headerlink" title="4．协议数据单元（protocol data unit，PDU）"></a>4．协议数据单元（protocol data unit，PDU）</h4><p>每层实体都有自己处理数据的单位。这种某层实体处理数据的单位称为该层的协议数据单元。PDU通常分为首部与数据两部分。</p>
-<h4 id="5．封装与拆封（encapsulation-and-decapsulation）"><a href="#5．封装与拆封（encapsulation-and-decapsulation）" class="headerlink" title="5．封装与拆封（encapsulation and decapsulation）"></a>5．封装与拆封（encapsulation and decapsulation）</h4><p>在上层实体交付的PDU外面加上首部形成本层PDU的过程称为封装。去掉本层PDU首部从而得到上层PDU的过程称为拆封或解封装。某层的接收实体只查看本层PDU的首部，这个首部则是发送方的同层对等实体加上的。</p>
-<h4 id="6．复用与分用"><a href="#6．复用与分用" class="headerlink" title="6．复用与分用"></a>6．复用与分用</h4><p>运输层中的复用与分用：</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955208586.png" alt="1614955208586"></p>
-<p>其他层也有这个问题：某层可能有多个实体，下层向其提交数据时，应该给哪个实体？需要PDU首部中的一个字段加以区分。</p>
-<h3 id="三-网络的运作过程"><a href="#三-网络的运作过程" class="headerlink" title="三.  网络的运作过程"></a>三.  网络的运作过程</h3><p>计算机具有全部5层实体，工作过程容易理解。网络设备如何工作呢？<br>“集线器工作在物理层；交换机工作在数据链路层；路由器工作在网络层”的确切意思是指该设备会查看该层及其下面其他层的PDU的首部。路由器的工作原理：</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955342673.png" alt="1614955342673"></p>
-<p>网络分层动画。</p>
-<h3 id="四-网络各层协议"><a href="#四-网络各层协议" class="headerlink" title="四. 网络各层协议"></a>四. 网络各层协议</h3><p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955410501.png" alt="1614955410501"></p>
+  <h2 id="MAC地址泛洪"><a href="#MAC地址泛洪" class="headerlink" title="MAC地址泛洪"></a>MAC地址泛洪</h2><h3 id="1-实验准备"><a href="#1-实验准备" class="headerlink" title="1. 实验准备"></a>1. 实验准备</h3><h4 id="（1）网络拓扑结构"><a href="#（1）网络拓扑结构" class="headerlink" title="（1）网络拓扑结构"></a>（1）网络拓扑结构</h4><p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/1616079590389.png" alt="1616079590389"></p>
+<blockquote>
+<p>PC1:IPv4 : 192.168.218.129</p>
+<p>PC2:IPv4 : 192.168.218.130</p>
+<p>kali linux:IPv4 : 192.168.218.128</p>
+<p>cloud 的作用是将kali与该局域网相连</p>
+</blockquote>
+<h4 id="2-查看交换机LSW1的转发表"><a href="#2-查看交换机LSW1的转发表" class="headerlink" title="(2)查看交换机LSW1的转发表"></a>(2)查看交换机LSW1的转发表</h4><p>输入命令 ： <code>display mac-address</code></p>
+<p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/1616080007507.png" alt="1616080007507"></p>
+<h3 id="2-开始攻击"><a href="#2-开始攻击" class="headerlink" title="2.开始攻击"></a>2.开始攻击</h3><h4 id="1-工具与安装-：macof"><a href="#1-工具与安装-：macof" class="headerlink" title="(1)工具与安装 ：macof"></a>(1)工具与安装 ：macof</h4><p><code>sudo apt install dsniff</code></p>
+<h4 id="2-攻击："><a href="#2-攻击：" class="headerlink" title="(2)攻击："></a>(2)攻击：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# macof -h</span><br><span class="line">Version: 2.4</span><br><span class="line">Usage: macof [-s src] [-d dst] [-e tha] [-x sport] [-y dport]</span><br><span class="line">             [-i interface] [-n times]</span><br></pre></td></tr></table></figure>
+<p>以上是帮助，下面开始执行攻击指令，指定了eth0这个接口</p>
+<p><code>root@kali:~# macof -i eth0</code></p>
+<h4 id="3-攻击结果"><a href="#3-攻击结果" class="headerlink" title="(3)攻击结果"></a>(3)攻击结果</h4><p>攻击期间，交换机输入命令十分卡顿，主机之间也不能ping通。</p>
+<p>下图是攻击后交换机中的转发表，可以看出添加了许多未知的地址，当转发表被填满时，局域网中发送数据包时就可能找不到从哪个端口发出，这样交换机就会发送广播，而此时广播的数据包就可能被黑客截获。</p>
+<p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/1616081078632.png" alt="1616081078632"></p>
+<h3 id="（4）预防措施"><a href="#（4）预防措施" class="headerlink" title="（4）预防措施"></a>（4）预防措施</h3><p>限制交换机端口MAC地址的数量</p>
  
       <!-- reward -->
       
@@ -184,12 +181,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="tag">网络安全应用(链路层)</a></li></ul>
 
     </footer>
   </div>
@@ -197,19 +194,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="article-nav-link">
+      <a href="/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            数据链路层
+            ARP协议
           
         </div>
       </a>
     
     
-      <a href="/2021/01/04/31%E5%8A%A8%E4%BD%9C/" class="article-nav-link">
+      <a href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">31动作</div>
+        <div class="article-nav-title">MAC地址欺骗</div>
       </a>
     
   </nav>

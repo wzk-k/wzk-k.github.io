@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    计算机网络体系总结构 |  wzkang
+    ARP协议 |  wzkang
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-网络结构"
+  id="post-ARP协议"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,26 +57,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  计算机网络体系总结构
+  ARP协议
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" class="article-date">
-  <time datetime="2021-03-05T14:14:59.000Z" itemprop="datePublished">2021-03-05</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-  </div>
-  
+      <a href="/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2021-03-19T14:33:29.000Z" itemprop="datePublished">2021-03-19</time>
+</a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">786</span>
+            <span class="post-count">1.2k</span>
         </span>
     </span>
 
@@ -85,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
+            <span class="post-count">4 分钟</span>
         </span>
     </span>
 </div>
@@ -100,26 +96,53 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><strong>计算机网络总体结构</strong></p>
-<h3 id="一-网络分层"><a href="#一-网络分层" class="headerlink" title="一.  网络分层"></a>一.  网络分层</h3><h4 id="1-物理层（physical-layer）"><a href="#1-物理层（physical-layer）" class="headerlink" title="1.物理层（physical layer）"></a>1.物理层（physical layer）</h4><p>物理层的任务就是传输<u>位流</u>。</p>
-<h4 id="2-数据链路层（data-link-layer）"><a href="#2-数据链路层（data-link-layer）" class="headerlink" title="2.数据链路层（data link layer）"></a>2.数据链路层（data link layer）</h4><p>数据链路层的任务是负责<u>相邻结点间</u>的通信。</p>
-<h4 id="3-网络层（network-layer）"><a href="#3-网络层（network-layer）" class="headerlink" title="3.网络层（network layer）"></a>3.网络层（network layer）</h4><p>网络层的任务是为数据在<u>网络中</u>选择一条合适的路径。</p>
-<h4 id="4-运输层（transport-layer）"><a href="#4-运输层（transport-layer）" class="headerlink" title="4.运输层（transport layer）"></a>4.运输层（transport layer）</h4><p>运输层的任务是负责不同计算机中两个<u>进程间</u>的通信。</p>
-<h4 id="5-应用层（application-layer）"><a href="#5-应用层（application-layer）" class="headerlink" title="5.应用层（application layer）"></a>5.应用层（application layer）</h4><p>应用层就是为了让用户能够使用网络，如浏览网页、QQ聊天、收发电子邮件。</p>
-<h3 id="二-计算机网络中的重要概念"><a href="#二-计算机网络中的重要概念" class="headerlink" title="二.  计算机网络中的重要概念"></a>二.  计算机网络中的重要概念</h3><p>用寄信的例子类比</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614954918622.png" alt="1614954918622"></p>
-<h4 id="1．实体（entity）"><a href="#1．实体（entity）" class="headerlink" title="1．实体（entity）"></a>1．实体（entity）</h4><p>实体指计算机网络中参与发送或接收数据的<strong>硬件</strong>或<strong>软件进程</strong>。不同的层有不同的实体，位于不同计算机中同一层内的实体称为<strong>对等实体</strong>。</p>
-<h4 id="2．服务（service）"><a href="#2．服务（service）" class="headerlink" title="2．服务（service）"></a>2．服务（service）</h4><p>下层实体提供给上层实体使用的功能称为服务。服务通常通过函数调用来实现。</p>
-<h4 id="3．协议（protocol）"><a href="#3．协议（protocol）" class="headerlink" title="3．协议（protocol）"></a>3．协议（protocol）</h4><p><strong>协议规定了两个对等实体进行通信时的数据格式，以及在收发数据时及其他事件发生时应进行的操作。</strong>既然协议是控制对等实体的，那么<strong>一个协议必然位于某一层内</strong>，不同的层内有不同的协议。因特网有两个最重要的协议TCP与IP，因此因特网的体系结构才称为TCP/IP体系结构。<br>有的协议非常简单，有的则非常复杂。很多复杂协议之所以复杂，是因为要对很多非正常情况进行处理，此时工作量远远超过了处理正常情况的工作量。</p>
-<h4 id="4．协议数据单元（protocol-data-unit，PDU）"><a href="#4．协议数据单元（protocol-data-unit，PDU）" class="headerlink" title="4．协议数据单元（protocol data unit，PDU）"></a>4．协议数据单元（protocol data unit，PDU）</h4><p>每层实体都有自己处理数据的单位。这种某层实体处理数据的单位称为该层的协议数据单元。PDU通常分为首部与数据两部分。</p>
-<h4 id="5．封装与拆封（encapsulation-and-decapsulation）"><a href="#5．封装与拆封（encapsulation-and-decapsulation）" class="headerlink" title="5．封装与拆封（encapsulation and decapsulation）"></a>5．封装与拆封（encapsulation and decapsulation）</h4><p>在上层实体交付的PDU外面加上首部形成本层PDU的过程称为封装。去掉本层PDU首部从而得到上层PDU的过程称为拆封或解封装。某层的接收实体只查看本层PDU的首部，这个首部则是发送方的同层对等实体加上的。</p>
-<h4 id="6．复用与分用"><a href="#6．复用与分用" class="headerlink" title="6．复用与分用"></a>6．复用与分用</h4><p>运输层中的复用与分用：</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955208586.png" alt="1614955208586"></p>
-<p>其他层也有这个问题：某层可能有多个实体，下层向其提交数据时，应该给哪个实体？需要PDU首部中的一个字段加以区分。</p>
-<h3 id="三-网络的运作过程"><a href="#三-网络的运作过程" class="headerlink" title="三.  网络的运作过程"></a>三.  网络的运作过程</h3><p>计算机具有全部5层实体，工作过程容易理解。网络设备如何工作呢？<br>“集线器工作在物理层；交换机工作在数据链路层；路由器工作在网络层”的确切意思是指该设备会查看该层及其下面其他层的PDU的首部。路由器的工作原理：</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955342673.png" alt="1614955342673"></p>
-<p>网络分层动画。</p>
-<h3 id="四-网络各层协议"><a href="#四-网络各层协议" class="headerlink" title="四. 网络各层协议"></a>四. 网络各层协议</h3><p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955410501.png" alt="1614955410501"></p>
+  <h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a><strong>ARP协议</strong></h3><h4 id="1-ARP工作原理"><a href="#1-ARP工作原理" class="headerlink" title="1 ARP工作原理"></a><strong>1 ARP工作原理</strong></h4><p>网络通信时，用户通常只给出目的IP地址，但又需要目的物理地址，物理地址如何获得？这需要ARP协议。ARP协议的动作过程：</p>
+<p><img src="/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/1616164459485.png" alt="1616164459485"></p>
+<p>为提高效率，计算机还使用了ARP缓存，为防止计算机更换物理地址，ARP缓存中的数据有生存时间。Windows查看ARP缓存命令：arp -a，添加ARP缓存命令：arp -s 1.1.1.1 22-22-22-22-22-22。</p>
+<h4 id="2-ARP报文结构"><a href="#2-ARP报文结构" class="headerlink" title="2 ARP报文结构"></a><strong>2 ARP报文结构</strong></h4><p>ARP报文直接封装在以太网帧中传输，类型字段的值是0x0806。</p>
+<ol>
+<li>硬件类型（2字节）</li>
+</ol>
+<p>说明硬件地址是何种类型，以太网有不同版本，编号也不相同，目前用的编号是1。</p>
+<ol start="2">
+<li>协议类型（2字节）</li>
+</ol>
+<p>说明网络层地址是何种类型，IP协议的编号是0x0800。以上两个字段说明ARP可以支持多种链路层协议与多种网络层协议。</p>
+<ol start="3">
+<li>硬件地址长度（1字节）</li>
+</ol>
+<p>以太网为6。</p>
+<ol start="4">
+<li>协议地址长度（1字节）</li>
+</ol>
+<p>IP协议为4。</p>
+<ol start="5">
+<li>报文类型（2字节）</li>
+</ol>
+<p>也称Opcode，ARP请求是1，ARP响应是2。</p>
+<ol start="6">
+<li>源硬件地址</li>
+</ol>
+<p>发送方（包括请求与响应）的硬件地址。</p>
+<ol start="7">
+<li>源IP地址</li>
+</ol>
+<p>发送方（包括请求与响应）的IP地址。</p>
+<ol start="8">
+<li>目的硬件地址</li>
+</ol>
+<p>请求中该字段填全0，响应中则为接收方的硬件地址。</p>
+<ol start="9">
+<li>目的IP地址</li>
+</ol>
+<p>请求中为需要查询的IP地址，响应中则为接收方的IP地址。</p>
+<h4 id="3-无故ARP"><a href="#3-无故ARP" class="headerlink" title="3 无故ARP"></a><strong>3</strong> 无故ARP</h4><p>无故ARP（<a href="#gratuitous">gratuitous</a> ARP，GARP）用于检查某IP地址是否已有计算机在用。即发送ARP请求询问IP地址为IPa对应的物理地址，若有ARP响应则说明已使用，若无ARP响应则说明未使用。计算机得到一个IP地址时，便使用GARP查看该地址是否已被使用，即发送ARP请求询问自己的IP地址对应的物理地址，若有ARP响应则说明已使用，若无ARP响应则说明未使用。</p>
+<p>GARP中，源IP地址与目的IP地址两个字段相同。</p>
+<h4 id="4-硬件地址与IP地址"><a href="#4-硬件地址与IP地址" class="headerlink" title="4 硬件地址与IP地址"></a><strong>4 硬件地址与IP地址</strong></h4><p>硬件地址由数据链路层协议使用，位于帧的首部，IP地址则由网络层的IP协议使用，位于IP分组首部。在不同的数据链路层协议中，定义了不同意义、不同格式的物理地址，某些点对点链路中没有物理地址，有必要在网络层重新为计算机分配一个全球唯一、意义相同、格式相同的地址。</p>
+<p>IP数据报在传输过程中一直不变，而运载IP数据报的帧却在不断变化，经多次转发，最终IP数据报到达了接收方。这就像寄信，信在运送过程中不会改变，但运送方式却不断变化，最终到达收信人手中。有了全世界统一的IP协议，各种不同传输媒体、不同数据链路层协议的网络就互相连接在一起了。</p>
+<h4 id="5-ARP欺骗病毒"><a href="#5-ARP欺骗病毒" class="headerlink" title="5 ARP欺骗病毒"></a><strong>5 ARP欺骗病毒</strong></h4><p>ARP欺骗病毒的原理：中病毒的计算机收到ARP请求后，发送虚假的ARP响应，接收计算机就会收到一真一假两个ARP响应（也可能只收到假响应）。接收计算机使用先到的ARP响应，对后到的不予理会，如果假ARP响应先到，接收计算机就会被欺骗。也有的病毒没有收到请求就发送虚假响应。ARP欺骗病毒还可以欺骗网络设备。也有的病毒拼命发送广播数据，占用网络带宽。从以上讨论可以看出，ARP欺骗的根源在于计算机对收到的数据一律相信，不能分辨真假。</p>
+<p>计算机一般只与默认网关通信，这时可用arp命令的-s选项在ARP缓存中添加静态数据，绑定住默认网关IP地址与物理地址的对应关系。</p>
+<p>终极解决方案是：在连接计算机的交换机上，每一个接口划分为一个VLAN，即每一台计算机都属于单独的一个VLAN，一个VLAN中只有一台计算机。这样一台计算机发出的广播帧影响不到其他计算机，而ARP请求是利用广播帧发送的，这样一来，ARP欺骗病毒只能影响到病毒所在的计算机，但影响不到其他计算机了。这种方案不但可以消除ARP欺骗病毒的危害，还能消除一些计算机乱发广播帧带来的危害。</p>
  
       <!-- reward -->
       
@@ -184,7 +207,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -197,19 +220,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="article-nav-link">
+      <a href="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            数据链路层
+            ARP中间人攻击
           
         </div>
       </a>
     
     
-      <a href="/2021/01/04/31%E5%8A%A8%E4%BD%9C/" class="article-nav-link">
+      <a href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">31动作</div>
+        <div class="article-nav-title">MAC地址泛洪</div>
       </a>
     
   </nav>

@@ -141,6 +141,246 @@
     
     
     <article
+  id="post-ARP中间人攻击"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/"
+    >ARP中间人攻击</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" class="article-date">
+  <time datetime="2021-03-19T14:58:51.000Z" itemprop="datePublished">2021-03-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="ARP中间人攻击"><a href="#ARP中间人攻击" class="headerlink" title="ARP中间人攻击"></a>ARP中间人攻击</h3><h3 id="一-wireshark显示过滤器中ARP常用指令"><a href="#一-wireshark显示过滤器中ARP常用指令" class="headerlink" title="一.wireshark显示过滤器中ARP常用指令"></a>一.wireshark显示过滤器中ARP常用指令</h3><p>筛选类型为请求（reques）的ARP</p>
+<p><code>arp.opcode == 0x001</code></p>
+<p>筛选类型为响应(reply)的ARP</p>
+<p><code>arp.opcode == 0x002</code></p>
+<p>筛选指定源MAC地址的ARP </p>
+<p><code>arp.src.hw_mac == MAC地址</code></p>
+<p>筛选指点源为MAC地址并且类型为请求的</p>
+<p><code>arp.src.hw_mac == MAC地址 &amp;&amp; arp.opcode == 0x001</code></p>
+<h3 id="二-实验准备"><a href="#二-实验准备" class="headerlink" title="二. 实验准备"></a>二. 实验准备</h3><p>目标主机： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IPv4 地址 . . . . . . . . . . . . : 192.168.43.108(首选)</span><br><span class="line">物理地址. . . . . . . . . . . . . : 04-ED-33-8B-35-6C</span><br><span class="line">默认网关. . . . . . . . . . . . . : 192.168.43.1</span><br><span class="line">其中网关：192.168.43.1 的物理地址为 34-d7-12-a2-0d-2e     动态</span><br></pre></td></tr></table></figure>
+<p>攻击主机： kali linux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">eth2: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.43.160  netmask 255.255.255.0  broadcast 192.168.43.255</span><br><span class="line">        inet6 fe80::20c:29ff:fe37:28c3  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        inet6 2409:893c:1546:221:20c:29ff:fe37:28c3  prefixlen 64  scopeid 0x0&lt;global&gt;</span><br><span class="line">        ether 00:0c:29:37:28:c3  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 66  bytes 9334 (9.1 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 111  bytes 9319 (9.1 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure>
+<p>攻击目的：欺骗目标主机192.168.100.5，让其以为网关为192.168.43.1的物理地址为<strong>00:0c:29:37:28:c3</strong>（黑客的kaili网卡eth0的物理地址）</p>
+<p>开启kali的路由转发功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward</span><br></pre></td></tr></table></figure>
+<h3 id="三-开始攻击"><a href="#三-开始攻击" class="headerlink" title="三.开始攻击"></a>三.开始攻击</h3><p>在kali终端中使用arpspoof工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arpspoof -i eth2 -t 192.168.43.108 192.168.43.1</span><br></pre></td></tr></table></figure>
+<p>执行命令后，向目标主机发送大量的arp相应（arp reply）,使得目标主机以为网关的物理地址为</p>
+<p><strong>00:0c:29:37:28:c3</strong></p>
+<p><img src="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/1616257541863.png" alt="1616257541863"></p>
+<p>在目标主机终端中查看arp缓存表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDOWS\system32&gt;arp -a</span><br></pre></td></tr></table></figure>
+<p>可以发现表中的物理地址的确改成了黑客网卡的物理地址</p>
+<p><img src="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/1616257736578.png" alt="1616257736578"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E7%BD%91%E7%BB%9C%E5%B1%82/" rel="tag">网络安全应用(网络层)</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-ARP协议"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/"
+    >ARP协议</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2021-03-19T14:33:29.000Z" itemprop="datePublished">2021-03-19</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a><strong>ARP协议</strong></h3><h4 id="1-ARP工作原理"><a href="#1-ARP工作原理" class="headerlink" title="1 ARP工作原理"></a><strong>1 ARP工作原理</strong></h4><p>网络通信时，用户通常只给出目的IP地址，但又需要目的物理地址，物理地址如何获得？这需要ARP协议。ARP协议的动作过程：</p>
+<p><img src="/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/1616164459485.png" alt="1616164459485"></p>
+<p>为提高效率，计算机还使用了ARP缓存，为防止计算机更换物理地址，ARP缓存中的数据有生存时间。Windows查看ARP缓存命令：arp -a，添加ARP缓存命令：arp -s 1.1.1.1 22-22-22-22-22-22。</p>
+<h4 id="2-ARP报文结构"><a href="#2-ARP报文结构" class="headerlink" title="2 ARP报文结构"></a><strong>2 ARP报文结构</strong></h4><p>ARP报文直接封装在以太网帧中传输，类型字段的值是0x0806。</p>
+<ol>
+<li>硬件类型（2字节）</li>
+</ol>
+<p>说明硬件地址是何种类型，以太网有不同版本，编号也不相同，目前用的编号是1。</p>
+<ol start="2">
+<li>协议类型（2字节）</li>
+</ol>
+<p>说明网络层地址是何种类型，IP协议的编号是0x0800。以上两个字段说明ARP可以支持多种链路层协议与多种网络层协议。</p>
+<ol start="3">
+<li>硬件地址长度（1字节）</li>
+</ol>
+<p>以太网为6。</p>
+<ol start="4">
+<li>协议地址长度（1字节）</li>
+</ol>
+<p>IP协议为4。</p>
+<ol start="5">
+<li>报文类型（2字节）</li>
+</ol>
+<p>也称Opcode，ARP请求是1，ARP响应是2。</p>
+<ol start="6">
+<li>源硬件地址</li>
+</ol>
+<p>发送方（包括请求与响应）的硬件地址。</p>
+<ol start="7">
+<li>源IP地址</li>
+</ol>
+<p>发送方（包括请求与响应）的IP地址。</p>
+<ol start="8">
+<li>目的硬件地址</li>
+</ol>
+<p>请求中该字段填全0，响应中则为接收方的硬件地址。</p>
+<ol start="9">
+<li>目的IP地址</li>
+</ol>
+<p>请求中为需要查询的IP地址，响应中则为接收方的IP地址。</p>
+<h4 id="3-无故ARP"><a href="#3-无故ARP" class="headerlink" title="3 无故ARP"></a><strong>3</strong> 无故ARP</h4><p>无故ARP（<a href="#gratuitous">gratuitous</a> ARP，GARP）用于检查某IP地址是否已有计算机在用。即发送ARP请求询问IP地址为IPa对应的物理地址，若有ARP响应则说明已使用，若无ARP响应则说明未使用。计算机得到一个IP地址时，便使用GARP查看该地址是否已被使用，即发送ARP请求询问自己的IP地址对应的物理地址，若有ARP响应则说明已使用，若无ARP响应则说明未使用。</p>
+<p>GARP中，源IP地址与目的IP地址两个字段相同。</p>
+<h4 id="4-硬件地址与IP地址"><a href="#4-硬件地址与IP地址" class="headerlink" title="4 硬件地址与IP地址"></a><strong>4 硬件地址与IP地址</strong></h4><p>硬件地址由数据链路层协议使用，位于帧的首部，IP地址则由网络层的IP协议使用，位于IP分组首部。在不同的数据链路层协议中，定义了不同意义、不同格式的物理地址，某些点对点链路中没有物理地址，有必要在网络层重新为计算机分配一个全球唯一、意义相同、格式相同的地址。</p>
+<p>IP数据报在传输过程中一直不变，而运载IP数据报的帧却在不断变化，经多次转发，最终IP数据报到达了接收方。这就像寄信，信在运送过程中不会改变，但运送方式却不断变化，最终到达收信人手中。有了全世界统一的IP协议，各种不同传输媒体、不同数据链路层协议的网络就互相连接在一起了。</p>
+<h4 id="5-ARP欺骗病毒"><a href="#5-ARP欺骗病毒" class="headerlink" title="5 ARP欺骗病毒"></a><strong>5 ARP欺骗病毒</strong></h4><p>ARP欺骗病毒的原理：中病毒的计算机收到ARP请求后，发送虚假的ARP响应，接收计算机就会收到一真一假两个ARP响应（也可能只收到假响应）。接收计算机使用先到的ARP响应，对后到的不予理会，如果假ARP响应先到，接收计算机就会被欺骗。也有的病毒没有收到请求就发送虚假响应。ARP欺骗病毒还可以欺骗网络设备。也有的病毒拼命发送广播数据，占用网络带宽。从以上讨论可以看出，ARP欺骗的根源在于计算机对收到的数据一律相信，不能分辨真假。</p>
+<p>计算机一般只与默认网关通信，这时可用arp命令的-s选项在ARP缓存中添加静态数据，绑定住默认网关IP地址与物理地址的对应关系。</p>
+<p>终极解决方案是：在连接计算机的交换机上，每一个接口划分为一个VLAN，即每一台计算机都属于单独的一个VLAN，一个VLAN中只有一台计算机。这样一台计算机发出的广播帧影响不到其他计算机，而ARP请求是利用广播帧发送的，这样一来，ARP欺骗病毒只能影响到病毒所在的计算机，但影响不到其他计算机了。这种方案不但可以消除ARP欺骗病毒的危害，还能消除一些计算机乱发广播帧带来的危害。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-MAC地址泛洪"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/"
+    >MAC地址泛洪</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/" class="article-date">
+  <time datetime="2021-03-17T15:34:39.000Z" itemprop="datePublished">2021-03-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="MAC地址泛洪"><a href="#MAC地址泛洪" class="headerlink" title="MAC地址泛洪"></a>MAC地址泛洪</h2><h3 id="1-实验准备"><a href="#1-实验准备" class="headerlink" title="1. 实验准备"></a>1. 实验准备</h3><h4 id="（1）网络拓扑结构"><a href="#（1）网络拓扑结构" class="headerlink" title="（1）网络拓扑结构"></a>（1）网络拓扑结构</h4><p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/1616079590389.png" alt="1616079590389"></p>
+<blockquote>
+<p>PC1:IPv4 : 192.168.218.129</p>
+<p>PC2:IPv4 : 192.168.218.130</p>
+<p>kali linux:IPv4 : 192.168.218.128</p>
+<p>cloud 的作用是将kali与该局域网相连</p>
+</blockquote>
+<h4 id="2-查看交换机LSW1的转发表"><a href="#2-查看交换机LSW1的转发表" class="headerlink" title="(2)查看交换机LSW1的转发表"></a>(2)查看交换机LSW1的转发表</h4><p>输入命令 ： <code>display mac-address</code></p>
+<p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/1616080007507.png" alt="1616080007507"></p>
+<h3 id="2-开始攻击"><a href="#2-开始攻击" class="headerlink" title="2.开始攻击"></a>2.开始攻击</h3><h4 id="1-工具与安装-：macof"><a href="#1-工具与安装-：macof" class="headerlink" title="(1)工具与安装 ：macof"></a>(1)工具与安装 ：macof</h4><p><code>sudo apt install dsniff</code></p>
+<h4 id="2-攻击："><a href="#2-攻击：" class="headerlink" title="(2)攻击："></a>(2)攻击：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# macof -h</span><br><span class="line">Version: 2.4</span><br><span class="line">Usage: macof [-s src] [-d dst] [-e tha] [-x sport] [-y dport]</span><br><span class="line">             [-i interface] [-n times]</span><br></pre></td></tr></table></figure>
+<p>以上是帮助，下面开始执行攻击指令，指定了eth0这个接口</p>
+<p><code>root@kali:~# macof -i eth0</code></p>
+<h4 id="3-攻击结果"><a href="#3-攻击结果" class="headerlink" title="(3)攻击结果"></a>(3)攻击结果</h4><p>攻击期间，交换机输入命令十分卡顿，主机之间也不能ping通。</p>
+<p>下图是攻击后交换机中的转发表，可以看出添加了许多未知的地址，当转发表被填满时，局域网中发送数据包时就可能找不到从哪个端口发出，这样交换机就会发送广播，而此时广播的数据包就可能被黑客截获。</p>
+<p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%B3%9B%E6%B4%AA/1616081078632.png" alt="1616081078632"></p>
+<h3 id="（4）预防措施"><a href="#（4）预防措施" class="headerlink" title="（4）预防措施"></a>（4）预防措施</h3><p>限制交换机端口MAC地址的数量</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="tag">网络安全应用(链路层)</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-MAC地址欺骗"
   class="article article-type-post"
   itemscope
@@ -162,7 +402,11 @@
     <div class="article-meta">
       <a href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/" class="article-date">
   <time datetime="2021-03-17T15:13:43.000Z" itemprop="datePublished">2021-03-17</time>
-</a>    
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -187,7 +431,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8/" rel="tag">网络安全应用</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="tag">网络安全应用(链路层)</a></li></ul>
 
     </footer>
   </div>
@@ -220,7 +464,11 @@
     <div class="article-meta">
       <a href="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="article-date">
   <time datetime="2021-03-15T15:58:31.000Z" itemprop="datePublished">2021-03-15</time>
-</a>    
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -296,8 +544,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p><strong>IP协议</strong></p>
-<h3 id="1-IP协议基本特点"><a href="#1-IP协议基本特点" class="headerlink" title="1 IP协议基本特点"></a>1 IP协议基本特点</h3><p>不可靠、无连接。</p>
+  <h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a><strong>IP协议</strong></h2><h3 id="1-IP协议基本特点"><a href="#1-IP协议基本特点" class="headerlink" title="1 IP协议基本特点"></a>1 IP协议基本特点</h3><p>不可靠、无连接。</p>
 <h3 id="2-IP数据报的格式"><a href="#2-IP数据报的格式" class="headerlink" title="2 IP数据报的格式"></a>2 IP数据报的格式</h3><p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1615473977853.png" alt="1615473977853"></p>
 <ol>
 <li><p>版本（4位）</p>
@@ -355,6 +602,174 @@
 <td>370X8=2960</td>
 </tr>
 </tbody></table>
+<p><strong>泪滴攻击。</strong></p>
+<ol start="8">
+<li>生存时间（8位）</li>
+</ol>
+<p>TTL具有不同的初值，Linux为64，Windows 10为128，Unix则为最大值255。</p>
+<ol start="9">
+<li>协议（8位）</li>
+</ol>
+<p>起分用作用，与以太网帧中的类型字段功能类似，ICMP为1，TCP为6、UDP为17。</p>
+<ol start="10">
+<li>首部检验和（16位）</li>
+</ol>
+<p>只包括首部，检验和置0，将首部划分为多个16位相加，结果取反。接收方检验和不置0，同样计算，结果为0说明正确。</p>
+<ol start="11">
+<li><p>源IP地址</p>
+</li>
+<li><p>目的IP地址</p>
+</li>
+<li><p>选项与填充</p>
+</li>
+</ol>
+<p>如果选项不是4字节的整数倍，必须填充至4字节的整数倍。</p>
+<h3 id="3-IP地址"><a href="#3-IP地址" class="headerlink" title="3 IP地址"></a>3 IP地址</h3><p>IP地址被设计为两部分：左边一部分指明该计算机所在的网络，叫做网络号，右边一部分指明该计算机，叫做主机号。网络号因为在IP地址的前边，所以也叫做前缀（prefix）。为指明计算机所在的网络，IP地址划分为网络号与主机号非常重要，无论是路由器，还是一般计算机都利用这一特性进行通信。</p>
+<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616163996138.png" alt="1616163996138"></p>
+<p>确定网络号与主机号的长度的方法是使用子网掩码（subnet mask）。</p>
+<p>子网掩码的长度也是32位，左边部分全是1，右边部分全是0，1的位数与网络号相同。一个IP地址总是与一个子网掩码配对出现，根据子网掩码就能确定网络号与主机号的长度了。</p>
+<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164008917.png" alt="1616164008917"></p>
+<p>掩码有2种写法：255.255.255.0=/24</p>
+<p>特殊IP地址：</p>
+<ol>
+<li><p>主机号全为0与全为1的IP地址，主机号全为0代表这个网络，叫做网络IP地址，主机号全为1则是广播IP地址。主机号全为0与全为1的IP地址因为有特殊的含义，所以不能再分配给计算机。</p>
+</li>
+<li><p>范围为127.0.0.1～127.255.255.254的IP地址是环回地址，都是指本计算机，其中第1个IP地址127.0.0.1最为常用。</p>
+</li>
+<li><p>私有IP地址或专用IP地址（private IP address），分为4块：10.0.0.0～10.255.255.255、172.16.0.0～172.31.255.255、192.168.0.0～192.168.255.255、169.254.0.0～169.254.255.255。第4块169.254.0.0～169.254.255.255非常特殊，叫做自动私有IP地址，当一台计算机设置为使用DHCP协议自动获得IP地址的时候，在自动获得IP地址失败（如没有DHCP服务器）的情况下，计算机会自动为自己分配一个自动私有IP地址。与私有地址对应，那些必须申请才能使用的IP地址叫做公有IP地址或公网IP地址（public IP address）。</p>
+</li>
+</ol>
+<h3 id="4-IP数据报的转发"><a href="#4-IP数据报的转发" class="headerlink" title="4 IP数据报的转发"></a><strong>4 IP数据报的转发</strong></h3><h4 id="4-1子网"><a href="#4-1子网" class="headerlink" title="4.1子网"></a>4.1子网</h4><p>一般认为，由二层交换机连接的计算机组成一个网络，称为一个子网（网段），由路由器连接的，则不是同网络（子网、网段）。一个网络是一个广播域。</p>
+<p>同一个子网内所有计算机的网络号相同，而路由器不同接口的网络号不同，两个路由器直接相连的接口通常也组成一个网络。</p>
+<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164025325.png" alt="1616164025325"></p>
+<p>IP地址为1.1.1.1/24、1.1.1.2/24与1.1.1.3/24的3台计算机都属于子网1，子网1的IP地址则是1.1.1.0/24。1.1.1.255是子网1的广播IP地址，假设计算机1.1.1.1发出目的IP地址为1.1.1.255的广播IP数据报，这些IP数据报会到达子网1内的所有计算机，但不能到达其他子网的计算机。</p>
+<p>一个问题：先用路由器连接好不同的网络，网络的物理结构就确定了，而IP地址是可以随意设置的，让一台计算机IP地址的网络号与子网内其他计算机的不同，会发生什么情况？如上图所示，子网3中的一台计算机的IP地址为4.4.4.1，与其他计算机IP地址的网络号不同，这台计算机能与其他计算机正常通信吗？路由器A与B的每个接口的IP地址都不相同，而且网络号一定要与本子网的网络号相同，如果不这样设置，路由器会无法正常工作，这又是为什么？</p>
+<h4 id="4-2-计算机发出IP数据报"><a href="#4-2-计算机发出IP数据报" class="headerlink" title="4.2 计算机发出IP数据报"></a><strong>4.2 计算机发出IP数据报</strong></h4><p>一台计算机配置IP协议属性时，需要设置IP地址、子网掩码与默认网关。有两种情况：一是发送计算机与接收计算机<strong>在同一子网内</strong>，二是发送计算机与接收计算机<strong>不在同一子网内</strong>。利用子网掩码与自己的IP地址与目的IP地址分别相“与”，就能区分这两种情况。</p>
+<p>1．发送计算机与接收计算机在同一子网内</p>
+<p>例如，计算机1.1.1.1向1.1.1.2发送一个IP数据报。1.1.1.1、1.1.1.2和子网掩码255.255.255.0与运算的结果都是1.1.1.0，这说明它们在同一个子网内。1.1.1.1在IP数据报与以太网帧的地址字段分别填写上自己与1.1.1.2的相关信息，如下图所示。这样的数据发送到网络上，就会顺利地由1.1.1.2接收处理。</p>
+<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164055564.png" alt="1616164055564"></p>
+<p>同一子网计算机通信时的地址情况</p>
+<p>2．发送计算机与接收计算机不在同一子网内</p>
+<p>这种情况比较复杂，例如，计算机1.1.1.1向3.3.3.1发送一个IP数据报。1.1.1.1、3.3.3.1和子网掩码255.255.255.0与运算的结果不相同，前者是1.1.1.0，后者是3.3.3.0，这说明它们不在同一个子网内。1.1.1.1先把IP数据报发给路由器A，路由器A再转发给路由器B，最后路由器B再转发给3.3.3.1，这中间经过了两个路由器与3个子网。每经过一个路由器，该路由器的输入接口会拆封进入的帧，得到IP数据报，再转发到输出接口，输出接口则把IP数据报封装为一个新的帧，再发送出去。这样就产生了3个不同的以太网帧，各帧的地址情况如下图所示。从图中可以看出，IP数据报在传输过程中，源IP地址与目的IP地址始终不变，路由器就根据目的IP地址转发。</p>
+<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164068027.png" alt="1616164068027"></p>
+<p>不同子网计算机通信时的地址情况</p>
+<h4 id="4-3-路由器转发IP数据报"><a href="#4-3-路由器转发IP数据报" class="headerlink" title="4.3 路由器转发IP数据报"></a><strong>4.3 路由器转发IP数据报</strong></h4><p>路由器根据路由表转发IP数据报，下面以下图为例解释。图中两台路由器A与B各有4个接口，连接了多个网络，网络1到网络4都有200台计算机，它们的网络IP地址分别是1.1.1.0/24、2.2.2.0/24、3.3.3.0/24、4.4.4.0/24。路由器A接口3的IP地址是5.5.5.1，路由器B接口3的IP地址是5.5.5.2。</p>
+<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164078321.png" alt="1616164078321"></p>
+<p>路由器A与B连接4个网络</p>
+<p>路由表有两列最基本的数据：目的IP地址与下一跳。路由器A的路由表如下表所示，第1行的含义是对于目的IP地址为1.1.1.1的IP数据报，应该发往接口1，其他行依次类推。路由器转发IP数据报时先查找路由表，再根据查询结果把IP数据报发往不同的接口。路由器B中也有类似的路由表。</p>
+<p>路由器A中的路由表</p>
+<table>
+<thead>
+<tr>
+<th>目的IP地址</th>
+<th>下一跳</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.1.1.1</td>
+<td>接口1，直连</td>
+</tr>
+<tr>
+<td>1.1.1.2</td>
+<td>接口1，直连</td>
+</tr>
+<tr>
+<td>……</td>
+<td>……</td>
+</tr>
+<tr>
+<td>4.4.4.1</td>
+<td>接口3，5.5.5.2</td>
+</tr>
+<tr>
+<td>4.4.4.2</td>
+<td>接口3，5.5.5.2</td>
+</tr>
+<tr>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody></table>
+<p>理论上，世界上每一台计算机都要在路由表中占一行，路由表可能会有数十亿行。路由器需要多大的内存才能容纳下这样大的路由表？查询一次又需要多长时间？</p>
+<p>为解决这个难题，路由表一般只记录网络的IP地址（当然记录某台计算机的IP地址还是允许的），路由表得以大大缩小。此时还应记录网络IP地址的子网掩码，以搞清网络号的长度。在下表中，前4行就匹配了4个网络中所有的计算机，如3.3.3.1将匹配第3行，应该转发到接口3去。</p>
+<p>路由器A中缩小的路由表</p>
+<table>
+<thead>
+<tr>
+<th>目的网络IP地址及子网掩码</th>
+<th>下一跳</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.1.1.0/24</td>
+<td>接口1，直连</td>
+</tr>
+<tr>
+<td>2.2.2.0/24</td>
+<td>接口2，直连</td>
+</tr>
+<tr>
+<td>3.3.3.0/24</td>
+<td>接口3，5.5.5.2</td>
+</tr>
+<tr>
+<td>4.4.4.0/24</td>
+<td>接口3，5.5.5.2</td>
+</tr>
+<tr>
+<td>默认</td>
+<td>接口4</td>
+</tr>
+</tbody></table>
+<p>缩小路由表的另一个办法是增加一行默认路由，表4.4中最后一行就是默认路由，它的含义是与其他行都不匹配的IP数据报都将转发到接口4去。默认路由应该最后使用，只有与其他所有行都不匹配时，才能使用默认路由，如6.6.6.6就匹配默认路由，应该转发到接口4去。</p>
+<p>目的IP地址可能匹配路由表中的两行或更多行。例如，1.1.0.0/16转发到接口1，1.1.1.0/24转发到接口2，目的IP地址1.1.1.1与这两行都匹配。这时应该使用最长前缀匹配规则，网络号越长，地址就越具体，就像寄信，知道收信人在山东省淄博市后，就直接把信送到淄博市邮政局，没有必要再送到山东省邮政局。</p>
+<h4 id="5-IP地址的分配"><a href="#5-IP地址的分配" class="headerlink" title="5 IP地址的分配"></a><strong>5 IP地址的分配</strong></h4><p>某单位申请到一个IP地址块，地址块内所有IP地址的网络号都是相同的，实际上就代表了一个子网，该单位可以在这个子网内再划分更小的子网。假设这个地址块的网络IP地址是1.1.1.0/24。</p>
+<p>在分配IP地址之前，要做规划。最主要的原则是考虑到以后的发展，要留上足够的未分配IP地址。要划分为4个子网，每个子网中计算机的最大数量分别是100、50、25、25。</p>
+<table>
+<thead>
+<tr>
+<th>子网</th>
+<th>子网IP地址</th>
+<th>第1个可分配IP地址</th>
+<th>最后1个可分配IP地址</th>
+<th>广播IP地址</th>
+<th>可分配IP地址数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>1.1.1.0</strong>00000001.1.1.0/25</td>
+<td><strong>1.1.1.0</strong>00000011.1.1.1</td>
+<td><strong>1.1.1.0</strong>11111101.1.1.126</td>
+<td><strong>1.1.1.0</strong>11111111.1.1.127</td>
+<td>126</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>1.1.1.10</strong>0000001.1.1.128/26</td>
+<td><strong>1.1.1.10</strong>0000011.1.1.129</td>
+<td><strong>1.1.1.10</strong>1111101.1.1.190</td>
+<td><strong>1.1.1.10</strong>1111111.1.1.191</td>
+<td>62</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>1.1.1.110</strong>000001.1.1.192/27</td>
+<td><strong>1.1.1.110</strong>000011.1.1.193</td>
+<td><strong>1.1.1.110</strong>111101.1.1.222</td>
+<td><strong>1.1.1.110</strong>111111.1.1.223</td>
+<td>30</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>1.1.1.111</strong>000001.1.1.224/27</td>
+<td><strong>1.1.1.111</strong>000011.1.1.225</td>
+<td><strong>1.1.1.111</strong>111101.1.1.254</td>
+<td><strong>1.1.1.111</strong>111111.1.1.255</td>
+<td>30</td>
+</tr>
+</tbody></table>
+<p>在外部的路由器的路由表中，这4个子网可以占有4项，其实也可以占有一项，即1.1.1.0/24。也就是说，在外界看来，这4个子网其实是一个子网，这叫做<strong>路由聚合</strong>或<strong>地址聚合</strong>，“超网”的概念就是这样来的。</p>
  
       <!-- reward -->
       
@@ -365,6 +780,8 @@
     
     <footer class="article-footer">
        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
+
     </footer>
   </div>
 
@@ -396,7 +813,11 @@
     <div class="article-meta">
       <a href="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="article-date">
   <time datetime="2021-03-08T01:44:04.000Z" itemprop="datePublished">2021-03-08</time>
-</a>    
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -463,7 +884,11 @@
     <div class="article-meta">
       <a href="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" class="article-date">
   <time datetime="2021-03-05T14:14:59.000Z" itemprop="datePublished">2021-03-05</time>
-</a>    
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -839,378 +1264,6 @@
 <p> ②n. 裂口，裂缝；分歧，分裂；(尤指钱的)分配</p>
 <p>😀  😀  😀  😀  😀  😀  😀  😀  😀</p>
 </li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-11宗教民俗"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/02/11%E5%AE%97%E6%95%99%E6%B0%91%E4%BF%97/"
-    >11宗教民俗</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/02/11%E5%AE%97%E6%95%99%E6%B0%91%E4%BF%97/" class="article-date">
-  <time datetime="2021-01-02T01:38:37.000Z" itemprop="datePublished">2021-01-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><strong>religious  [rɪˈlɪdʒəs]</strong><br>adj. 宗教的；笃信宗教的，虔诚的</li>
-</ol>
-<ol start="2">
-<li><strong>saint  [seɪnt]</strong><br>n. (基督教追封的)圣徒；道德高尚的人，圣人般的人</li>
-</ol>
-<ol start="3">
-<li><strong>holy   [ˈhəʊli]</strong><br>adj. (有关)上帝(或宗教)的，神圣的；虔诚的；圣洁的</li>
-</ol>
-<ol start="4">
-<li><strong>bible   [ˈbaɪbl]</strong><br>n. [the Bible]《圣经》；权威著作</li>
-</ol>
-<ol start="5">
-<li><strong>sacred  [ˈseɪkrɪd]</strong><br>adj. 神的，神圣的；宗教(性)的；不容改变的，不可侵犯的</li>
-</ol>
-<ol start="6">
-<li><strong>paradise   [ˈpærədaɪs]</strong><br>n. 天堂；乐园；[Paradise]伊甸园</li>
-</ol>
-<ol start="7">
-<li><strong>predict   [prɪˈdɪkt]</strong><br>v. 预言，预测，预告</li>
-</ol>
-<ol start="8">
-<li><strong>foresee  [fɔːˈsiː]</strong><br>v. 预知；预见，预料</li>
-</ol>
-<ol start="9">
-<li><p><strong>doom  [duːm]</strong><br>①n. (不可避免的)厄运，毁灭</p>
-<p> ②v. 使注定(失败、毁灭等)</p>
-</li>
-</ol>
-<ol start="10">
-<li><strong>fate  [feɪt]</strong><br>n. 注定的事(尤指坏事)；命运，定数，天意</li>
-</ol>
-<ol start="11">
-<li><p><strong>ritual  [ˈrɪtʃuəl]</strong><br>①n. 仪式，典礼；例行公事，惯例，程序 </p>
-<p>②adj. 仪式上的；礼节性的；例行公事的</p>
-</li>
-</ol>
-<ol start="12">
-<li><strong>worship    [ˈwɜːʃɪp]</strong><br> v./n. 敬奉；崇拜，景仰</li>
-</ol>
-<ol start="13">
-<li><strong>prevail  [prɪˈveɪl]</strong><br>v. 流行，盛行；获胜，占上风</li>
-</ol>
-<ol start="14">
-<li><strong>superstition  [ˌsuːpəˈstɪʃn]</strong><br> n. 迷信，迷信观念</li>
-</ol>
-<ol start="15">
-<li><strong>anecdote  [ˈænɪkdəʊt]</strong><br>n. 轶事，趣闻；传闻</li>
-</ol>
-<ol start="16">
-<li><strong>knight   [naɪt]</strong><br>n. 骑士；爵士  </li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-10事态事件"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/02/10%E4%BA%8B%E6%80%81%E4%BA%8B%E4%BB%B6/"
-    >10事态事件</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/02/10%E4%BA%8B%E6%80%81%E4%BA%8B%E4%BB%B6/" class="article-date">
-  <time datetime="2021-01-02T01:37:35.000Z" itemprop="datePublished">2021-01-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><strong>circumstance  [ˈsɜːkəmstəns]</strong><br>n. 环境，条件，情况；命运；[~s] (经济)状况</li>
-</ol>
-<ol start="2">
-<li><strong>paradox  [ˈpærədɒks]</strong><br>n. 自相矛盾的情况；似非而是的说法，悖论 </li>
-</ol>
-<ol start="3">
-<li><strong>dilemma  [dɪˈlemə]</strong><br>n. 进退两难的境地，困境</li>
-</ol>
-<ol start="4">
-<li><strong>misfortune  [ˌmɪsˈfɔːtʃuːn]</strong><br>n. 灾难；不幸，厄运</li>
-</ol>
-<ol start="5">
-<li><strong>catastrophe  [kəˈtæstrəfi]</strong><br>n. 灾难，灾祸；麻烦，困境 </li>
-</ol>
-<ol start="6">
-<li><strong>chaos  [ˈkeɪɒs]</strong><br>n. 大混乱，无秩序状态；混沌状态</li>
-</ol>
-<ol start="7">
-<li><strong>incident  [ˈɪnsɪdənt]</strong><br>n. (不愉快或不寻常的)事件；(两国间的)摩擦，冲突</li>
-</ol>
-<ol start="8">
-<li><p><strong>encounter  [ɪnˈkaʊntə(r)]</strong><br>①v. 遭遇；邂逅，偶然碰到</p>
-<p> ② n. 遭遇，经历；邂逅；比赛，交锋</p>
-</li>
-</ol>
-<ol start="9">
-<li><p><strong>trigger  [ˈtrɪɡə(r)]</strong><br>① v. 引发，激发，触发(事件等)；启动，引爆</p>
-<p> ②n. 诱因，起因；(枪的)扳机</p>
-</li>
-</ol>
-<ol start="10">
-<li><strong>phenomenon  [fəˈnɒmɪnən]</strong><br>n. 现象；奇才，奇事</li>
-</ol>
-<ol start="11">
-<li><strong>milestone  [ˈmaɪlstəʊn]</strong><br>n. 重大事件，里程碑，转折点</li>
-</ol>
-<ol start="12">
-<li><strong>momentum  [məˈmentəm]</strong><br>n. 动力，势头，冲劲；&lt;物理&gt;动量，冲量</li>
-</ol>
-<ol start="13">
-<li><strong>severe  [sɪˈvɪə(r)]</strong><br>adj. 严峻的，艰难的；很严重的；(天气)恶劣的；严厉的</li>
-</ol>
-<ol start="14">
-<li><strong>fierce  [fɪəs]</strong><br> adj. 激烈的；凶猛的；(感情)强烈的；(天气、温度等)狂暴的，恶劣的 </li>
-</ol>
-<ol start="15">
-<li><strong>inevitable  [ɪnˈevɪtəbl]</strong><br>adj. 不可避免的，必然发生的  </li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-09情感"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/02/09%E6%83%85%E6%84%9F/"
-    >09情感</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/02/09%E6%83%85%E6%84%9F/" class="article-date">
-  <time datetime="2021-01-02T01:36:31.000Z" itemprop="datePublished">2021-01-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><strong>mood  [muːd]</strong><br>n. 心情，心境，情绪；氛围，基调</li>
-</ol>
-<ol start="2">
-<li><strong>provoke  [prəˈvəʊk]</strong><br>v. 激起，引起，引发；激怒，挑衅 </li>
-</ol>
-<ol start="3">
-<li><strong>ignite  [ɪɡˈnaɪt]</strong><br>v. 激起，引发(强烈情绪)；燃烧，点燃</li>
-</ol>
-<ol start="4">
-<li><strong>inspire  [ɪnˈspaɪə(r)]</strong><br>v. 激起，唤起(感情或反应)；鼓舞，激励；给······灵感</li>
-</ol>
-<ol start="5">
-<li><strong>oppress  [əˈpres]</strong><br>v. 使压抑，使烦恼；压迫，压制</li>
-</ol>
-<ol start="6">
-<li><strong>dampen  [ˈdæmpən]</strong><br>v. 抑制，减弱(情绪、反应等)；使低落；使潮</li>
-</ol>
-<ol start="7">
-<li><strong>delighted  [dɪˈlaɪtɪd]</strong><br> adj. 高兴的，愉快的</li>
-</ol>
-<ol start="8">
-<li><strong>impulse  [ˈɪmpʌls]</strong><br>n. 冲动，突然的欲望；刺激，推动力</li>
-</ol>
-<ol start="9">
-<li><strong>eager  [ˈiːɡə(r)]</strong><br>adj. 热切的，渴望的</li>
-</ol>
-<ol start="10">
-<li><p><strong>rage  [reɪdʒ]</strong><br>① n. 盛怒，狂怒；(某事物的)流行(for)</p>
-<p>②v. 发怒，怒斥；(战斗、争论)激烈进行；(暴风雨)肆虐；(火灾或疾病)迅速蔓延；狂欢</p>
-</li>
-</ol>
-<ol start="11">
-<li><p><strong>outrage  [ˈaʊtreɪdʒ]</strong><br>① n. 愤慨，震怒；令人震愤之事，暴行 </p>
-<p>② v. 激起愤慨，使震怒</p>
-</li>
-</ol>
-<ol start="12">
-<li><p><strong>irritate  [ˈɪrɪteɪt]</strong> </p>
-<p>v. 使恼火，激怒</p>
-</li>
-</ol>
-<ol start="13">
-<li><p><strong>upset  [ʌpˈset]</strong><br>v. 使生气，使心烦意乱；打乱(计划、形势等)；打翻；打败</p>
-<p>adj. 心烦的n. 忧虑，烦闷，苦恼</p>
-</li>
-</ol>
-<ol start="14">
-<li><strong>indignant  [ɪnˈdɪɡnənt]</strong><br>adj. 愤怒的，愤慨的(at/about)</li>
-</ol>
-<ol start="15">
-<li><strong>bitter  [ˈbɪtə(r)]</strong><br>adj. 愤怒的；怨恨的；使人痛苦的；激烈的；苦的</li>
-</ol>
-<ol start="16">
-<li><p><strong>disgust  [dɪsˈɡʌst]</strong><br>①n. 厌恶，反感 </p>
-<p>② v. 使厌恶；使感到恶心</p>
-</li>
-</ol>
-<ol start="17">
-<li><strong>nasty  [ˈnɑːsti]</strong><br>adj. 令人不快的，恶心的；恶意的；严重的</li>
-</ol>
-<ol start="18">
-<li><strong>gloomy  [ˈɡluːmi]</strong><br>adj. 忧郁的，沮丧的；悲观的；灰暗的，幽暗的</li>
-</ol>
-<ol start="19">
-<li><strong>misery  [ˈmɪzəri]</strong><br>n. 痛苦，悲惨；穷困，悲惨的生活</li>
-</ol>
-<ol start="20">
-<li><strong>agony  [ˈæɡəni]</strong><br>n. (精神或肉体的)极度痛苦</li>
-</ol>
-<ol start="21">
-<li><p><strong>distress  [dɪˈstres]</strong><br>① n. 悲伤，忧虑，痛苦；贫困，困苦</p>
-<p>② v. 使悲伤，使苦恼，使忧虑</p>
-</li>
-</ol>
-<ol start="22">
-<li><strong>grieve  [ɡriːv]</strong><br>v. (使)悲痛，伤心</li>
-</ol>
-<ol start="23">
-<li><p><strong>marvel  [ˈmɑːvl]</strong><br>①v. (尤指对某人的行为)感到惊讶，钦佩，赞美(at/over) </p>
-<p>② n. 奇迹；不可思议的事(或人)</p>
-</li>
-</ol>
-<ol start="24">
-<li><strong>astonish  [əˈstɒnɪʃ]</strong><br>v. 使吃惊，使惊讶</li>
-</ol>
-<ol start="25">
-<li><strong>overwhelm  [ˌəʊvəˈwelm]</strong><br>v. 使非常惊讶；使不知所措；击溃；压垮</li>
-</ol>
-<ol start="26">
-<li><p><strong>panic  [ˈpænɪk]</strong><br>① n. 恐慌，惊慌；人心惶惶的局面</p>
-<p>② v. (使)恐慌，惊慌失措</p>
-</li>
-</ol>
-<ol start="27">
-<li><strong>mercy  [ˈmɜːsi]</strong><br>n. 慈悲，怜悯；仁慈，宽恕；幸运</li>
-</ol>
-<ol start="28">
-<li><strong>guilt  [ɡɪlt]</strong><br>n. 内疚，自责；犯罪，罪行；责任</li>
-</ol>
-<ol start="29">
-<li><strong>humiliate  [hjuːˈmɪlieɪt]</strong><br>v. 羞辱，使丢脸</li>
-</ol>
-<ol start="30">
-<li><strong>fascinate  [ˈfæsɪneɪt]</strong><br> v. 使着迷，迷住 </li>
-</ol>
-<ol start="31">
-<li><strong>obsess with</strong><br>沉迷于</li>
-</ol>
-<ol start="32">
-<li><strong>hysterical [hɪˈsterɪkl]</strong><br> adj. 歇斯底里的，失控的；极可笑的，极滑稽的</li>
-</ol>
-<ol start="33">
-<li><strong>jealous  [ˈdʒeləs]</strong><br>adj. 妒忌的，吃醋的；嫉妒的(of)  </li>
 </ol>
  
       <!-- reward -->
