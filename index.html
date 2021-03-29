@@ -141,6 +141,414 @@
     
     
     <article
+  id="post-NATy与案列"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/"
+    >NATy与案列</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/" class="article-date">
+  <time datetime="2021-03-29T03:27:03.000Z" itemprop="datePublished">2021-03-29</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="网络地址转换NAT"><a href="#网络地址转换NAT" class="headerlink" title="网络地址转换NAT"></a><strong>网络地址转换NAT</strong></h3><h4 id="1-NAT工作过程"><a href="#1-NAT工作过程" class="headerlink" title="1 NAT工作过程"></a><strong>1 NAT工作过程</strong></h4><p>利用<strong>网络地址转换</strong>（Network Address Translation，NAT），使用私有IP地址计算机也能够上网。内部网络的计算机使用私有IP地址，内部网络的出口路由器设置若干个公有IP地址，在此进行地址转换。现在几乎所有路由器都具有NAT功能。例子如下：</p>
+<p><img src="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/1616988526370.png" alt="1616988526370"></p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1</td>
+<td>1.1.1.1</td>
+</tr>
+<tr>
+<td>10.1.1.2</td>
+<td>1.1.1.2</td>
+</tr>
+</tbody></table>
+<p>这个方案基本没有实用价值，根本解决的办法是同时使用运输层的端口号。若干台计算机上网时都转换为同一个公有IP地址，同时要分配不同的源端口号，替换原来的源端口号，以区分这些计算机。这种NAT也叫做<strong>网络地址端口转换</strong>（Network Address Port Translation，NAPT），现在所说的NAT实际上都是指NAPT。例子如下：</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1:2000</td>
+<td>1.1.1.1:5000</td>
+</tr>
+<tr>
+<td>10.1.1.2:3000</td>
+<td>1.1.1.1:5001</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>发送→接收</th>
+<th>源IP地址</th>
+<th>目的IP地址</th>
+<th>源端口号</th>
+<th>目的端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1→R</td>
+<td>10.1.1.1</td>
+<td>2.2.2.2</td>
+<td>2000</td>
+<td>80</td>
+</tr>
+<tr>
+<td>R→2.2.2.2</td>
+<td><strong>1.1.1.1</strong></td>
+<td>2.2.2.2</td>
+<td><strong>5000</strong></td>
+<td>80</td>
+</tr>
+<tr>
+<td>2.2.2.2→R</td>
+<td>2.2.2.2</td>
+<td>1.1.1.1</td>
+<td>80</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>R→10.1.1.1</td>
+<td>2.2.2.2</td>
+<td><strong>10.1.1.1</strong></td>
+<td>80</td>
+<td><strong>2000</strong></td>
+</tr>
+</tbody></table>
+<p>NAT转换表中的一行对应关系称为一个映射。这种NAT叫做动态NAT转换，这是因为NAT转换表中的映射是动态添加的，内网计算机的数据首次外出时，路由器自动为它分配公有IP地址与端口号。</p>
+<p>动态NAT转换带来一个新问题：外网计算机无法首先访问内网计算机。这需要静态NAT转换，由管理员手工在NAT转换表中添加映射，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.3:80</td>
+<td>1.1.1.1:80</td>
+</tr>
+</tbody></table>
+<h4 id="2-动态NAT的分类"><a href="#2-动态NAT的分类" class="headerlink" title="2 动态NAT的分类"></a><strong>2 动态NAT的分类</strong></h4><p>1．对称型（Symmetric Nat）</p>
+<p>当内网计算机A（地址为IPA）中的进程（端口号为PortA），首次通过NAT路由器R访问外网计算机B时，会在NAT转换表生成一个映射：（IPA:PortA–IPR:PortR1）。若该进程再访问B中的另一端口进程或另一计算机C时，会再生成一行映射：（IPA:PortA–IPR:PortR2），即一个映射只对应于一台外网计算机上的一个端口号。此时NAT转换表如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+<th>远程计算机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR1</td>
+<td>IPB:PortB1</td>
+</tr>
+<tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR2</td>
+<td>IPB:PortB2</td>
+</tr>
+<tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR3</td>
+<td>IPC:PortC</td>
+</tr>
+</tbody></table>
+<p>优点是比较安全，一个映射只能由一台外网计算机上的一个端口号的进程来使用，别的外网计算机或进程不能用来访问内网计算机。缺点是实现比较麻烦。</p>
+<p>2．完全锥型（Full Cone Nat）</p>
+<p>内网计算机中的进程在NAT转换表中生成一个映射后，可以用它来访问其他外网计算机，不再生成新的映射，就是在NAT转换表中没有“远程计算机”这一列。而且对外网计算机没有任何限制，就是说，一个映射生成后，所有外网计算机都能用它来访问内网计算机。</p>
+<p>优点是实现容易，缺点是安全性不够好。</p>
+<p>3．受限锥型（Restriced Cone Nat）</p>
+<p>与完全锥型类似，但对外网计算机增加了限制。内网计算机首先访问了外网计算机后，该外网计算机才能访问内网计算机。外网计算机不能首先访问内网计算机。</p>
+<p>4．端口受限锥型（Port Restriced Cone Nat）</p>
+<p>对于受限锥型，某台外网计算机被内网计算机访问后，该外网计算机中的所有端口号的进程就都可以访问内网计算机了。端口受限锥型则要求更高，外网计算机中的某个端口号进程被内网计算机访问后，该进程才可以访问内网计算机，而其他未被首先访问的进程仍不能访问内网计算机。</p>
+<p>因为完全锥型最容易实现，所以大多数NAT都是完全锥型。</p>
+<p><strong>3 P2P**</strong>应用穿越**<strong>NAT</strong></p>
+<p>对于P2P应用，客户一般都是利用动态NAT上网，无法互相直接访问。这时需要服务器的帮助，来实现互相访问，这称为打洞。</p>
+<p>例如：客户A与B都已访问过服务器S。A与B都需要向S报告自己的本机IP地址与端口号（内网地址与端口号），同时S还能知道来自A与B的数据包中的源IP地址与端口号（外网地址与端口号）。S将这些数据转告A与B，A与B就能确定自己与对方是否处在NAT路由器后面。</p>
+<p>1．若双方都没有处在NAT路由器后面，则可以直接互相访问。</p>
+<p>2．若只有A处在NAT路由器后面，则它可以直接访问B。</p>
+<p>3．若双方都处在NAT路由器后面，则可以利用对方的外网地址互相访问。因为这个外网地址映射是在访问服务器S时产生的，所以如果双方都处在对称型NAT路由器后面，就不能互相访问。一方或双方处在锥型NAT路由器后面，就能互相访问。</p>
+<p>4．若一方或双方处在多个NAT路由器后面，利用对方的外网地址也能互相访问。</p>
+<p>5．UDP与TCP都适用于上述几种情况，但UDP比TCP打洞的成功率高一些。</p>
+<p>6．若UDP与TCP都无法打洞，则A与B间的所有数据只能由服务器中转了。</p>
+<h4 id="4-实际问题"><a href="#4-实际问题" class="headerlink" title="4 实际问题"></a><strong>4 实际问题</strong></h4><h5 id="4-1-校园网的问题"><a href="#4-1-校园网的问题" class="headerlink" title="4.1 校园网的问题"></a><strong>4.1</strong> <strong>校园网的问题</strong></h5><p>在某些学校的校园网内，访问互联网一点也不慢，可是从校外访问学校网站，却是较慢（现在有所好转）。这是为什么？</p>
+<p>因为教育网与电信运营商网络（公众网）间互访的速率比较低，所以很多学校在接入教育网的同时，又接入了所在地的公众网，如下图所示。图中连接教育网的路由器A是教育网IP地址，连接公众网的路由器B则是公众网IP地址。首先明确一点，学校内一般计算机是私有IP地址或教育网的IP地址，学校网站一般都是教育网的IP地址。</p>
+<p><img src="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/1616988538708.png" alt="1616988538708"></p>
+<p>从校内访问公众网时，数据从路由器B出入，路由器B进行动态NAT转换，数据往返路径是图中的①，并不很慢。从公众网访问学校网站时，如果没有静态NAT转换，必须使用网站的教育网IP地址访问，数据往返路径只能是图中的②，这就会比较慢。</p>
+<p>对策是在路由器B中为学校网站设置静态NAT转换，从公众网访问学校网站时，可以使用网站的公众网IP地址访问，数据从路由器B出入，数据往返路径是图中的①，就不会再慢了。</p>
+<p>从教育网访问学校网站，直接使用网站的教育网IP地址访问即可，数据往返路径是图中的③。</p>
+<h5 id="4-2利用NAT实现共享上网"><a href="#4-2利用NAT实现共享上网" class="headerlink" title="4.2利用NAT实现共享上网"></a><strong>4.2利用NAT实现共享上网</strong></h5><p>家用宽带路由器是路由器与交换机的混合体。运营商（ISP）临时分配的IP地址设置在路由器的WAN接口上，家中的计算机接在LAN接口上，所有数据经过路由器时，都经过动态NAT转换。</p>
+<p>ISP如何检测共享上网呢？据说ISP可以检测用户发送数据中的源物理地址与源IP地址，若不止一个就是共享上网，这是完全错误的。实际上ISP使用以下手段检测共享上网：</p>
+<p>1．数据流量。</p>
+<p>2．用户在线时间。</p>
+<p>3．IP数据报首部的TTL字段。</p>
+<p>4．IP数据报首部的标识字段。</p>
+<p>5．网络管理协议SNMP。</p>
+<p>6．主动探测。</p>
+<p>7．客户端软件。</p>
+<p>8．检测软件与硬件。如“网络尖兵”与“用户行为分析系统”等。</p>
+<p>综合运用上述手段，可以较为准确地发现共享上网的用户。</p>
+<p><strong>小型校园网的网络层解决方案</strong></p>
+<p>网络中心机房网络结构图，注意接口聚合。</p>
+<p><img src="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/1616988549216.png" alt="1616988549216"></p>
+<p>IP地址分配，注意留有余量。4座楼分别为172.21.0.0/20、172.21.16.0/20、172.21.32.0/20、172.21.48.0/20，各有4094个可分IP地址。在172.21.0.0/20内可以再细分为172.21.1.0/24、172.21.2.0/24、172.21.3.0/24、172.21.4.0/24等等，分到每一层楼。</p>
+<p>每楼的三层交换机中的路由表，一层楼一行，默认路由代表发往网络中心核心交换机的数据。</p>
+<p>核心交换机中的路由表一座楼一行，即172.21.0.0/20等地址各占一行，默认路由代表发往教育网与公众网的数据，它们应该转发到路由器，再从路由器转发到教育网与公众网。</p>
+<p>路由器中的路由表第1行（172.21.0.0/16）代表从校外进入校园网的数据。另外，路由器必须把去往教育网与公众网的两类数据分开。教育网的规模远小于公众网，只需在路由表中添加不到100行的数据（如210.44.0.0/15），最后再添加一个默认路由，代表发往公众网的数据。</p>
+<p>另外，路由器上需要启用动态NAT。其次，为使校外公众网用户快速地访问校内服务器，需要在路由器上启用静态NAT功能。校内服务器都应该使用熟知端口号访问，若有两个网站，则只能一个使用80，另一个不能再使用80。要想再使用，只能从公众网ISP处付费多申请几个公有IP地址。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-NAT与案列"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/29/NAT%E4%B8%8E%E6%A1%88%E5%88%97/"
+    >NAT与案列</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/29/NAT%E4%B8%8E%E6%A1%88%E5%88%97/" class="article-date">
+  <time datetime="2021-03-29T03:27:03.000Z" itemprop="datePublished">2021-03-29</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="网络地址转换NAT"><a href="#网络地址转换NAT" class="headerlink" title="网络地址转换NAT"></a><strong>网络地址转换NAT</strong></h3><h4 id="1-NAT工作过程"><a href="#1-NAT工作过程" class="headerlink" title="1 NAT工作过程"></a><strong>1 NAT工作过程</strong></h4><p>利用<strong>网络地址转换</strong>（Network Address Translation，NAT），使用私有IP地址计算机也能够上网。内部网络的计算机使用私有IP地址，内部网络的出口路由器设置若干个公有IP地址，在此进行地址转换。现在几乎所有路由器都具有NAT功能。例子如下：</p>
+<p><img src="/2021/03/29/NAT%E4%B8%8E%E6%A1%88%E5%88%97/1616988526370.png" alt="1616988526370"></p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1</td>
+<td>1.1.1.1</td>
+</tr>
+<tr>
+<td>10.1.1.2</td>
+<td>1.1.1.2</td>
+</tr>
+</tbody></table>
+<p>这个方案基本没有实用价值，根本解决的办法是同时使用运输层的端口号。若干台计算机上网时都转换为同一个公有IP地址，同时要分配不同的源端口号，替换原来的源端口号，以区分这些计算机。这种NAT也叫做<strong>网络地址端口转换</strong>（Network Address Port Translation，NAPT），现在所说的NAT实际上都是指NAPT。例子如下：</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1:2000</td>
+<td>1.1.1.1:5000</td>
+</tr>
+<tr>
+<td>10.1.1.2:3000</td>
+<td>1.1.1.1:5001</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>发送→接收</th>
+<th>源IP地址</th>
+<th>目的IP地址</th>
+<th>源端口号</th>
+<th>目的端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1→R</td>
+<td>10.1.1.1</td>
+<td>2.2.2.2</td>
+<td>2000</td>
+<td>80</td>
+</tr>
+<tr>
+<td>R→2.2.2.2</td>
+<td><strong>1.1.1.1</strong></td>
+<td>2.2.2.2</td>
+<td><strong>5000</strong></td>
+<td>80</td>
+</tr>
+<tr>
+<td>2.2.2.2→R</td>
+<td>2.2.2.2</td>
+<td>1.1.1.1</td>
+<td>80</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>R→10.1.1.1</td>
+<td>2.2.2.2</td>
+<td><strong>10.1.1.1</strong></td>
+<td>80</td>
+<td><strong>2000</strong></td>
+</tr>
+</tbody></table>
+<p>NAT转换表中的一行对应关系称为一个映射。这种NAT叫做动态NAT转换，这是因为NAT转换表中的映射是动态添加的，内网计算机的数据首次外出时，路由器自动为它分配公有IP地址与端口号。</p>
+<p>动态NAT转换带来一个新问题：外网计算机无法首先访问内网计算机。这需要静态NAT转换，由管理员手工在NAT转换表中添加映射，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.3:80</td>
+<td>1.1.1.1:80</td>
+</tr>
+</tbody></table>
+<h4 id="2-动态NAT的分类"><a href="#2-动态NAT的分类" class="headerlink" title="2 动态NAT的分类"></a><strong>2 动态NAT的分类</strong></h4><p>1．对称型（Symmetric Nat）</p>
+<p>当内网计算机A（地址为IPA）中的进程（端口号为PortA），首次通过NAT路由器R访问外网计算机B时，会在NAT转换表生成一个映射：（IPA:PortA–IPR:PortR1）。若该进程再访问B中的另一端口进程或另一计算机C时，会再生成一行映射：（IPA:PortA–IPR:PortR2），即一个映射只对应于一台外网计算机上的一个端口号。此时NAT转换表如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+<th>远程计算机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR1</td>
+<td>IPB:PortB1</td>
+</tr>
+<tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR2</td>
+<td>IPB:PortB2</td>
+</tr>
+<tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR3</td>
+<td>IPC:PortC</td>
+</tr>
+</tbody></table>
+<p>优点是比较安全，一个映射只能由一台外网计算机上的一个端口号的进程来使用，别的外网计算机或进程不能用来访问内网计算机。缺点是实现比较麻烦。</p>
+<p>2．完全锥型（Full Cone Nat）</p>
+<p>内网计算机中的进程在NAT转换表中生成一个映射后，可以用它来访问其他外网计算机，不再生成新的映射，就是在NAT转换表中没有“远程计算机”这一列。而且对外网计算机没有任何限制，就是说，一个映射生成后，所有外网计算机都能用它来访问内网计算机。</p>
+<p>优点是实现容易，缺点是安全性不够好。</p>
+<p>3．受限锥型（Restriced Cone Nat）</p>
+<p>与完全锥型类似，但对外网计算机增加了限制。内网计算机首先访问了外网计算机后，该外网计算机才能访问内网计算机。外网计算机不能首先访问内网计算机。</p>
+<p>4．端口受限锥型（Port Restriced Cone Nat）</p>
+<p>对于受限锥型，某台外网计算机被内网计算机访问后，该外网计算机中的所有端口号的进程就都可以访问内网计算机了。端口受限锥型则要求更高，外网计算机中的某个端口号进程被内网计算机访问后，该进程才可以访问内网计算机，而其他未被首先访问的进程仍不能访问内网计算机。</p>
+<p>因为完全锥型最容易实现，所以大多数NAT都是完全锥型。</p>
+<p><strong>3 P2P应用穿越NAT</strong></p>
+<p>对于P2P应用，客户一般都是利用动态NAT上网，无法互相直接访问。这时需要服务器的帮助，来实现互相访问，这称为打洞。</p>
+<p>例如：客户A与B都已访问过服务器S。A与B都需要向S报告自己的本机IP地址与端口号（内网地址与端口号），同时S还能知道来自A与B的数据包中的源IP地址与端口号（外网地址与端口号）。S将这些数据转告A与B，A与B就能确定自己与对方是否处在NAT路由器后面。</p>
+<p>1．若双方都没有处在NAT路由器后面，则可以直接互相访问。</p>
+<p>2．若只有A处在NAT路由器后面，则它可以直接访问B。</p>
+<p>3．若双方都处在NAT路由器后面，则可以利用对方的外网地址互相访问。因为这个外网地址映射是在访问服务器S时产生的，所以如果双方都处在对称型NAT路由器后面，就不能互相访问。一方或双方处在锥型NAT路由器后面，就能互相访问。</p>
+<p>4．若一方或双方处在多个NAT路由器后面，利用对方的外网地址也能互相访问。</p>
+<p>5．UDP与TCP都适用于上述几种情况，但UDP比TCP打洞的成功率高一些。</p>
+<p>6．若UDP与TCP都无法打洞，则A与B间的所有数据只能由服务器中转了。</p>
+<h4 id="4-实际问题"><a href="#4-实际问题" class="headerlink" title="4 实际问题"></a><strong>4 实际问题</strong></h4><h5 id="4-1-校园网的问题"><a href="#4-1-校园网的问题" class="headerlink" title="4.1 校园网的问题"></a><strong>4.1</strong> <strong>校园网的问题</strong></h5><p>在某些学校的校园网内，访问互联网一点也不慢，可是从校外访问学校网站，却是较慢（现在有所好转）。这是为什么？</p>
+<p>因为教育网与电信运营商网络（公众网）间互访的速率比较低，所以很多学校在接入教育网的同时，又接入了所在地的公众网，如下图所示。图中连接教育网的路由器A是教育网IP地址，连接公众网的路由器B则是公众网IP地址。首先明确一点，学校内一般计算机是私有IP地址或教育网的IP地址，学校网站一般都是教育网的IP地址。</p>
+<p><img src="/2021/03/29/NAT%E4%B8%8E%E6%A1%88%E5%88%97/1616988538708.png" alt="1616988538708"></p>
+<p>从校内访问公众网时，数据从路由器B出入，路由器B进行动态NAT转换，数据往返路径是图中的①，并不很慢。从公众网访问学校网站时，如果没有静态NAT转换，必须使用网站的教育网IP地址访问，数据往返路径只能是图中的②，这就会比较慢。</p>
+<p>对策是在路由器B中为学校网站设置静态NAT转换，从公众网访问学校网站时，可以使用网站的公众网IP地址访问，数据从路由器B出入，数据往返路径是图中的①，就不会再慢了。</p>
+<p>从教育网访问学校网站，直接使用网站的教育网IP地址访问即可，数据往返路径是图中的③。</p>
+<h5 id="4-2利用NAT实现共享上网"><a href="#4-2利用NAT实现共享上网" class="headerlink" title="4.2利用NAT实现共享上网"></a><strong>4.2利用NAT实现共享上网</strong></h5><p>家用宽带路由器是路由器与交换机的混合体。运营商（ISP）临时分配的IP地址设置在路由器的WAN接口上，家中的计算机接在LAN接口上，所有数据经过路由器时，都经过动态NAT转换。</p>
+<p>ISP如何检测共享上网呢？据说ISP可以检测用户发送数据中的源物理地址与源IP地址，若不止一个就是共享上网，这是完全错误的。实际上ISP使用以下手段检测共享上网：</p>
+<p>1．数据流量。</p>
+<p>2．用户在线时间。</p>
+<p>3．IP数据报首部的TTL字段。</p>
+<p>4．IP数据报首部的标识字段。</p>
+<p>5．网络管理协议SNMP。</p>
+<p>6．主动探测。</p>
+<p>7．客户端软件。</p>
+<p>8．检测软件与硬件。如“网络尖兵”与“用户行为分析系统”等。</p>
+<p>综合运用上述手段，可以较为准确地发现共享上网的用户。</p>
+<p><strong>小型校园网的网络层解决方案</strong></p>
+<p>网络中心机房网络结构图，注意接口聚合。</p>
+<p><img src="/2021/03/29/NAT%E4%B8%8E%E6%A1%88%E5%88%97/1616988549216.png" alt="1616988549216"></p>
+<p>IP地址分配，注意留有余量。4座楼分别为172.21.0.0/20、172.21.16.0/20、172.21.32.0/20、172.21.48.0/20，各有4094个可分IP地址。在172.21.0.0/20内可以再细分为172.21.1.0/24、172.21.2.0/24、172.21.3.0/24、172.21.4.0/24等等，分到每一层楼。</p>
+<p>每楼的三层交换机中的路由表，一层楼一行，默认路由代表发往网络中心核心交换机的数据。</p>
+<p>核心交换机中的路由表一座楼一行，即172.21.0.0/20等地址各占一行，默认路由代表发往教育网与公众网的数据，它们应该转发到路由器，再从路由器转发到教育网与公众网。</p>
+<p>路由器中的路由表第1行（172.21.0.0/16）代表从校外进入校园网的数据。另外，路由器必须把去往教育网与公众网的两类数据分开。教育网的规模远小于公众网，只需在路由表中添加不到100行的数据（如210.44.0.0/15），最后再添加一个默认路由，代表发往公众网的数据。</p>
+<p>另外，路由器上需要启用动态NAT。其次，为使校外公众网用户快速地访问校内服务器，需要在路由器上启用静态NAT功能。校内服务器都应该使用熟知端口号访问，若有两个网站，则只能一个使用80，另一个不能再使用80。要想再使用，只能从公众网ISP处付费多申请几个公有IP地址。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-ARP中间人攻击"
   class="article article-type-post"
   itemscope
@@ -934,365 +1342,13 @@
 </article>
 
     
-    <article
-  id="post-31动作"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/04/31%E5%8A%A8%E4%BD%9C/"
-    >31动作</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/04/31%E5%8A%A8%E4%BD%9C/" class="article-date">
-  <time datetime="2021-01-04T15:26:29.000Z" itemprop="datePublished">2021-01-04</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><p><strong>strike  [straɪk]</strong><br>①v. 打，击；猛然想到(或意识到)；让······觉得；罢工；突袭；爆发；敲(钟) </p>
-<p>②n. 打，击；罢工；袭击，空袭</p>
-</li>
-</ol>
-<ol start="2">
-<li><p><strong>elbow  [ˈelbəʊ]</strong><br>①v. 用肘推 </p>
-<p>② n. 肘</p>
-</li>
-</ol>
-<ol start="3">
-<li><p><strong>drag   [dræɡ]</strong><br>① v. (用力地)拉，拖；进行得缓慢，拖沓</p>
-<p> ②n. 无聊的事(或人)；累赘；空气阻力</p>
-</li>
-</ol>
-<ol start="4">
-<li><strong>detach  [dɪˈtætʃ]</strong><br>v. 拆卸，使分开；使摆</li>
-</ol>
-<ol start="5">
-<li><p><strong>limp  [lɪmp]</strong><br>①v. 跛行，瘸着走 </p>
-<p>② adj. 软的；无力的</p>
-</li>
-</ol>
-<ol start="6">
-<li><strong>scatter   [ˈskætə(r)]</strong><br>v. 撒，播撒；驱散，(使)分散；&lt;物理&gt;散射</li>
-</ol>
-<ol start="7">
-<li><p><strong>lean  [liːn]</strong><br>①v. 屈身，倾斜；(使)倚靠；倾向，偏向(to/towards) </p>
-<p>② adj. 瘦且健康的；精简的；不景气的，贫乏的</p>
-</li>
-</ol>
-<ol start="8">
-<li><strong>swallow  [ˈswɒləʊ]</strong><br>v. 吞，咽；(因紧张等)做吞咽动作，咽口水；轻信，全盘接受；吞没</li>
-</ol>
-<ol start="9">
-<li><strong>insert  [ɪnˈsɜːt]</strong><br> v. 插入，放进；(在文章等中)插入，加进</li>
-</ol>
-<ol start="10">
-<li><p><strong>squeeze   [skwiːz]</strong><br>① v. 挤，压；榨取；压榨；(使)挤进，塞入；严格限制，紧缩(资 金)</p>
-<p>②n. 挤压，捏；挤出；拮据，紧缩  </p>
-</li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-30行为"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/04/30%E8%A1%8C%E4%B8%BA/"
-    >30行为</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/04/30%E8%A1%8C%E4%B8%BA/" class="article-date">
-  <time datetime="2021-01-04T14:56:00.000Z" itemprop="datePublished">2021-01-04</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><strong>notify   [ˈnəʊtɪfaɪ]</strong><br>v. (正式)通知，告知</li>
-</ol>
-<ol start="2">
-<li><strong>warn  [wɔːn]</strong><br>v. 警告，告诫；提醒；预先通知</li>
-</ol>
-<ol start="3">
-<li><strong>inquire  [ɪnˈkwaɪə(r)]</strong><br>v. [= enquire]询问，打听；调查，查究</li>
-</ol>
-<ol start="4">
-<li><p><strong>mention  [ˈmenʃn]</strong><br>① v. 提到，谈到，提及，说起 </p>
-<p>②n. 提及，说起</p>
-</li>
-</ol>
-<ol start="5">
-<li><strong>react  [riˈækt]</strong><br>v. 反应，做出回应；起化学反应</li>
-</ol>
-<ol start="6">
-<li><p><strong>overreact  [ˌəʊvəriˈækt]</strong><br>v. 反应过激</p>
-</li>
-<li><p><strong>acclaim   [əˈkleɪm]</strong><br>① v. 公开称赞；推崇 </p>
-<p>②n. 表扬，赞赏</p>
-</li>
-</ol>
-<ol start="8">
-<li><p><strong>tease  [tiːz]</strong><br>①v. 取笑，嘲笑；戏弄，逗弄；梳理</p>
-<p> ② n. 取笑；戏弄</p>
-</li>
-</ol>
-<ol start="9">
-<li><strong>induce  [ɪnˈdjuːs]</strong><br>v. 劝诱，诱导(做某事)；引起，导致</li>
-</ol>
-<ol start="10">
-<li><strong>neglect  [nɪˈɡlekt]</strong><br> v./n. 疏忽，忽视；疏于照管</li>
-</ol>
-<ol start="11">
-<li><strong>ignore  [ɪɡˈnɔː(r)]</strong><br>v. 忽视，不顾，不理睬</li>
-</ol>
-<ol start="12">
-<li><strong>overlook  [ˌəʊvəˈlʊk]</strong><br>v. 忽视，忽略；宽恕，不计较；眺望，俯瞰</li>
-</ol>
-<ol start="13">
-<li><p><strong>drain  [dreɪn]</strong> </p>
-<p>① v. (使)排出，流走；(使)排干，流光；使精疲力竭；耗尽(金钱、精力等) </p>
-<p>② n. 排水管，下水道；消耗，耗费</p>
-</li>
-</ol>
-<ol start="14">
-<li><p><strong>filter  [ˈfɪltə(r)]</strong></p>
-<p>① v. 过滤；(光线、声音)透过，传入；(消息等)慢慢传开，走漏</p>
-<p>② n. 过滤器</p>
-</li>
-</ol>
-<ol start="15">
-<li><strong>eject  [ɪˈdʒekt]</strong><br>v. 排出，喷射；驱逐，赶出</li>
-</ol>
-<ol start="16">
-<li><p><strong>combine  [kəmˈbaɪn]</strong><br>v. (使)结合，联合，混合；兼具，兼备；兼做</p>
-<p>[ˈkɒmbaɪn] n. 联盟，联合(体)；集团</p>
-</li>
-</ol>
-<ol start="17">
-<li><p><strong>fuse  [fjuːz]</strong><br>①v. (使)融合，结合；(使)熔化 </p>
-<p>②n. 保险丝</p>
-</li>
-</ol>
-<ol start="18">
-<li><strong>infuse  [ɪnˈfjuːz]</strong><br>v. 使具有，注入(某种特性)</li>
-</ol>
-<ol start="19">
-<li><strong>retrain  [rɪˈstreɪn]</strong><br>v. 限制，控制；(常指用武力)阻止，制止；克制，抑制(情绪或行为)</li>
-</ol>
-<ol start="20">
-<li><strong>constrain  [kənˈstreɪn]</strong><br> v. 限制，约束；阻止，妨碍</li>
-</ol>
-<ol start="21">
-<li><strong>inhibit  [ɪnˈhɪbɪt]</strong><br>v. 阻止，阻碍，抑制</li>
-</ol>
-<ol start="22">
-<li><strong>obstruct  [əbˈstrʌkt]</strong><br>v. 阻挠，妨碍；阻塞，堵塞(道路、通道等)</li>
-</ol>
-<ol start="23">
-<li><strong>hamper  [ˈhæmpə(r)]</strong><br>v. 阻碍，妨碍</li>
-</ol>
-<ol start="24">
-<li><p><strong>handicap  [ˈhændikæp]</strong><br>① v. 妨碍，阻碍；使不利 </p>
-<p>②n. 障碍，不利条件；残疾，缺陷</p>
-</li>
-</ol>
-<ol start="25">
-<li><strong>prohibit  [prəˈhɪbɪt]</strong><br>v. 阻止，使不可能；禁止</li>
-</ol>
-<ol start="26">
-<li><strong>forbid  [fəˈbɪd]</strong><br>v. 阻止，妨碍；禁止，不许</li>
-</ol>
-<ol start="27">
-<li><strong>discourage  [dɪsˈkʌrɪdʒ]</strong><br> v. 阻止，阻挠；使灰心，使泄气</li>
-</ol>
-<ol start="28">
-<li><strong>eliminate  [ɪˈlɪmɪneɪt]</strong><br>v. 消除，根除；消灭，铲除；(比赛中)淘汰</li>
-</ol>
-<ol start="29">
-<li><strong>erase  [ɪˈreɪz]</strong><br>v. 消除，消灭；擦掉，抹去(文字)；忘却；删除(计算机文件)</li>
-</ol>
-<ol start="30">
-<li><p><strong>safeguard  [ˈseɪfɡɑːd]</strong><br>①v. 保护，保卫 </p>
-<p>②n. 保障条款；保护措施</p>
-</li>
-</ol>
-<ol start="31">
-<li><p><strong>shield  [ʃiːld]</strong><br>① v. 保护，护卫</p>
-<p>② n. 盾，盾牌；保护者(或物)，屏障</p>
-</li>
-</ol>
-<ol start="32">
-<li><p><strong>reserve  [rɪˈzɜːv]</strong><br>①v. 保留；留作，用于(特定场合)；预订，预约</p>
-<p>②n. 储备(物)；自然保护区；保留意见，异议；矜持，拘谨</p>
-</li>
-</ol>
-<ol start="33">
-<li><strong>dispose   [dɪˈspəʊz]</strong><br> v. 丢弃，处理(of)；[~ sb. to sth.]使······倾向于，使······有意于</li>
-</ol>
-<ol start="34">
-<li><strong>flee  [fliː]</strong><br>v. 逃跑，逃走，逃离</li>
-</ol>
-<ol start="35">
-<li><p><strong>bypass  [ˈbaɪpɑːs]</strong><br>① v. 绕过，避开；忽视，置······于不顾</p>
-<p>②n. 旁道，小路；心脏搭桥手术</p>
-</li>
-</ol>
-<ol start="36">
-<li><p><strong>disguise  [dɪsˈɡaɪz]</strong><br>①v. 假装，伪装；掩盖，掩饰</p>
-<p>② n. 化妆用具；用于伪装的东西</p>
-</li>
-</ol>
-<ol start="37">
-<li><strong>simulate  [ˈsɪmjuleɪt]</strong><br> v. 假装，伪装；模拟，模仿</li>
-</ol>
-<ol start="38">
-<li><strong>imitate  [ˈɪmɪteɪt]</strong><br> v. 模仿，仿效</li>
-</ol>
-<ol start="39">
-<li><strong>mislead  [ˌmɪsˈliːd]</strong><br> v. 误导；将······引入歧途</li>
-</ol>
-<ol start="40">
-<li><strong>deed  [diːd]</strong><br>n. 行为，行动；(尤指财产所有权的)契约，证书</li>
-</ol>
-<ol start="41">
-<li><strong>arrange  [əˈreɪndʒ]</strong><br> v. 安排，筹划，准备；整理，排列，布置；改编(乐曲)</li>
-</ol>
-<ol start="42">
-<li><strong>participate  [pɑːˈtɪsɪpeɪt]</strong><br>v. 参与，参加</li>
-</ol>
-<ol start="43">
-<li><strong>scrutinize  [ˈskruːtənaɪz]</strong><br> v. 认真检查，仔细查看，细致审查</li>
-</ol>
-<ol start="44">
-<li><strong>inspect  [ɪnˈspekt]</strong><br>v. 检查，查看，审视；视察，检阅</li>
-</ol>
-<ol start="45">
-<li><strong>rectify  [ˈrektɪfaɪ]</strong><br>v. 纠正，矫正</li>
-</ol>
-<ol start="46">
-<li><p><strong>handle  [ˈhændl]</strong><br>①v. 处理，应对，负责；触，碰，拿；驾驶，驾驭</p>
-<p> ② n. 拉手，把手</p>
-</li>
-</ol>
-<ol start="47">
-<li><p><strong>resolve   [rɪˈzɒlv</strong>]<br>①v. 解决(问题等)；(尤指通过投票)做出决议；下定决心</p>
-<p> ②n. 决心</p>
-</li>
-</ol>
-<ol start="48">
-<li><strong>navigate   [ˈnævɪɡeɪt]</strong><br>v. 理解，应付(复杂的情况)；领航，导航；在······上航行；浏览(网站)</li>
-</ol>
-<ol start="49">
-<li><p><strong>privilege  [ˈprɪvəlɪdʒ]</strong><br>① v. 给予······特权，特别优待</p>
-<p> ②n. 特权，特殊待遇；荣幸，幸运；特许经营权</p>
-</li>
-</ol>
-<ol start="50">
-<li><strong>appoint  [əˈpɔɪnt]</strong><br>v. 任命，委派；约定，确定(时间、地点)</li>
-</ol>
-<ol start="51">
-<li><strong>assign  [əˈsaɪn]</strong><br>v. 指定，指派；委派，派遣；分配(某物)；分派，布置(工作、任务等)；确定(时间、地点等)；转让(财产、权力等)</li>
-</ol>
-<ol start="52">
-<li><strong>opt  [ɒpt]</strong><br>v. 选择，挑选(for/to do)</li>
-</ol>
-<ol start="53">
-<li><strong>deliver  [dɪˈlɪvə(r)]</strong><br>v. 递送，运送；实现，履行，兑现；做(讲座)，发表(讲话)；给······接生；分娩</li>
-</ol>
-<ol start="54">
-<li><p><strong>substitute  [ˈsʌbstɪtjuːt]</strong><br>① v. 用······代替；取代 </p>
-<p>②n. 替代品；代替者；替补队员</p>
-</li>
-</ol>
-<ol start="55">
-<li><strong>construct  [kənˈstrʌkt]</strong><br>v. 建造，构筑；组成，形成，构成(句子、论点、体系等)；绘制，作(图)</li>
-</ol>
-<ol start="56">
-<li><p><strong>split   [splɪt]</strong><br>①v. 把······分成(几部分)；(使)裂开，断裂；产生分歧，分裂；分摊，分配；分手，离婚</p>
-<p> ②n. 裂口，裂缝；分歧，分裂；(尤指钱的)分配</p>
-<p>😀  😀  😀  😀  😀  😀  😀  😀  😀</p>
-</li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>

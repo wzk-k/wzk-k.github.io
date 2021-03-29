@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    ARP中间人攻击 |  wzkang
+    NATy与案列 |  wzkang
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-ARP中间人攻击"
+  id="post-NATy与案列"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,26 +57,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  ARP中间人攻击
+  NATy与案列
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" class="article-date">
-  <time datetime="2021-03-19T14:58:51.000Z" itemprop="datePublished">2021-03-19</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-  </div>
-  
+      <a href="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/" class="article-date">
+  <time datetime="2021-03-29T03:27:03.000Z" itemprop="datePublished">2021-03-29</time>
+</a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">436</span>
+            <span class="post-count">2.5k</span>
         </span>
     </span>
 
@@ -85,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
+            <span class="post-count">9 分钟</span>
         </span>
     </span>
 </div>
@@ -100,30 +96,163 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="ARP中间人攻击"><a href="#ARP中间人攻击" class="headerlink" title="ARP中间人攻击"></a>ARP中间人攻击</h3><h3 id="一-wireshark显示过滤器中ARP常用指令"><a href="#一-wireshark显示过滤器中ARP常用指令" class="headerlink" title="一.wireshark显示过滤器中ARP常用指令"></a>一.wireshark显示过滤器中ARP常用指令</h3><p>筛选类型为请求（reques）的ARP</p>
-<p><code>arp.opcode == 0x001</code></p>
-<p>筛选类型为响应(reply)的ARP</p>
-<p><code>arp.opcode == 0x002</code></p>
-<p>筛选指定源MAC地址的ARP </p>
-<p><code>arp.src.hw_mac == MAC地址</code></p>
-<p>筛选指点源为MAC地址并且类型为请求的</p>
-<p><code>arp.src.hw_mac == MAC地址 &amp;&amp; arp.opcode == 0x001</code></p>
-<h3 id="二-实验准备"><a href="#二-实验准备" class="headerlink" title="二. 实验准备"></a>二. 实验准备</h3><p>目标主机： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IPv4 地址 . . . . . . . . . . . . : 192.168.43.108(首选)</span><br><span class="line">物理地址. . . . . . . . . . . . . : 04-ED-33-8B-35-6C</span><br><span class="line">默认网关. . . . . . . . . . . . . : 192.168.43.1</span><br><span class="line">其中网关：192.168.43.1 的物理地址为 34-d7-12-a2-0d-2e     动态</span><br></pre></td></tr></table></figure>
-<p>攻击主机： kali linux</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">eth2: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.43.160  netmask 255.255.255.0  broadcast 192.168.43.255</span><br><span class="line">        inet6 fe80::20c:29ff:fe37:28c3  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        inet6 2409:893c:1546:221:20c:29ff:fe37:28c3  prefixlen 64  scopeid 0x0&lt;global&gt;</span><br><span class="line">        ether 00:0c:29:37:28:c3  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 66  bytes 9334 (9.1 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 111  bytes 9319 (9.1 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure>
-<p>攻击目的：欺骗目标主机192.168.100.5，让其以为网关为192.168.43.1的物理地址为<strong>00:0c:29:37:28:c3</strong>（黑客的kaili网卡eth0的物理地址）</p>
-<p>开启kali的路由转发功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward</span><br></pre></td></tr></table></figure>
-<h3 id="三-开始攻击"><a href="#三-开始攻击" class="headerlink" title="三.开始攻击"></a>三.开始攻击</h3><p>在kali终端中使用arpspoof工具</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arpspoof -i eth2 -t 192.168.43.108 192.168.43.1</span><br></pre></td></tr></table></figure>
-<p>执行命令后，向目标主机发送大量的arp相应（arp reply）,使得目标主机以为网关的物理地址为</p>
-<p><strong>00:0c:29:37:28:c3</strong></p>
-<p><img src="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/1616257541863.png" alt="1616257541863"></p>
-<p>在目标主机终端中查看arp缓存表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDOWS\system32&gt;arp -a</span><br></pre></td></tr></table></figure>
-<p>可以发现表中的物理地址的确改成了黑客网卡的物理地址</p>
-<p><img src="/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/1616257736578.png" alt="1616257736578"></p>
+  <h3 id="网络地址转换NAT"><a href="#网络地址转换NAT" class="headerlink" title="网络地址转换NAT"></a><strong>网络地址转换NAT</strong></h3><h4 id="1-NAT工作过程"><a href="#1-NAT工作过程" class="headerlink" title="1 NAT工作过程"></a><strong>1 NAT工作过程</strong></h4><p>利用<strong>网络地址转换</strong>（Network Address Translation，NAT），使用私有IP地址计算机也能够上网。内部网络的计算机使用私有IP地址，内部网络的出口路由器设置若干个公有IP地址，在此进行地址转换。现在几乎所有路由器都具有NAT功能。例子如下：</p>
+<p><img src="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/1616988526370.png" alt="1616988526370"></p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1</td>
+<td>1.1.1.1</td>
+</tr>
+<tr>
+<td>10.1.1.2</td>
+<td>1.1.1.2</td>
+</tr>
+</tbody></table>
+<p>这个方案基本没有实用价值，根本解决的办法是同时使用运输层的端口号。若干台计算机上网时都转换为同一个公有IP地址，同时要分配不同的源端口号，替换原来的源端口号，以区分这些计算机。这种NAT也叫做<strong>网络地址端口转换</strong>（Network Address Port Translation，NAPT），现在所说的NAT实际上都是指NAPT。例子如下：</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1:2000</td>
+<td>1.1.1.1:5000</td>
+</tr>
+<tr>
+<td>10.1.1.2:3000</td>
+<td>1.1.1.1:5001</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>发送→接收</th>
+<th>源IP地址</th>
+<th>目的IP地址</th>
+<th>源端口号</th>
+<th>目的端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.1→R</td>
+<td>10.1.1.1</td>
+<td>2.2.2.2</td>
+<td>2000</td>
+<td>80</td>
+</tr>
+<tr>
+<td>R→2.2.2.2</td>
+<td><strong>1.1.1.1</strong></td>
+<td>2.2.2.2</td>
+<td><strong>5000</strong></td>
+<td>80</td>
+</tr>
+<tr>
+<td>2.2.2.2→R</td>
+<td>2.2.2.2</td>
+<td>1.1.1.1</td>
+<td>80</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>R→10.1.1.1</td>
+<td>2.2.2.2</td>
+<td><strong>10.1.1.1</strong></td>
+<td>80</td>
+<td><strong>2000</strong></td>
+</tr>
+</tbody></table>
+<p>NAT转换表中的一行对应关系称为一个映射。这种NAT叫做动态NAT转换，这是因为NAT转换表中的映射是动态添加的，内网计算机的数据首次外出时，路由器自动为它分配公有IP地址与端口号。</p>
+<p>动态NAT转换带来一个新问题：外网计算机无法首先访问内网计算机。这需要静态NAT转换，由管理员手工在NAT转换表中添加映射，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.1.1.3:80</td>
+<td>1.1.1.1:80</td>
+</tr>
+</tbody></table>
+<h4 id="2-动态NAT的分类"><a href="#2-动态NAT的分类" class="headerlink" title="2 动态NAT的分类"></a><strong>2 动态NAT的分类</strong></h4><p>1．对称型（Symmetric Nat）</p>
+<p>当内网计算机A（地址为IPA）中的进程（端口号为PortA），首次通过NAT路由器R访问外网计算机B时，会在NAT转换表生成一个映射：（IPA:PortA–IPR:PortR1）。若该进程再访问B中的另一端口进程或另一计算机C时，会再生成一行映射：（IPA:PortA–IPR:PortR2），即一个映射只对应于一台外网计算机上的一个端口号。此时NAT转换表如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>内部</th>
+<th>外部</th>
+<th>远程计算机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR1</td>
+<td>IPB:PortB1</td>
+</tr>
+<tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR2</td>
+<td>IPB:PortB2</td>
+</tr>
+<tr>
+<td>IPA:PortA</td>
+<td>IPR:PortR3</td>
+<td>IPC:PortC</td>
+</tr>
+</tbody></table>
+<p>优点是比较安全，一个映射只能由一台外网计算机上的一个端口号的进程来使用，别的外网计算机或进程不能用来访问内网计算机。缺点是实现比较麻烦。</p>
+<p>2．完全锥型（Full Cone Nat）</p>
+<p>内网计算机中的进程在NAT转换表中生成一个映射后，可以用它来访问其他外网计算机，不再生成新的映射，就是在NAT转换表中没有“远程计算机”这一列。而且对外网计算机没有任何限制，就是说，一个映射生成后，所有外网计算机都能用它来访问内网计算机。</p>
+<p>优点是实现容易，缺点是安全性不够好。</p>
+<p>3．受限锥型（Restriced Cone Nat）</p>
+<p>与完全锥型类似，但对外网计算机增加了限制。内网计算机首先访问了外网计算机后，该外网计算机才能访问内网计算机。外网计算机不能首先访问内网计算机。</p>
+<p>4．端口受限锥型（Port Restriced Cone Nat）</p>
+<p>对于受限锥型，某台外网计算机被内网计算机访问后，该外网计算机中的所有端口号的进程就都可以访问内网计算机了。端口受限锥型则要求更高，外网计算机中的某个端口号进程被内网计算机访问后，该进程才可以访问内网计算机，而其他未被首先访问的进程仍不能访问内网计算机。</p>
+<p>因为完全锥型最容易实现，所以大多数NAT都是完全锥型。</p>
+<p><strong>3 P2P**</strong>应用穿越**<strong>NAT</strong></p>
+<p>对于P2P应用，客户一般都是利用动态NAT上网，无法互相直接访问。这时需要服务器的帮助，来实现互相访问，这称为打洞。</p>
+<p>例如：客户A与B都已访问过服务器S。A与B都需要向S报告自己的本机IP地址与端口号（内网地址与端口号），同时S还能知道来自A与B的数据包中的源IP地址与端口号（外网地址与端口号）。S将这些数据转告A与B，A与B就能确定自己与对方是否处在NAT路由器后面。</p>
+<p>1．若双方都没有处在NAT路由器后面，则可以直接互相访问。</p>
+<p>2．若只有A处在NAT路由器后面，则它可以直接访问B。</p>
+<p>3．若双方都处在NAT路由器后面，则可以利用对方的外网地址互相访问。因为这个外网地址映射是在访问服务器S时产生的，所以如果双方都处在对称型NAT路由器后面，就不能互相访问。一方或双方处在锥型NAT路由器后面，就能互相访问。</p>
+<p>4．若一方或双方处在多个NAT路由器后面，利用对方的外网地址也能互相访问。</p>
+<p>5．UDP与TCP都适用于上述几种情况，但UDP比TCP打洞的成功率高一些。</p>
+<p>6．若UDP与TCP都无法打洞，则A与B间的所有数据只能由服务器中转了。</p>
+<h4 id="4-实际问题"><a href="#4-实际问题" class="headerlink" title="4 实际问题"></a><strong>4 实际问题</strong></h4><h5 id="4-1-校园网的问题"><a href="#4-1-校园网的问题" class="headerlink" title="4.1 校园网的问题"></a><strong>4.1</strong> <strong>校园网的问题</strong></h5><p>在某些学校的校园网内，访问互联网一点也不慢，可是从校外访问学校网站，却是较慢（现在有所好转）。这是为什么？</p>
+<p>因为教育网与电信运营商网络（公众网）间互访的速率比较低，所以很多学校在接入教育网的同时，又接入了所在地的公众网，如下图所示。图中连接教育网的路由器A是教育网IP地址，连接公众网的路由器B则是公众网IP地址。首先明确一点，学校内一般计算机是私有IP地址或教育网的IP地址，学校网站一般都是教育网的IP地址。</p>
+<p><img src="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/1616988538708.png" alt="1616988538708"></p>
+<p>从校内访问公众网时，数据从路由器B出入，路由器B进行动态NAT转换，数据往返路径是图中的①，并不很慢。从公众网访问学校网站时，如果没有静态NAT转换，必须使用网站的教育网IP地址访问，数据往返路径只能是图中的②，这就会比较慢。</p>
+<p>对策是在路由器B中为学校网站设置静态NAT转换，从公众网访问学校网站时，可以使用网站的公众网IP地址访问，数据从路由器B出入，数据往返路径是图中的①，就不会再慢了。</p>
+<p>从教育网访问学校网站，直接使用网站的教育网IP地址访问即可，数据往返路径是图中的③。</p>
+<h5 id="4-2利用NAT实现共享上网"><a href="#4-2利用NAT实现共享上网" class="headerlink" title="4.2利用NAT实现共享上网"></a><strong>4.2利用NAT实现共享上网</strong></h5><p>家用宽带路由器是路由器与交换机的混合体。运营商（ISP）临时分配的IP地址设置在路由器的WAN接口上，家中的计算机接在LAN接口上，所有数据经过路由器时，都经过动态NAT转换。</p>
+<p>ISP如何检测共享上网呢？据说ISP可以检测用户发送数据中的源物理地址与源IP地址，若不止一个就是共享上网，这是完全错误的。实际上ISP使用以下手段检测共享上网：</p>
+<p>1．数据流量。</p>
+<p>2．用户在线时间。</p>
+<p>3．IP数据报首部的TTL字段。</p>
+<p>4．IP数据报首部的标识字段。</p>
+<p>5．网络管理协议SNMP。</p>
+<p>6．主动探测。</p>
+<p>7．客户端软件。</p>
+<p>8．检测软件与硬件。如“网络尖兵”与“用户行为分析系统”等。</p>
+<p>综合运用上述手段，可以较为准确地发现共享上网的用户。</p>
+<p><strong>小型校园网的网络层解决方案</strong></p>
+<p>网络中心机房网络结构图，注意接口聚合。</p>
+<p><img src="/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/1616988549216.png" alt="1616988549216"></p>
+<p>IP地址分配，注意留有余量。4座楼分别为172.21.0.0/20、172.21.16.0/20、172.21.32.0/20、172.21.48.0/20，各有4094个可分IP地址。在172.21.0.0/20内可以再细分为172.21.1.0/24、172.21.2.0/24、172.21.3.0/24、172.21.4.0/24等等，分到每一层楼。</p>
+<p>每楼的三层交换机中的路由表，一层楼一行，默认路由代表发往网络中心核心交换机的数据。</p>
+<p>核心交换机中的路由表一座楼一行，即172.21.0.0/20等地址各占一行，默认路由代表发往教育网与公众网的数据，它们应该转发到路由器，再从路由器转发到教育网与公众网。</p>
+<p>路由器中的路由表第1行（172.21.0.0/16）代表从校外进入校园网的数据。另外，路由器必须把去往教育网与公众网的两类数据分开。教育网的规模远小于公众网，只需在路由表中添加不到100行的数据（如210.44.0.0/15），最后再添加一个默认路由，代表发往公众网的数据。</p>
+<p>另外，路由器上需要启用动态NAT。其次，为使校外公众网用户快速地访问校内服务器，需要在路由器上启用静态NAT功能。校内服务器都应该使用熟知端口号访问，若有两个网站，则只能一个使用80，另一个不能再使用80。要想再使用，只能从公众网ISP处付费多申请几个公有IP地址。</p>
  
       <!-- reward -->
       
@@ -188,32 +317,21 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/19/ARP%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/29/NATy%E4%B8%8E%E6%A1%88%E5%88%97/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E7%BD%91%E7%BB%9C%E5%B1%82/" rel="tag">网络安全应用(网络层)</a></li></ul>
-
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
+    
       <a href="/2021/03/29/NAT%E4%B8%8E%E6%A1%88%E5%88%97/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            NAT与案列
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2021/03/19/ARP%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">ARP协议</div>
+        <div class="article-nav-title">NAT与案列</div>
       </a>
     
   </nav>
