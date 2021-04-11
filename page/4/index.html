@@ -141,6 +141,274 @@
     
     
     <article
+  id="post-DHCP服务器"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/26/DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8/"
+    >DHCP服务器</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/26/DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time datetime="2020-12-26T08:55:49.000Z" itemprop="datePublished">2020-12-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="DHCP服务器"><a href="#DHCP服务器" class="headerlink" title="DHCP服务器"></a>DHCP服务器</h1><h2 id="一-什么是DHCP服务器？"><a href="#一-什么是DHCP服务器？" class="headerlink" title="一. 什么是DHCP服务器？"></a>一. 什么是DHCP服务器？</h2><p>DHCP 是 Dynamic Host Configuration Protocol （动态主机配置协议）的缩写。 </p>
+<p>DHCP通常在 局域网 环境中使用。他的主要 作用是：<em>对IP地址进行集中 管理</em> 和 <em>分配</em>，使 网络环境中的主机动态的获得IP地址、网关 地址、DNS服务器地址等信息，并提升IP地址 的使用率。</p>
+<p><img src="/2020/12/26/DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8/1608994300591.png" alt="DHCP服务器"></p>
+<h2 id="二-为什么使用DHCP服务器"><a href="#二-为什么使用DHCP服务器" class="headerlink" title="二. 为什么使用DHCP服务器"></a>二. 为什么使用DHCP服务器</h2><p>IP地址是每个网络节点的标识，网络中每一台计算机都需要配置IP地址才能够上网。</p>
+<p>大多数用户都不会精通IP地址的 设置，让用户自行分配地址，不但会降低用户体验，而且，从用户的技术能力上看，也是行不通的。</p>
+<p>通过动态主机配置协议 (DHCP) 服务，网络中的设备可以从 DHCP 服务器中 获取 IP 地址和其它信息.需要注意的是，在网络范围内可能存在多个DHCP服务器各自负责不同的网段，也可能由同一个DHCP服务 器，负责多个不同网段的地址分配。</p>
+<p><img src="/2020/12/26/DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8/1608995743766.png" alt="一个DHCP服务器分配多个不同网段"></p>
+<h2 id="三-DHCP的工作过程"><a href="#三-DHCP的工作过程" class="headerlink" title="三. DHCP的工作过程"></a>三. DHCP的工作过程</h2><p>DHCP协议采用UDP作为传输协议, 客户端发送广播消息到服务器的68号 端口,服务器回应广播消息给客户端 的67号端口。 DHCP客户端 从 DHCP服务器获取IP 地址，主要通过四个阶段进行:分别是 发现、提供、选择，还有确认。四个阶段完成之后，客户端才真正分配到了IP地址。</p>
+<p><img src="/2020/12/26/DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8/1608995840712.png" alt="1608995840712"></p>
+<h2 id="四-租约更新"><a href="#四-租约更新" class="headerlink" title="四. 租约更新"></a>四. 租约更新</h2><p>DHCP 服务器动态分配的IP地址是有使用期限的，这个期限叫做租期，默认是8天。</p>
+<p><img src="/2020/12/26/DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8/1608995878871.png" alt="1608995878871"></p>
+<h2 id="五-总结"><a href="#五-总结" class="headerlink" title="五. 总结"></a>五. 总结</h2><ol>
+<li>DHCP可以自动为客户端分配IP地址。</li>
+<li>DHCP是基于客户端/服务器通 信模式的。</li>
+<li>DHCP地址分配需要经过发现、提供、选择、确认这四个阶段。</li>
+<li>DHCP地址分配有租约期限的概念，客户端可以在到期前进行续租。</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-我的第一篇博客"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
+    >我的第一篇博客</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
+  <time datetime="2020-12-25T04:33:08.000Z" itemprop="datePublished">2020-12-25</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="遇到的问题："><a href="#遇到的问题：" class="headerlink" title="遇到的问题："></a>遇到的问题：</h2><h3 id="Q1：为什么每次hexo-d后我的域名都不起作用了？"><a href="#Q1：为什么每次hexo-d后我的域名都不起作用了？" class="headerlink" title="Q1：为什么每次hexo d后我的域名都不起作用了？"></a>Q1：为什么每次hexo d后我的域名都不起作用了？</h3><h3 id="A1：在source目录里创建CNAME-内容为你的域名。"><a href="#A1：在source目录里创建CNAME-内容为你的域名。" class="headerlink" title="A1：在source目录里创建CNAME,内容为你的域名。"></a>A1：在source目录里创建CNAME,内容为你的域名。</h3><h3 id="Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found"><a href="#Q2：为什么每次hexo-d后出现ERROR-Deployer-not-found" class="headerlink" title="Q2：为什么每次hexo d后出现ERROR Deployer not found:"></a>Q2：为什么每次hexo d后出现ERROR Deployer not found:</h3><h3 id="A2：执行下列语句。"><a href="#A2：执行下列语句。" class="headerlink" title="A2：执行下列语句。"></a>A2：执行下列语句。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-28军事"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/13/28%E5%86%9B%E4%BA%8B/"
+    >28军事</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/13/28%E5%86%9B%E4%BA%8B/" class="article-date">
+  <time datetime="2020-12-13T15:00:54.000Z" itemprop="datePublished">2020-12-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ol>
+<li><p><strong>ally  [ˈælaɪ]</strong><br>n. (尤指战时的)同盟国；盟友，支持者</p>
+<p> [əˈlaɪ] v. 与······结盟</p>
+</li>
+<li><p><strong>military  [ˈmɪlətri]</strong><br>① adj. 军事的，军用的，军队的 </p>
+<p>② n. [the ~] (一国的)武装力量，军队；军方</p>
+</li>
+<li><p><strong>command  [kəˈmɑːnd]</strong><br>① v. 命令，指示；统率，指挥；俯瞰；掌握，拥有；赢得，博得 </p>
+<p>②n. 命令，指示；统帅，指挥；掌握，运用能力</p>
+</li>
+<li><p><strong>discipline   [ˈdɪsəplɪn]</strong><br>① n. 训练；纪律；自制力；专业，科目</p>
+<p>②v. 训练，管教；惩罚，处罚</p>
+</li>
+<li><p><strong>target  [ˈtɑːɡɪt]</strong><br>① v. 瞄准；以······为目标(或对象)；把······作为攻击目标(或批评对象) </p>
+<p>②n. 靶子；目标，对象；目标，指标</p>
+</li>
+<li><p><strong>hijack  [ˈhaɪdʒæk]</strong><br>①  v. 劫持；控制，操纵 </p>
+<p>②n. 劫持事件</p>
+</li>
+<li><p><strong>hostage  [ˈhɒstɪdʒ]</strong><br>n. 人质</p>
+</li>
+<li><p><strong>intelligence   [ɪnˈtelɪdʒəns]</strong><br>n. 情报，情报人员；智力，智慧；理解力；聪颖，聪明；智能</p>
+</li>
+<li><p><strong>leak  [liːk]</strong><br>①  v. 泄露，透露；(使)渗漏 </p>
+<p>② n. 透露，泄露；渗漏；裂缝</p>
+</li>
+<li><p><strong>triumph  [ˈtraɪʌmf]</strong><br>① n. (尤指苦战后获得的)胜利，成功，成就；成功的喜悦；榜样 </p>
+<p>②v. 获胜，成功</p>
+</li>
+<li><p><strong>sacrifice   [ˈsækrɪfaɪs]</strong><br>① v. 牺牲，献出；献祭 </p>
+<p>② n. 牺牲，献出；献祭，祭品</p>
+</li>
+<li><p><strong>honor  [ˈɒnə(r)]</strong><br>① n. 荣誉，荣誉称号；崇敬，敬重；荣幸，光荣；高尚品德，气节</p>
+<p>② v. 表彰；尊重；使感到荣幸  </p>
+</li>
+<li><p><strong>alert  [əˈlɜːt]</strong><br>①  v. 使警觉，发出警报；提醒 </p>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-27运动"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/12/27%E8%BF%90%E5%8A%A8/"
+    >27运动</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/12/27%E8%BF%90%E5%8A%A8/" class="article-date">
+  <time datetime="2020-12-12T15:17:17.000Z" itemprop="datePublished">2020-12-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ol>
+<li><strong>train  [treɪn]</strong><br> v. 训练，培训</li>
+<li><strong>athlete  [ˈæθliːt]</strong><br>n. 运动员；擅长运动的人</li>
+<li><strong>gymnasium   [dʒɪmˈneɪziəm]</strong><br> n. [简写gym]健身房，体育馆</li>
+<li><strong>calorie  [ˈkæləri]</strong><br> n. 卡，卡路里</li>
+<li><strong>inhale  [ɪnˈheɪl]</strong><br>v. 吸气；吸入(空气、烟雾等)</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-26疾病"
   class="article article-type-post"
   itemscope

