@@ -141,6 +141,68 @@
     
     
     <article
+  id="post-MAC地址欺骗"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/"
+    >MAC地址欺骗</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/" class="article-date">
+  <time datetime="2021-03-17T15:13:43.000Z" itemprop="datePublished">2021-03-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>MAC地址欺骗</p>
+<h3 id="1-macchanger工具介绍"><a href="#1-macchanger工具介绍" class="headerlink" title="1.macchanger工具介绍"></a>1.macchanger工具介绍</h3><p><code>root@kali:~# macchanger --help</code><br><code>GNU MAC Changer</code><br><code>Usage: macchanger [options] device</code></p>
+<p>  <code>-h,  --help                   Print this help</code><br>  <code>-V,  --version                Print version and exit</code><br>  <code>-s,  --show                   Print the MAC address and exit</code><br>  <code>-e,  --ending                 Don&#39;t change the vendor bytes</code><br>  <code>-a,  --another                Set random vendor MAC of the same kind</code><br>  <code>-A                            Set random vendor MAC of any kind</code><br>  <code>-p,  --permanent              Reset to original, permanent hardware MAC</code><br>  <code>-r,  --random                 Set fully random MAC</code><br>  <code>-l,  --list[=keyword]         Print known vendors</code><br>  <code>-b,  --bia                    Pretend to be a burned-in-address</code><br>  <code>-m,  --mac=XX:XX:XX:XX:XX:XX</code><br>       <code>--mac XX:XX:XX:XX:XX:XX  Set the MAC XX:XX:XX:XX:XX:XX</code></p>
+<h3 id="2-实际操作"><a href="#2-实际操作" class="headerlink" title="2.实际操作"></a>2.实际操作</h3><h5 id="（1）查看本机网卡MAC地址"><a href="#（1）查看本机网卡MAC地址" class="headerlink" title="（1）查看本机网卡MAC地址"></a>（1）查看本机网卡MAC地址</h5><p><code>root@kali:~# macchanger --show eth0</code><br><code>Current MAC:   00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>Permanent MAC: 00:0c:29:37:28:a5 (VMware, Inc.)</code></p>
+<h5 id="（2）关闭网卡eth0"><a href="#（2）关闭网卡eth0" class="headerlink" title="（2）关闭网卡eth0"></a>（2）关闭网卡eth0</h5><p><code>root@kali:~# ifconfig eth0 down</code></p>
+<h5 id="（3）修改网卡eth0的MAC地址"><a href="#（3）修改网卡eth0的MAC地址" class="headerlink" title="（3）修改网卡eth0的MAC地址"></a>（3）修改网卡eth0的MAC地址</h5><p>这里使用了随机生成的MAC地址，还可以自己设置mac地址，具体可以看帮助</p>
+<p><code>root@kali:~# macchanger --r eth0</code></p>
+<p><code>Current MAC:   00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>Permanent MAC: 00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>New MAC:      00:d0:c7:77:1c:65 (unknown)</code></p>
+<h5 id="（4）重启网卡eth0"><a href="#（4）重启网卡eth0" class="headerlink" title="（4）重启网卡eth0"></a>（4）重启网卡eth0</h5><p><code>root@kali:~# ifconfig eth0 up</code></p>
+<h5 id="（5）查看此时MAC地址"><a href="#（5）查看此时MAC地址" class="headerlink" title="（5）查看此时MAC地址"></a>（5）查看此时MAC地址</h5><p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/1615994921329.png" alt="1615994921329"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="tag">网络安全应用(链路层)</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-环境搭建"
   class="article article-type-post"
   itemscope
@@ -1356,173 +1418,6 @@
 </article>
 
     
-    <article
-  id="post-08人际"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/02/08%E4%BA%BA%E9%99%85/"
-    >08人际</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/02/08%E4%BA%BA%E9%99%85/" class="article-date">
-  <time datetime="2021-01-02T01:34:25.000Z" itemprop="datePublished">2021-01-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D/">考研基础单词</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li><p><strong>conflict   [ˈkɒnflɪkt]</strong><br>n. 冲突，矛盾，争论；斗争</p>
-<p>v. 冲突，抵触，相左；斗争 </p>
-</li>
-</ol>
-<ol start="2">
-<li><p><strong>clash [klæʃ]</strong><br>① n. 冲突；争论，交锋 </p>
-<p>② v. 发生冲突；争论，争执；撞期</p>
-</li>
-</ol>
-<ol start="3">
-<li><p><strong>dispute  [dɪˈspjuːt]</strong><br>① n. 争论，辩论；争端，纠纷</p>
-<p> ② v. 争论，辩论；反对；质疑；争夺</p>
-</li>
-</ol>
-<ol start="4">
-<li><p><strong>insult  [ɪnˈsʌlt]</strong><br>v. 辱骂；侮辱；冒犯</p>
-<p>n. 辱骂；侮辱；冒犯</p>
-</li>
-</ol>
-<ol start="5">
-<li><p><strong>curse  [kɜːs]</strong><br>① v. 诅咒，咒骂</p>
-<p> ② n. 诅咒，咒语；祸因</p>
-</li>
-</ol>
-<ol start="6">
-<li><strong>criticize  [ˈkrɪtɪsaɪz]</strong><br>v. 批评；指责 </li>
-</ol>
-<ol start="7">
-<li><p><strong>isolate  [ˈaɪsəleɪt]</strong> </p>
-<p>v. 孤立，隔离；分隔，区别看</p>
-</li>
-</ol>
-<ol start="8">
-<li><p><strong>trick  [trɪk]</strong><br>① v. 欺骗，哄骗，诱骗</p>
-<p> ② n. 诡计，骗局，把戏；诀窍，技巧</p>
-</li>
-</ol>
-<ol start="9">
-<li><strong>deceive  [dɪˈsiːv]</strong><br>v. 欺骗，蒙骗，隐瞒；误导</li>
-</ol>
-<ol start="10">
-<li><p><strong>seduce [sɪˈdjuːs]</strong> </p>
-<p>v. 勾引；引诱，诱使，吸</p>
-</li>
-</ol>
-<ol start="11">
-<li><p><strong>lure  [lʊə(r)]</strong><br>① v. 引诱，诱惑；吸引</p>
-<p> ② n. 诱饵；诱惑力</p>
-</li>
-</ol>
-<ol start="12">
-<li><p><strong>rat  [ræt]</strong><br>① v. 告密，出卖；违约，食言</p>
-<p> ② n. 老鼠；小人</p>
-</li>
-</ol>
-<ol start="13">
-<li><strong>interfere  [ˌɪntəˈfɪə(r)]</strong><br> v. 扰乱，干扰(with)；阻碍，妨碍(with)；参与，干涉</li>
-</ol>
-<ol start="14">
-<li><strong>interrupt  [ˌɪntəˈrʌpt]</strong><br>v. 打断，打扰；中止，阻碍</li>
-</ol>
-<ol start="15">
-<li><strong>intervene  [ˌɪntəˈviːn]</strong><br>  v. 干预，介入；阻碍；打岔；(时间)介于······之间</li>
-</ol>
-<ol start="16">
-<li><strong>disrupt  [dɪsˈrʌpt]</strong><br>v. 使中断；扰乱，使混乱</li>
-</ol>
-<ol start="17">
-<li><p><strong>individual  [ˌɪndɪˈvɪdʒuəl]</strong><br>① adj. 个人的；单独的，个别的；独特的 </p>
-<p>② n. 个体；个人</p>
-</li>
-</ol>
-<ol start="18">
-<li><strong>interpersonal  [ˌɪntəˈpɜːsənl]</strong><br>adj. 人与人之间的，人际的</li>
-</ol>
-<ol start="19">
-<li><p><strong>intimate [ˈɪntɪmət]</strong><br>① adj. 个人的，隐私的；亲密的；幽静舒适的，温馨的</p>
-<p> ② n. 密友，至交，知己</p>
-</li>
-</ol>
-<ol start="20">
-<li><strong>collaborate  [kəˈlæbəreɪt]</strong><br>v. 合作，协作；勾结，通敌</li>
-</ol>
-<ol start="21">
-<li><strong>harmony  [ˈhɑːməni]</strong><br>n. 融洽，和谐；一致；(音乐的)和声，和弦</li>
-</ol>
-<ol start="22">
-<li><p><strong>interact  [ˌɪntərˈækt]</strong></p>
-<p>v. 交流，交往；相互影响</p>
-</li>
-</ol>
-<ol start="23">
-<li><p><strong>cement  [sɪˈment]</strong> </p>
-<p>① v. 加强，巩固(关系)；(用水泥)粘合</p>
-<p> ② n. 水泥；黏固剂</p>
-</li>
-</ol>
-<ol start="24">
-<li><strong>reputation [ˌrepjuˈteɪʃn]</strong><br> n. 名声，声誉，名望 </li>
-</ol>
-<ol start="25">
-<li><p><strong>prestige  [preˈstiːʒ]</strong><br>①n. 声望，威信</p>
-<p> ② adj. 令人敬仰的，受尊重的；名贵的</p>
-</li>
-</ol>
-<ol start="26">
-<li><strong>fame  [feɪm]</strong><br>  n. 名声，名气；声誉，名望 </li>
-</ol>
-<ol start="27">
-<li><strong>notorious  [nəʊˈtɔːriəs]</strong><br>adj. 声名狼藉的，臭名昭著的</li>
-</ol>
-<ol start="28">
-<li><strong>rumor  [ˈruːmə(r)]</strong><br>n. [= rumour]流言，谣传，传闻  </li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%8D%E6%B1%87/" rel="tag">基础词汇</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
@@ -1540,7 +1435,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2020-2021
+        2020-2022
         <i class="ri-heart-fill heart_icon"></i> Zikang Wang
       </li>
     </ul>

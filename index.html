@@ -141,6 +141,63 @@
     
     
     <article
+  id="post-取证分析-恢复传输过程中的文件"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/"
+    >取证分析-恢复传输过程中的文件</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/" class="article-date">
+  <time datetime="2021-04-13T14:31:39.000Z" itemprop="datePublished">2021-04-13</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="取证分析-恢复传输过程中的文件"><a href="#取证分析-恢复传输过程中的文件" class="headerlink" title="取证分析-恢复传输过程中的文件"></a>取证分析-恢复传输过程中的文件</h2><h3 id="1-抓包"><a href="#1-抓包" class="headerlink" title="1.抓包"></a>1.抓包</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325127584.png" alt="1618325127584"></p>
+<h3 id="2-追踪TCP流"><a href="#2-追踪TCP流" class="headerlink" title="2.追踪TCP流"></a>2.追踪TCP流</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325159847.png" alt="1618325159847"></p>
+<h3 id="3-选择响应"><a href="#3-选择响应" class="headerlink" title="3.选择响应"></a>3.选择响应</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325229283.png" alt="1618325229283"></p>
+<h3 id="4-原始数据显示"><a href="#4-原始数据显示" class="headerlink" title="4.原始数据显示"></a>4.原始数据显示</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618324528222.png" alt="1618324528222"></p>
+<h3 id="5-另存为-bin文件"><a href="#5-另存为-bin文件" class="headerlink" title="5.另存为.bin文件"></a>5.另存为.bin文件</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618324567186.png" alt="1618324567186"></p>
+<h3 id="6-使用FlexHEX打开编辑"><a href="#6-使用FlexHEX打开编辑" class="headerlink" title="6.使用FlexHEX打开编辑"></a>6.使用FlexHEX打开编辑</h3><p>只保留数据部分，删除响应头</p>
+<p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325336633.png" alt="1618325336633"></p>
+<h3 id="7-另存为test-jpg"><a href="#7-另存为test-jpg" class="headerlink" title="7.另存为test.jpg"></a>7.另存为test.jpg</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325435828.png" alt="1618325435828"></p>
+<h3 id="8-可以打开了？"><a href="#8-可以打开了？" class="headerlink" title="8.可以打开了？"></a>8.可以打开了？</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325469056.png" alt="1618325469056"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/" rel="tag">网络协议分析</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-SQL注入练习-二"
   class="article article-type-post"
   itemscope
@@ -895,68 +952,6 @@
 </article>
 
     
-    <article
-  id="post-MAC地址欺骗"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/"
-    >MAC地址欺骗</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/" class="article-date">
-  <time datetime="2021-03-17T15:13:43.000Z" itemprop="datePublished">2021-03-17</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>MAC地址欺骗</p>
-<h3 id="1-macchanger工具介绍"><a href="#1-macchanger工具介绍" class="headerlink" title="1.macchanger工具介绍"></a>1.macchanger工具介绍</h3><p><code>root@kali:~# macchanger --help</code><br><code>GNU MAC Changer</code><br><code>Usage: macchanger [options] device</code></p>
-<p>  <code>-h,  --help                   Print this help</code><br>  <code>-V,  --version                Print version and exit</code><br>  <code>-s,  --show                   Print the MAC address and exit</code><br>  <code>-e,  --ending                 Don&#39;t change the vendor bytes</code><br>  <code>-a,  --another                Set random vendor MAC of the same kind</code><br>  <code>-A                            Set random vendor MAC of any kind</code><br>  <code>-p,  --permanent              Reset to original, permanent hardware MAC</code><br>  <code>-r,  --random                 Set fully random MAC</code><br>  <code>-l,  --list[=keyword]         Print known vendors</code><br>  <code>-b,  --bia                    Pretend to be a burned-in-address</code><br>  <code>-m,  --mac=XX:XX:XX:XX:XX:XX</code><br>       <code>--mac XX:XX:XX:XX:XX:XX  Set the MAC XX:XX:XX:XX:XX:XX</code></p>
-<h3 id="2-实际操作"><a href="#2-实际操作" class="headerlink" title="2.实际操作"></a>2.实际操作</h3><h5 id="（1）查看本机网卡MAC地址"><a href="#（1）查看本机网卡MAC地址" class="headerlink" title="（1）查看本机网卡MAC地址"></a>（1）查看本机网卡MAC地址</h5><p><code>root@kali:~# macchanger --show eth0</code><br><code>Current MAC:   00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>Permanent MAC: 00:0c:29:37:28:a5 (VMware, Inc.)</code></p>
-<h5 id="（2）关闭网卡eth0"><a href="#（2）关闭网卡eth0" class="headerlink" title="（2）关闭网卡eth0"></a>（2）关闭网卡eth0</h5><p><code>root@kali:~# ifconfig eth0 down</code></p>
-<h5 id="（3）修改网卡eth0的MAC地址"><a href="#（3）修改网卡eth0的MAC地址" class="headerlink" title="（3）修改网卡eth0的MAC地址"></a>（3）修改网卡eth0的MAC地址</h5><p>这里使用了随机生成的MAC地址，还可以自己设置mac地址，具体可以看帮助</p>
-<p><code>root@kali:~# macchanger --r eth0</code></p>
-<p><code>Current MAC:   00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>Permanent MAC: 00:0c:29:37:28:a5 (VMware, Inc.)</code><br><code>New MAC:      00:d0:c7:77:1c:65 (unknown)</code></p>
-<h5 id="（4）重启网卡eth0"><a href="#（4）重启网卡eth0" class="headerlink" title="（4）重启网卡eth0"></a>（4）重启网卡eth0</h5><p><code>root@kali:~# ifconfig eth0 up</code></p>
-<h5 id="（5）查看此时MAC地址"><a href="#（5）查看此时MAC地址" class="headerlink" title="（5）查看此时MAC地址"></a>（5）查看此时MAC地址</h5><p><img src="/2021/03/17/MAC%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97/1615994921329.png" alt="1615994921329"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8-%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="tag">网络安全应用(链路层)</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
@@ -974,7 +969,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2020-2021
+        2020-2022
         <i class="ri-heart-fill heart_icon"></i> Zikang Wang
       </li>
     </ul>
