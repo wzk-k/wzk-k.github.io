@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="欢迎" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    线性回归 |  wzkang
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/images/K.png" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-线性回归"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  线性回归
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="article-date">
+  <time datetime="2022-07-21T06:34:02.000Z" itemprop="datePublished">2022-07-21</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">6 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="1-回归分析"><a href="#1-回归分析" class="headerlink" title="1.回归分析"></a>1.回归分析</h1><h2 id="回归分析："><a href="#回归分析：" class="headerlink" title="回归分析："></a>回归分析：</h2><p>根据<strong>数据</strong>，确定两种或者两种以上变量间相互依赖的定量关系</p>
+<h2 id="函数表达式："><a href="#函数表达式：" class="headerlink" title="函数表达式："></a>函数表达式：</h2><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722104534083.png" alt="image-20220722104534083" style="zoom:80%;">
+
+<h2 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h2><p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722104619295.png" alt="image-20220722104619295"></p>
+<h1 id="2-线性回归"><a href="#2-线性回归" class="headerlink" title="2.线性回归"></a>2.线性回归</h1><h2 id="线性回归："><a href="#线性回归：" class="headerlink" title="线性回归："></a>线性回归：</h2><p>回归分析中，变量与因变量存在线性关系</p>
+<h2 id="函数表达式：-1"><a href="#函数表达式：-1" class="headerlink" title="函数表达式："></a>函数表达式：</h2><p>$$<br>y = ax+b<br>$$<br>线性回归属于<strong>监督学习</strong></p>
+<h2 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a><a href><strong>梯度下降法</strong></a></h2><p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722111805695.png" alt="image-20220722111805695"></p>
+<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722111816946.png" alt="image-20220722111816946"></p>
+<h1 id="3-Scikit-lean"><a href="#3-Scikit-lean" class="headerlink" title="*3.Scikit-lean"></a>*3.Scikit-lean</h1><p>​    一款开源框架（算法库）：数据预处理、分类、回归、降温、模型选择等常用的机器学习算法。</p>
+<p>​    特点：基础各类成熟算法、安装容易、样例丰富；不支持Python之外的语言、不支持深度学习和强化学习。</p>
+<p><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/index.html">官方文档（英文）</a></p>
+<p><a target="_blank" rel="noopener" href="https://scikit-learn.org.cn/">中文社区</a></p>
+<h2 id="Sklearn求解线性回归问题"><a href="#Sklearn求解线性回归问题" class="headerlink" title="Sklearn求解线性回归问题"></a>Sklearn求解线性回归问题</h2><h3 id="1-寻找a、b-y-ax-b"><a href="#1-寻找a、b-y-ax-b" class="headerlink" title="1.寻找a、b(y = ax + b)"></a>1.寻找a、b(y = ax + b)</h3><h3 id="2-评估模型表现"><a href="#2-评估模型表现" class="headerlink" title="2.评估模型表现"></a>2.评估模型表现</h3><h4 id="1-y与y’的均方差（MSE）"><a href="#1-y与y’的均方差（MSE）" class="headerlink" title="(1)y与y’的均方差（MSE）:"></a>(1)y与y’的均方差（MSE）:</h4><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722232302342.png" alt="image-20220722232302342" style="zoom:50%;">
+
+<h4 id="2-R方值"><a href="#2-R方值" class="headerlink" title="(2)R方值"></a>(2)R方值</h4><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722232403611.png" alt="image-20220722232403611">
+
+<p>MSE越小越好，R平方分数越接近1越好；</p>
+<p>y’与y集中度越高越好；</p>
+<h1 id="4-线性回归实战"><a href="#4-线性回归实战" class="headerlink" title="4.线性回归实战"></a>4.线性回归实战</h1><h2 id="1-单因子实现线性预测："><a href="#1-单因子实现线性预测：" class="headerlink" title="1.单因子实现线性预测："></a>1.单因子实现线性预测：</h2><p><strong>任务:</strong><br>$$<br>y = 2x + 5<br>$$<br>基于generated_data.csv数据，建立线性回归模型，预测x=3.5对应的y值，评估模型表现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#加载数据</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;generated_data.csv&#x27;</span>)</span><br><span class="line"><span class="comment">#data赋值</span></span><br><span class="line">x = data.loc[:,<span class="string">&#x27;x&#x27;</span>]</span><br><span class="line">y = data.loc[:,<span class="string">&#x27;y&#x27;</span>]</span><br><span class="line"><span class="comment">#数据可视化</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">plt.scatter(x,y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220722234641188.png" alt="image-20220722234641188"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#建立线性回归模型（linear_model）</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="comment">#模型实例</span></span><br><span class="line">lr_model = LinearRegression()</span><br><span class="line"><span class="comment">#使用numpy转换数据</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array(x)</span><br><span class="line"><span class="comment">#reshape(-1,1)一维数据转换成二维</span></span><br><span class="line">x = x.reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">y = np.array(y)</span><br><span class="line">y = y.reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment">#&lt;class &#x27;numpy.ndarray&#x27;&gt; (10, 1) &lt;class &#x27;numpy.ndarray&#x27;&gt; (10, 1)</span></span><br><span class="line"><span class="comment">#拟合x,y</span></span><br><span class="line">lr_model.fit(x,y)</span><br><span class="line"><span class="comment">#预测y值</span></span><br><span class="line">y_predict = lr_model.predict(x)</span><br><span class="line">print(y_predict)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[[ 7.]</span></span><br><span class="line"><span class="string"> [ 9.]</span></span><br><span class="line"><span class="string"> [11.]</span></span><br><span class="line"><span class="string"> [13.]</span></span><br><span class="line"><span class="string"> [15.]</span></span><br><span class="line"><span class="string"> [17.]</span></span><br><span class="line"><span class="string"> [19.]</span></span><br><span class="line"><span class="string"> [21.]</span></span><br><span class="line"><span class="string"> [23.]</span></span><br><span class="line"><span class="string"> [25.]]&#x27;&#x27;&#x27;</span></span><br><span class="line">y_3 = lr_model.predict([[<span class="number">3.5</span>]])</span><br><span class="line">print(y_3)<span class="comment">#[[12.]]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打印a、b</span></span><br><span class="line">a = lr_model.coef_</span><br><span class="line">b = lr_model.intercept_</span><br><span class="line">print(a,b)<span class="comment">#[[2.]] [5.]</span></span><br><span class="line"><span class="comment">#结果a = 2,b = 5说明模型正确</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> </span><br><span class="line">mean_squared_error,r2_score</span><br><span class="line"><span class="comment">#评估模型</span></span><br><span class="line">MSE = mean_squared_error(y,y_predict)</span><br><span class="line">R2 = r2_score(y,y_predict)</span><br><span class="line">print(MSE,R2)<span class="comment">#3.1554436208840474e-31 1.0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对比y与y&#x27;</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(y,y_predict)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220723000644545.png" alt="image-20220723000644545" style="zoom: 80%;">
+
+<h2 id="2-线性回归预测房价（多因子实现线性预测-）"><a href="#2-线性回归预测房价（多因子实现线性预测-）" class="headerlink" title="2.线性回归预测房价（多因子实现线性预测 ）"></a>2.线性回归预测房价（多因子实现线性预测 ）</h2><p><strong>任务:</strong> 基于usa_housing_price.csv数据，建立线性回归模型，预测合理房价：</p>
+<p> 1、以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果</p>
+<p> 2、以income、house age、numbers of rooms、population、area为输入变量，建立多因子模型，评估模型表现 </p>
+<p>3、预测Income=65000, House Age=5, Number of Rooms=5, Population=30000,size=200的合理房价 X_test = [65000,5,5,30000,200]</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Avg. Area Income</th>
+<th>Avg. Area House Age</th>
+<th>Avg. Area Number of Rooms</th>
+<th>Area Population</th>
+<th>size</th>
+<th align="center">Price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>79545.45857</td>
+<td>5.317139</td>
+<td>7.009188</td>
+<td>23086.80050</td>
+<td>188.214212</td>
+<td align="center">1.059034e+06</td>
+</tr>
+<tr>
+<td>1</td>
+<td>79248.64245</td>
+<td>4.997100</td>
+<td>6.730821</td>
+<td>40173.07217</td>
+<td>160.042526</td>
+<td align="center">1.505891e+06</td>
+</tr>
+<tr>
+<td>2</td>
+<td>61287.06718</td>
+<td>5.134110</td>
+<td>8.512727</td>
+<td>36882.15940</td>
+<td>227.273544</td>
+<td align="center">1.058988e+06</td>
+</tr>
+<tr>
+<td>3</td>
+<td>63345.24005</td>
+<td>3.811764</td>
+<td>5.586729</td>
+<td>34310.24283</td>
+<td>164.816630</td>
+<td align="center">1.260617e+06</td>
+</tr>
+<tr>
+<td>4</td>
+<td>59982.19723</td>
+<td>5.959445</td>
+<td>7.839388</td>
+<td>26354.10947</td>
+<td>161.966659</td>
+<td align="center">6.309435e+05</td>
+</tr>
+</tbody></table>
+<p>usa_housing_price.csv表数据如上表所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#load the data</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;usa_housing_price.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#将数据可视化，便于理解</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">fig1 =plt.subplot(<span class="number">231</span>)<span class="comment">#231表示2行3列的第1个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;Avg. Area Income&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS Income&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fig2 =plt.subplot(<span class="number">232</span>)<span class="comment">#231表示2行3列的第2个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;Avg. Area House Age&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS House Age&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fig3 =plt.subplot(<span class="number">233</span>)<span class="comment">#231表示2行3列的第3个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;Avg. Area Number of Rooms&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS Number of Rooms&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fig4 =plt.subplot(<span class="number">234</span>)<span class="comment">#231表示2行3列的第4个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;Area Population&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS Area Population&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fig5 =plt.subplot(<span class="number">235</span>)<span class="comment">#231表示2行3列的第5个</span></span><br><span class="line">plt.scatter(data.loc[:,<span class="string">&#x27;size&#x27;</span>],data.loc[:,<span class="string">&#x27;Price&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Price VS size&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>打印的图片如下图所示。</p>
+<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220725174644604.png" alt="image-20220725174644604"></p>
+<h3 id="1）以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果："><a href="#1）以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果：" class="headerlink" title="1）以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果："></a>1）以面积为输入变量，建立单因子模型，评估模型表现，可视化线性回归预测结果：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取房屋面积和价格</span></span><br><span class="line">X = data.loc[:,<span class="string">&#x27;size&#x27;</span>]</span><br><span class="line">y = data.loc[:,<span class="string">&#x27;Price&#x27;</span>]</span><br><span class="line">X = np.array(X).reshape(-<span class="number">1</span>,<span class="number">1</span>)<span class="comment">#将数据转换成2维的数组</span></span><br><span class="line">print(X.shape)<span class="comment">#(5000, 1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#建立线性模型</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line">LR1 = LinearRegression()</span><br><span class="line"><span class="comment">#训练模型</span></span><br><span class="line">LR1.fit(X,y)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算根据size计算price</span></span><br><span class="line">y_predict_1 = LR1.predict(X)</span><br><span class="line"></span><br><span class="line"><span class="comment">#评估模型MSE;R方</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error,r2_score</span><br><span class="line">mean_squared_error_1 = mean_squared_error(y,y_predict_1)</span><br><span class="line">r2_score_1 = r2_score(y,y_predict_1)</span><br><span class="line">print(mean_squared_error_1,r2_score_1)<span class="comment">#108771672553.6264 0.1275031240418234</span></span><br><span class="line"></span><br><span class="line">fig6 = plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">plt.scatter(X,y)</span><br><span class="line">plt.plot(X,y_predict_1,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220725175234990.png" alt="image-20220725175234990"></p>
+<p><strong>由图可以看出只根据面积来预测房价不是很合适；此外，R方值为0.1275031240418234，说明模型不好。</strong></p>
+<h3 id="2）以income、house-age、numbers-of-rooms、population、area为输入变量，建立多因子模型，评估模型表现-："><a href="#2）以income、house-age、numbers-of-rooms、population、area为输入变量，建立多因子模型，评估模型表现-：" class="headerlink" title="2）以income、house age、numbers of rooms、population、area为输入变量，建立多因子模型，评估模型表现 ："></a>2）以income、house age、numbers of rooms、population、area为输入变量，建立多因子模型，评估模型表现 ：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define X_multi</span></span><br><span class="line">X_multi = data.drop([<span class="string">&#x27;Price&#x27;</span>],axis=<span class="number">1</span>)<span class="comment">#除去Price这列数据，其他作为因子</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#set up 2nd linear model</span></span><br><span class="line">LR_multi = LinearRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment">#train the model</span></span><br><span class="line">LR_multi.fit(X_multi,y)</span><br><span class="line"></span><br><span class="line"><span class="comment">#make prediction</span></span><br><span class="line">y_predict_multi = LR_multi.predict(X_multi)</span><br><span class="line"></span><br><span class="line">mean_squared_error_multi = mean_squared_error(y,y_predict_multi)</span><br><span class="line">r2_score_multi = r2_score(y,y_predict_multi)</span><br><span class="line">print(mean_squared_error_multi,r2_score_multi)<span class="comment">#10219846512.17786 0.9180229195220739</span></span><br><span class="line"><span class="comment">#R方值为 0.9180229195220739，已经很接近1了，所以模型比较好</span></span><br><span class="line"></span><br><span class="line">fig7 = plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line"><span class="comment">#绘制y与y_predict_multi对比的散点图(多因子)</span></span><br><span class="line">plt.scatter(y,y_predict_multi)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220725175852185.png" alt="image-20220725175852185"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#绘制y与y_predict对比的散点图（单因子）</span></span><br><span class="line">fig8 = plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">plt.scatter(y,y_predict_1)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/image-20220725175919317.png" alt="image-20220725175919317"></p>
+<h3 id="3、预测Income-65000-House-Age-5-Number-of-Rooms-5-Population-30000-size-200的合理房价-X-test-65000-5-5-30000-200"><a href="#3、预测Income-65000-House-Age-5-Number-of-Rooms-5-Population-30000-size-200的合理房价-X-test-65000-5-5-30000-200" class="headerlink" title="3、预测Income=65000, House Age=5, Number of Rooms=5, Population=30000,size=200的合理房价 X_test = [65000,5,5,30000,200]"></a>3、预测Income=65000, House Age=5, Number of Rooms=5, Population=30000,size=200的合理房价 X_test = [65000,5,5,30000,200]</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">X_test = [<span class="number">65000</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">30000</span>,<span class="number">200</span>]</span><br><span class="line">X_test = np.array(X_test).reshape(<span class="number">1</span>,-<span class="number">1</span>)</span><br><span class="line">print(X_test)<span class="comment">#[[65000     5     5 30000   200]]</span></span><br><span class="line">y_test_predict = LR_multi.predict(X_test)</span><br><span class="line">print(y_test_predict)<span class="comment">#[817052.19516298]</span></span><br></pre></td></tr></table></figure>
+<p><strong>线性回归房价实战summary：</strong><br><strong>1、通过搭建线性回归模型，实现单因子的房屋价格预测；</strong><br><strong>2、在单因子模型效果不好的情况下，通过考虑更多的因子，建立了多因子模型；</strong><br><strong>3、多因子模型达到了更好的预测效果，r2分数为0.91；</strong><br><strong>4、实现了预测结果的可视化，直观对比预测价格与实际价格的差异。</strong></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/07/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">机器学习-开发环境</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "59SwPXP8BGnD9KITklo6uCcE-gzGzoHsz",
+    app_key: "foEgF7E9oWUlXFfsSy2l8lrD",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "留下足迹吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2022
+        <i class="ri-heart-fill heart_icon"></i> Zikang Wang
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/K.png" alt="wzkang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=4899152&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
