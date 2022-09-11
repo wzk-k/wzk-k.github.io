@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="欢迎" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     wzkang
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/images/K.png" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-1比特币"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+     
+    <div class="article-meta">
+      <a href="/2022/08/30/1%E6%AF%94%E7%89%B9%E5%B8%81/" class="article-date">
+  <time datetime="2022-08-30T08:34:16.365Z" itemprop="datePublished">2022-08-30</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>title: 1.比特币<br>date: 2022-08-30 22:33:29<br>tags: 区块链</p>
+<h2 id="1-比特币"><a href="#1-比特币" class="headerlink" title="1.比特币"></a>1.比特币</h2><p>​    比特币是一种基于点对点网络的基于密码学原理的数字货币。</p>
+<h2 id="2-点对点网络"><a href="#2-点对点网络" class="headerlink" title="2.点对点网络"></a>2.点对点网络</h2><p>​    点对点网络是一种网络拓扑模型，而我们平时接触的最多网络拓扑模型是另一种模型叫做 C/S 或 B/S 模型，像我们平常用浏览器访问某个页面或者我们玩手游王者荣耀等都是基于 C/S 或 B/S 模型的。C/S 或 B/S 模型网络模型的特点是存在一个中心服务器作为 Server 端提供我们需要的所有信息。</p>
+<blockquote>
+<p>点对点网络（peer-to-peer， 简称 P2P），又称对等式网络，是无中心服务器、依靠用户群（peers）交换信息的互联网体系，它的作用在于，减低以往网路传输中的节点，以降低资料遗失的风险。与有中心服务器的中央网络系统不同，对等网络的每个用户端既是一个节点，也有服务器的功能，任何一个节点无法直接找到其他节点，必须依靠其用户群进行信息交流。</p>
+</blockquote>
+<p>​    从该定义我们可以分析出，点对点网络是一种去中心化的网络拓扑，该网络拓扑中的每个节点都能为网络中的其他节点提供资源，也能从网络中的其他节点中获取资源。这种特性，使得存在于点对点网络中的数据具备较强的健壮性，而且数据的传播也很难受某个组织或个人的控制。</p>
+<p>C/S 网络与点对点网络的拓扑图对比如下：</p>
+<p><img src="/2022/08/30/1%E6%AF%94%E7%89%B9%E5%B8%81/image-20220829194116724.png" alt="image-20220829194116724"></p>
+<p>比特币是基于<strong>点对点网络</strong>实现的，因此比特币是<strong>去中心化</strong>的，没有哪个机构可以控制或者发行它。这就与我们平常生活中所接触到的货币有非常大的区别，我们平时所使用的货币都是由一个权威机构（如央行）统一发行的，货币的发行量也是由权威机构决定的。所以从某种意义上讲比特币的出现，颠覆了我们以往对于货币的某些固有认识。</p>
+<h2 id="3-比特币的实现模型"><a href="#3-比特币的实现模型" class="headerlink" title="3.比特币的实现模型"></a>3.比特币的实现模型</h2><p>​    以我们生活中最熟悉的纸币为例，纸币是由权威机构发行的实体货币，每张纸币都是独一无二的，并且使用了很多防伪技术用于甄别假币；另一方面，它以实体的方式存在，所以如果你手上拥有这个纸币那么你就拥有了它的使用权，而一旦你使用它买了东西，那这个纸币实体就会转移到另一个人的手上，你便不再拥有该纸币，这是很自然的一个使用货币交易的过程。</p>
+<p>​    但是在计算机的世界里，我们不可能以实体形式来表示货币；而如果我们试图用过一段独一无二的数据来表示货币，这样也有问题，因为计算机的世界里支持完美的数据拷贝机制，所以一段独一无二的数据在计算机的世界里可以有无限份一模一样的拷贝。同样当我们使用数字表示的货币进行交易时，由于我们可以保留数据的拷贝，所以货币的拥有权其实可以不用发生转移，也就是说我们可以将一张货币使用无限次，这便是著名的 <a target="_blank" rel="noopener" href="https://www.baidu.com/link?url=mUdBrEuqwZAMtsVoObN49zgldjzfe4DoPVQy1DY4oybPfEzbxsDXdYGmchKkyDWTWx2ZosqoufmyvfSTTjatxN4pq5GdfAEqPrNflqmxqqmc6aCZlEWECgm4TNzi1sCY&wd=&eqid=a8a563bb0009a155000000065f811775">「双重支付」</a>问题。</p>
+<p>​    所以我们无法以纸币为模型来研发我们的比特币。那么让我们看看能否从电子货币的运作模式中找到灵感。</p>
+<p>​    所谓的<strong>电子货币</strong>，简单的理解，就是我们手头上的银行卡，其实就是卡号。在电子货币的世界里，通过卡号来识别一个人（或者叫货币拥有者），而这个卡号，其实就是银行系统数据库的一个索引，通过这个索引我们可以查询到该卡号对应的资产信息（账户余额等信息）。当我们发生交易时，银行系统数据库里关于我们这个卡号信息就会更新，以反映关于货币拥有权的转移。</p>
+<p><strong>电子货币</strong>的模型如下图所示：</p>
+<img src="/2022/08/30/1%E6%AF%94%E7%89%B9%E5%B8%81/image-20220829194352263.png" alt="image-20220829194352263" style="zoom:67%;">
+
+<p><strong>比特币的实现模型</strong>与之类似</p>
+<img src="/2022/08/30/1%E6%AF%94%E7%89%B9%E5%B8%81/image-20220829194439135.png" alt="image-20220829194439135" style="zoom: 60%;">
+
+<p>虽然比特币与电子货币的实现模型类似，但还是存在一些根本上的<strong>区别</strong>：</p>
+<ol>
+<li>比特币使用的数据库是存在于互联网上透明的<strong>去中心化的分布式数据库</strong>；而电子货币的数据库由银行维护，并不公开也不透明；</li>
+<li>比特币使用者的身份信息是<strong>通过密码学原理生成的</strong>，交易过程也是基于密码学原理来实现的；</li>
+<li>比特币的数据库不针对账号进行信息记录，而是记录所有的<strong>交易信息</strong>。</li>
+</ol>
+<p>下表从发行主体、适用范围、发行数量、储存形式等方面对比特币和电子货币进行了对比：</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">电子货币</th>
+<th align="center">数字货币</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">发行主体</td>
+<td align="center">金融机构</td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td align="center">使用范围</td>
+<td align="center">一般不限</td>
+<td align="center">不限</td>
+</tr>
+<tr>
+<td align="center">发行数量</td>
+<td align="center">法币决定</td>
+<td align="center">数量一定</td>
+</tr>
+<tr>
+<td align="center">储存形式</td>
+<td align="center">磁卡或账号</td>
+<td align="center">数字</td>
+</tr>
+<tr>
+<td align="center">货币价值</td>
+<td align="center">与法币对等</td>
+<td align="center">与法币不对等</td>
+</tr>
+<tr>
+<td align="center">信用保障</td>
+<td align="center">政府</td>
+<td align="center">网民</td>
+</tr>
+<tr>
+<td align="center">交易安全性</td>
+<td align="center">较高</td>
+<td align="center">较高</td>
+</tr>
+<tr>
+<td align="center">交易成本</td>
+<td align="center">较高</td>
+<td align="center">较低</td>
+</tr>
+<tr>
+<td align="center">运行环境</td>
+<td align="center">内联网，外联网，读写设备</td>
+<td align="center">开源软件以及点对点网络</td>
+</tr>
+<tr>
+<td align="center">典型代表</td>
+<td align="center">银行卡</td>
+<td align="center">比特币</td>
+</tr>
+</tbody></table>
+<h2 id="4-比特币的特性"><a href="#4-比特币的特性" class="headerlink" title="4.比特币的特性"></a>4.比特币的特性</h2><p>比特币作为一种数字货币，它拥有传统货币（纸币或电子货币）所不具备的三个特性：</p>
+<ul>
+<li>去中心化</li>
+</ul>
+<p>与传统的货币不同，比特币不依靠特定货币机构（中心机构）发行和管理，它存在于一个由点对点网络中众多计算机构成的分布式数据库中。比特币的发行与交易主要依靠的是点对点网络中的计算机节点上进行的一种称为「工作量证明」的算法计算，并使用密码学的原理来确保货币流通各个环节安全性及有效性。</p>
+<ul>
+<li>形态特殊化</li>
+</ul>
+<p>同我们非常习惯的纸币、硬币等法定货币完全不一样，比特币从技术角度而言就是一种比较特殊的数学模型，可以知道它的存在，但是却无法触及到真实的实物。这种属性的存在，大大便利了比特币在全球的快速推广和市场交易。</p>
+<ul>
+<li>总量横量化</li>
+</ul>
+<p>虽然比特币的发行是去中心化的，但其发行的总量却是固定的。比特币的发行总量被其设计者中本聪限定为 2100 万个，按照中本聪的设计，在 120 年后（即 2140 年），比特币的总发行量将达到 2100 万个的上限。比特币的这个特性，从防止通货膨胀方面而言，是具备一定优势的。</p>
+<h2 id="5-比特币的法律现状"><a href="#5-比特币的法律现状" class="headerlink" title="5.比特币的法律现状"></a>5.比特币的法律现状</h2><ul>
+<li>德国：2013 年 6 月底，德国议会决定持有比特币一年以上将予以免税后，比特币被德国财政部认定为「记账单位」，这意味着比特币在德国已被视为合法货币，并且可以用来交税和从事贸易活动。</li>
+<li>美国：2013 年 8 月，美国德克萨斯州地方法院法官阿莫斯-马赞特在一起比特币虚拟对冲基金的案件中裁定，比特币是一种货币，应该将其纳入金融法规的监管范围之内。</li>
+<li>日本：2017 年，日本政府称比特币是一种合法的支付方式。</li>
+<li>中国：在中国，《人民币管理条例》规定，禁止制作和发售代币票券。由于代币票券的定义并没有明确的司法解释，如果比特币被纳入到「代币票券」中，则比特币在中国的法律前景面临不确定性。</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/08/30/1%E6%AF%94%E7%89%B9%E5%B8%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/08/30/3.%E5%8C%BA%E5%9D%97%E9%93%BE/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            (no title)
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/08/30/2.%E6%AF%94%E7%89%B9%E5%B8%81%E5%AF%86%E7%A0%81%E5%AD%A6/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title"></div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "59SwPXP8BGnD9KITklo6uCcE-gzGzoHsz",
+    app_key: "foEgF7E9oWUlXFfsSy2l8lrD",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "留下足迹吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2022
+        <i class="ri-heart-fill heart_icon"></i> Zikang Wang
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/K.png" alt="wzkang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=4899152&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

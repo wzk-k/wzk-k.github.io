@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">59</span>
+            <span class="post-count">144</span>
         </span>
     </span>
 
@@ -96,10 +96,21 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="1-分类问题"><a href="#1-分类问题" class="headerlink" title="1.分类问题"></a>1.分类问题</h1><p>垃圾邮件检测：</p>
-<p>标注样本邮件为垃圾邮件（人）</p>
-<p>获取批量的样本邮件及标签，学习其<strong>特征</strong>（计算机）</p>
-<p>针对新的邮件，自动判断其类别（计算机）</p>
+  <h1 id="1-分类问题"><a href="#1-分类问题" class="headerlink" title="1.分类问题"></a>1.分类问题</h1><p>分类：根据已知样本的某些特征，判断一个新的样本属于哪种已知的样本类。</p>
+<p>分类方法：（1）逻辑回归（2）KNN近邻模型（3）决策树（4）神经网络</p>
+<p>分类问题和回归问题明显区别</p>
+<img src="/2022/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%80%BC%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/image-20220817102001549.png" alt="image-20220817102001549" style="zoom:67%;">
+
+<img src="/2022/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%80%BC%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/image-20220817102108731.png" alt="image-20220817102108731" style="zoom:67%;">
+
+<p>逻辑回归：用于解决分类问题的一种模型。更具数据特征或属性，计算其归属于某一类别的概率P(X),根据概率数值判断其所属类别。主要应用场景：二分类问题</p>
+<p><img src="/2022/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%80%BC%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/image-20220817104326995.png" alt="image-20220817104326995"></p>
+<p>逻辑回归求解</p>
+<p><img src="/2022/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%80%BC%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/image-20220817105839063.png" alt="image-20220817105839063"></p>
+<p><img src="/2022/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%80%BC%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/image-20220817105933338.png" alt="image-20220817105933338"></p>
+<p><img src="/2022/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%80%BC%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/image-20220817113501144.png" alt="image-20220817113501144"></p>
+<p><img src="/2022/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%80%BC%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/image-20220817114241477.png" alt="image-20220817114241477"></p>
+<p><img src="/2022/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%80%BC%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/image-20220817114434205.png" alt="image-20220817114434205"></p>
  
       <!-- reward -->
       
@@ -174,6 +185,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2022/07/26/%E6%B4%BB%E7%9D%80%E7%9A%84%E6%84%9F%E6%82%9F/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            记忆
+          
+        </div>
+      </a>
     
     
       <a href="/2022/07/21/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="article-nav-link">
