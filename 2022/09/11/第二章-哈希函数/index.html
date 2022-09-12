@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">752</span>
+            <span class="post-count">1.1k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3 分钟</span>
+            <span class="post-count">4 分钟</span>
         </span>
     </span>
 </div>
@@ -117,6 +117,8 @@
 <p>对任意消息x找出另一个消息x’满足h(x) = h(x’) 是困难的</p>
 <p>◆碰撞困难Collision（没有目标）</p>
 <p>要找出两个随机的消息x和x’使得h(x) = h(x’) 是困难的</p>
+<p>Hash典型计算过程</p>
+<p><img src="/2022/09/11/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/image-20220912202920278.png" alt="image-20220912202920278"></p>
 <h2 id="二-MD5算法"><a href="#二-MD5算法" class="headerlink" title="二.MD5算法"></a>二.MD5算法</h2><h3 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1.基础知识"></a>1.基础知识</h3><p>1992年首次提出</p>
 <p><strong>摘要长度：128bit</strong></p>
 <p>任意长度的信息输入，MD5都将产生一个长度为128比特的输出</p>
@@ -162,6 +164,41 @@
 <h4 id="第四步：拼接"><a href="#第四步：拼接" class="headerlink" title="第四步：拼接"></a>第四步：拼接</h4><p>每轮循环后，将A，B，C，D分别加上a，b，c，d。</p>
 <p><strong>参考文献</strong></p>
 <p>[^MD5算法研究]: </p>
+<h2 id="三-SHA-1算法"><a href="#三-SHA-1算法" class="headerlink" title="三.SHA-1算法"></a>三.SHA-1算法</h2><h3 id="1-基础知识-1"><a href="#1-基础知识-1" class="headerlink" title="1.基础知识"></a>1.基础知识</h3><p>1995年首次提出</p>
+<p><strong>摘要长度：160bit</strong></p>
+<p>任意长度的信息输入，SHA-1都将产生一个长度为128比特的输出</p>
+<p><strong>块大小：512bit（64字节）</strong></p>
+<p>每次以512位的分组来处理</p>
+<p><strong>轮计算：4（20 step)</strong></p>
+<p>共4轮计算，每轮计算20步，一共80步</p>
+<p>SHA-1模仿MD5设计，SHA－1 算法主要通过<strong>预处理</strong>和<strong>算法的主循环</strong>构造消息摘要</p>
+<h3 id="2-SHA-1算法原理"><a href="#2-SHA-1算法原理" class="headerlink" title="2.SHA-1算法原理"></a>2.SHA-1算法原理</h3><h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>补位和MD5类似，同样512bit。第一位补1，其余补0，满足L mod 512 = 448. 512-448 = 64 存储原始消息长度。</p>
+<p>比如下图，补位。</p>
+<p><img src="/2022/09/11/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/image-20220912192929738.png" alt="image-20220912192929738"></p>
+<p>每个512bit分为16份，每份32bit，和MD5一样。但是MD5每轮16步，一共64步。而SHA-1每轮20步，一共80步。</p>
+<p>所以对消息快Wj的处理有变化，t表示步数.</p>
+<p><img src="/2022/09/11/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/image-20220912194523896.png" alt="image-20220912194523896"></p>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>有5个链接变量（幻数），一个32位，总共32*5=160位</p>
+<p><code>A = 0x67452301</code></p>
+<p><code>B = 0xEFCDAB89</code></p>
+<p><code>C = 0x98BADCFE</code></p>
+<p><code>D =0x10325476</code></p>
+<p><code>E = 0xC3D2E1F0</code>  </p>
+<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p>四个<strong>轮函数</strong>，连接变量赋给a,b,c,d,e.</p>
+<p><img src="/2022/09/11/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/image-20220912183317765.png" alt="image-20220912183317765"></p>
+<p>同样，通过这个图来理解。</p>
+<img src="/2022/09/11/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/image-20220912183350431.png" alt="image-20220912183350431" style="zoom:67%;">
+
+<blockquote>
+<p>首先，计算F(B,C,D)与E相加，再和左移5位的A相加，再和Wt、Kt相加。</p>
+<p>然后，B左移30位，</p>
+<p>最后,是一个赋值的操作。</p>
+</blockquote>
+<p><img src="/2022/09/11/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/image-20220912200133999.png" alt="image-20220912200133999"></p>
+<p><img src="/2022/09/11/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/image-20220912200813102.png" alt="image-20220912200813102"></p>
+<h4 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h4><p>80轮得到的a,b,c,d,e加上幻数即可。</p>
+<p>三、库和硬件支持</p>
+<p>OpenSSL</p>
  
       <!-- reward -->
       
@@ -238,6 +275,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2022/09/12/Untitled/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            (no title)
+          
+        </div>
+      </a>
     
     
       <a href="/2022/09/01/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95/" class="article-nav-link">
